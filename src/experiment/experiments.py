@@ -1,0 +1,263 @@
+'''
+Created on 27 de mar de 2019
+
+@author: klaus
+'''
+import numpy as np
+from experiment.prefixes import *
+from experiment.selector import select_input, select_affmat, select_classifier, select_noise,\
+    select_filter
+import gssl.graph.gssl_utils as gutils
+from experiment.selector import Hook, select_and_add_hook
+
+
+## The hooks being utilized
+PLOT_HOOKS = [Hook.INIT_LABELED,Hook.INIT_ALL,Hook.NOISE_AFTER,Hook.ALG_RESULT,Hook.ALG_ITER] \
+                + [Hook.GTAM_Q,Hook.GTAM_F,Hook.GTAM_Y]
+W_PLOT_HOOKS = [Hook.W_INIT_LABELED,Hook.W_INIT_ALL,Hook.W_NOISE_AFTER,Hook.FILTER_ITER,Hook.W_FILTER_AFTER,Hook.ALG_RESULT,Hook.ALG_ITER] \
+                + [Hook.GTAM_Q,Hook.GTAM_F,Hook.GTAM_Y]
+
+W_PLOT_HOOKS_NOITER = list(W_PLOT_HOOKS)
+W_PLOT_HOOKS_NOITER.remove(Hook.ALG_ITER)
+W_PLOT_HOOKS_NOITER.remove(Hook.FILTER_ITER)
+
+
+
+TIME_HOOKS = [Hook.T_ALG,Hook.T_FILTER,Hook.T_NOISE,Hook.T_AFFMAT]                
+
+_Z =[("AFFMAT",AFFMAT_PREFIX),
+                ("INPUT",INPUT_PREFIX),
+                ("FILTER",FILTER_PREFIX),
+                ("NOISE",NOISE_PREFIX),
+                ("ALG",ALG_PREFIX),
+                ("GENERAL","")\
+                ]
+
+
+def keys_multiplex(args):
+
+    mplex = {}
+    for x,y in _Z:
+        mplex[x] = {}
+    
+    
+    for k,v in args.items():
+        for x,y in _Z:
+            if k.startswith(y):
+                mplex[x][k[len(y):]] = v
+                break
+    return mplex
+
+
+
+def postprocess(mplex):
+    """ Performs some postprocessing on the multiplexed keys. """
+    mplex = dict.copy(mplex)
+    
+    id = mplex["GENERAL"]["id"]
+    for k in mplex.keys():
+        if k == "ALG" or k == "FILTER":
+            continue
+        mplex[k]["seed"] = id
+        
+    if  "sigma" in mplex["AFFMAT"].keys() and mplex["AFFMAT"]["sigma"] == "mean":
+        """ Just use the RBF's SIGMA directly instead of computing it manually. """
+        
+        if mplex["INPUT"]["dataset"] == "Digit1":
+            mplex["AFFMAT"]["sigma"]  = 4.412518742145814
+        elif mplex["INPUT"]["dataset"] == "COIL2":
+            mplex["AFFMAT"]["sigma"]  =  2.4462853134304963
+        elif mplex["INPUT"]["dataset"] == "COIL":
+            mplex["AFFMAT"]["sigma"]  =  3.0904129359360937
+
+        elif mplex["INPUT"]["dataset"] == "isolet":
+            mplex["AFFMAT"]["sigma"]  =  2.7529673535028003
+        elif mplex["INPUT"]["dataset"] == "g241c":
+            mplex["AFFMAT"]["sigma"]  =  6.593260880190159
+        elif mplex["INPUT"]["dataset"] == "g241n":
+            mplex["AFFMAT"]["sigma"]  =  6.528820377801142
+        elif mplex["INPUT"]["dataset"] == "USPS":
+            mplex["AFFMAT"]["sigma"]  =  4.412518742145814
+        elif mplex["INPUT"]["dataset"] == "cifar10":
+            mplex["AFFMAT"]["sigma"]  =  903.6705243483848
+        elif mplex["INPUT"]["dataset"] == "mnist":
+            mplex["AFFMAT"]["sigma"]  =  423.5704955059233
+        
+        
+        
+    if "tuning_iter_as_pct" in mplex["FILTER"].keys() and mplex["FILTER"]["tuning_iter_as_pct"]:
+        mplex["FILTER"]["tuning_iter"] = mplex["INPUT"]["labeled_percent"] *\
+                                         mplex["NOISE"]["corruption_level"] *\
+                                         mplex["FILTER"]["tuning_iter"]
+        
+            
+    return mplex
+
+class Experiment():
+    """ Encapsulates an experiment, composed of the following steps.
+         
+         1. Reading the input features and true labels.
+         2. Apply some noise process to the true labels, obtaining the corrupted labels.
+         3. Create the Affinity matrix from the input features (and, optionally, noisy labels).
+         4. Apply some filter to the corrupted labels, obtaining filtered labels.
+         5. Run an GSSL algorithm to obtain the classification
+         6. Get performance measures from the classification and filtered labels.
+         
+         
+         Attr:
+            X : the calculated input matrix
+            W (n by n numpy matrix) : the affinity matrix encoding the graph.
+            Y (n by c binary matrix) : matrix encoding initial belief
+    """
+    
+    
+
+    
+    def __init__(self,args):
+        self.args = dict(args)
+        self.X = None
+        self.labeledIndexes = None
+        self.labeledIndexes_filtered = None
+        
+        self.Y_true = None
+        self.Y_noisy = None
+        self.Y_filtered = None
+        self.W = None
+        self.F = None
+        self.out_dict = {}
+
+    def run(self,hook_list=PLOT_HOOKS):
+        #Multiplex the arguments, allocating each to the correct step
+        mplex = postprocess(keys_multiplex(self.args))
+        
+        
+        #Get Hooks:
+        hooks = select_and_add_hook(hook_list, mplex, self)
+        
+        
+        print("Step 1: Read Dataset")
+        
+        #Select Input 
+        self.X, self.Y_true, self.labeledIndexes = select_input(**mplex["INPUT"])
+
+        
+        
+        
+        if "know_estimated_freq" in mplex["ALG"].keys():
+            mplex["ALG"]["useEstimatedFreq"] = np.sum(self.Y_true,axis=0) / self.Y_true.shape[0]
+            mplex["ALG"].pop("know_estimated_freq")
+        
+        if "know_estimated_freq" in mplex["FILTER"].keys():
+            mplex["FILTER"]["useEstimatedFreq"] = np.sum(self.Y_true,axis=0) / self.Y_true.shape[0]
+            mplex["FILTER"].pop("know_estimated_freq")
+            
+        
+        print("X shape:{}".format(self.X.shape))
+        
+        
+        print("Step 2: Apply Noise")
+        #Apply Noise
+        self.Y_noisy = select_noise(**mplex["NOISE"]).corrupt(self.Y_true, self.labeledIndexes,hook=hooks["NOISE"])
+        
+
+
+        
+        print("Step 3: Create Affinity Matrix")
+        #Generate Affinity Matrix
+        self.W = select_affmat(**mplex["AFFMAT"]).generateAffMat(self.X,hook=hooks["AFFMAT"])
+        
+        
+        
+        print("Step 3: Filtering")
+        #Create Filter
+        ft = select_filter(**mplex["FILTER"])
+
+        
+        
+        self.Y_filtered, self.labeledIndexes_filtered = ft.fit(self.X, self.Y_noisy, self.labeledIndexes, self.W, hook=hooks["FILTER"])
+
+
+
+        print("Step 4: Classification")
+        #Select Classifier 
+        alg = select_classifier(**mplex["ALG"])
+        #Get Classification
+        self.F = alg.fit(self.X,self.W,self.Y_filtered,self.labeledIndexes_filtered,hook=hooks["ALG"])
+        
+
+        
+        print("Step 5: Evaluation")
+        
+        acc = gutils.accuracy(gutils.get_pred(self.F), gutils.get_pred(self.Y_true))
+        
+
+        
+        acc_unlabeled = gutils.accuracy(gutils.get_pred(self.F)[np.logical_not(self.labeledIndexes)],\
+                                         gutils.get_pred(self.Y_true)[np.logical_not(self.labeledIndexes)])
+        acc_labeled = gutils.accuracy(gutils.get_pred(self.F)[self.labeledIndexes],\
+                                         gutils.get_pred(self.Y_true)[self.labeledIndexes])
+        
+        print("ALGORITHM:{}".format(mplex["ALG"]["algorithm"]))
+        CMN_acc = gutils.accuracy(gutils.get_pred(gutils.class_mass_normalization(self.F,self.Y_filtered,self.labeledIndexes,normalize_rows=True)), gutils.get_pred(self.Y_true))
+        
+        CMN_rownorm_pred =gutils.get_pred(gutils.class_mass_normalization(self.F,self.Y_filtered,self.labeledIndexes,normalize_rows=False))
+        
+        CMN_rownorm_acc = gutils.accuracy(CMN_rownorm_pred, gutils.get_pred(self.Y_true))
+        
+        
+        CMN_rownorm_acc_unl = gutils.accuracy(CMN_rownorm_pred[np.logical_not(self.labeledIndexes)],
+                                              gutils.get_pred(self.Y_true)[np.logical_not(self.labeledIndexes)])
+        
+        CMN_rownorm_acc_l = gutils.accuracy(CMN_rownorm_pred[self.labeledIndexes],
+                                              gutils.get_pred(self.Y_true)[self.labeledIndexes])
+        
+        
+        
+        print("Accuracy: {} / {}".format(acc,1-acc))
+        print("Accuracy (unlabeled): {} / {}".format(acc_unlabeled,1-acc_unlabeled))
+        print("Accuracy (labeled): {} / {}".format(acc_labeled,1-acc_labeled))
+        
+        print("Accuracy w/ CMN: {} / {}".format(CMN_acc,1-CMN_acc))
+        print("Accuracy w/ rownorm CMN: {} / {}".format(CMN_rownorm_acc, 1-CMN_rownorm_acc))
+        print("Accuracy w/ rownorm CMN(unlabeled): {} / {}".format(CMN_rownorm_acc_unl, 1-CMN_rownorm_acc_unl))
+        
+        
+    
+        self.out_dict.update({OUTPUT_PREFIX + "acc" :acc})
+        self.out_dict.update({OUTPUT_PREFIX + "acc_unlabeled" :acc_unlabeled})
+        self.out_dict.update({OUTPUT_PREFIX + "acc_labeled" :acc_labeled})
+        
+        self.out_dict.update({OUTPUT_PREFIX + "CMN_rownorm_acc" :CMN_rownorm_acc})
+        self.out_dict.update({OUTPUT_PREFIX + "CMN_rownorm_acc_unl" :CMN_rownorm_acc_unl})
+        
+        self.out_dict.update({OUTPUT_PREFIX + "CMN_acc" :CMN_acc})
+        
+        
+        
+        return self.out_dict
+    
+    
+
+def run_debug_example_one(hook_list=[]):
+    import experiment.specification.exp_debug as exp
+    
+    opt = exp.ExpDebug().get_all_configs()[0]
+    
+    for k,v in keys_multiplex(opt).items():
+        print("{}:{}".format(k,v))
+    Experiment(opt).run(hook_list=hook_list)
+
+def run_debug_example_all():
+    import experiment.specification.exp_debug as exp
+    exp.ExpDebug().run_all()
+    
+def main():
+    run_debug_example_one(W_PLOT_HOOKS_NOITER)
+
+    
+if __name__ == "__main__":
+    main()
+
+    
+    
+    
