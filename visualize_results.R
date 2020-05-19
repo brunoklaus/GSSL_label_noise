@@ -62,8 +62,8 @@ df_chap_v2 <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v2_joined.csv"))
 
 df_ldst_filterstats <- dfRead(file.path(DF_FOLDER,"filter_LDST_stats_joined.csv"))
 
-df_ldst_chapelle <- dfRead(file.path(DF_FOLDER,"experiment3","chapelle","filter_LDST_chapelle_updated_joined.csv"))
-df_ldst_spiral  <- dfRead(file.path(DF_FOLDER,"experiment3","spiral","filter_LDST_spiral_updated_joined_backup.csv"))
+df_ldst_chapelle <- dfRead(file.path(DF_FOLDER,"filter_LDST_chapelle_updated_joined.csv"))
+df_ldst_spiral  <- dfRead(file.path(DF_FOLDER,"filter_LDST_spiral_updated_joined_backup.csv"))
 
 
 df_gtam_constantprop <- dfCombine(list(
@@ -86,8 +86,8 @@ df_exp1_chapelle <- dfCombine(
               "27Ag_exp1_MR_p1_joined.csv",
               "27Ag_exp1_MR_p2_joined.csv",
               "27Ag_exp1_MR_p3_joined.csv"
-  ), function(x)dfRead(file.path(DF_FOLDER,"experiment1",x)))
-)
+              ), function(x)dfRead(file.path(DF_FOLDER,"experiment1",x)))
+  )
 
 df_exp1_chapelle <- dplyr::filter(df_exp1_chapelle,is.na(alg_p) | alg_p >= 1) 
 df_exp1_chapelle$alg_constantProp = F
@@ -132,7 +132,7 @@ df_Aug21_filtered <- dfCombine(
 
 
 df_USPS_exp1 <- dfRead(file.path(DF_FOLDER,"experiment1",
-                                 "exp1_USPS_part1_joined.csv"))
+                "exp1_USPS_part1_joined.csv"))
 
 df_digit1_exp4 <- dfRead(file.path(DF_FOLDER,"Aug21_exp4",
                                    "exp_chapelle_with_filter_digit1.csv"))
@@ -164,125 +164,68 @@ df_Aug29_exp4$spec_name = "Experiment 4"
 
 
 df_Nov13_LGCLVO <- dfCombine(
-  lapply(list("13Dez_filter_SIIS_LGCLVO_ISOLET_p1_joined.csv",
-              "13Dez_filter_SIIS_LGCLVO_ISOLET_p2_joined.csv",
-              "13Dez_filter_SIIS_LGCLVO_ISOLET_p3_joined.csv",
-              "13Dez_filter_SIIS_LGCLVO_ISOLET_p4_joined.csv"
+  lapply(list("9Dez_chap_Digit1_joined.csv",
+              "9Dez_chap_COIL2_joined.csv",
+              "9Dez_chap_USPS_joined.csv",
+              "9Dez_chap_g241c_joined.csv",
+              "9Dez_chap_g241n_joined.csv",
+              "9Dez_chap_Z_Digit1_joined.csv",
+              "9Dez_chap_Z_COIL2_joined.csv",
+              "9Dez_chap_Z_USPS_joined.csv",
+              "9Dez_chap_Z_g241c_joined.csv",
+              "9Dez_chap_Z_g241n_joined.csv"
               
               
               
-  ), function(x)dfRead(file.path(DF_FOLDER,"12Dez",x))))
+  ), function(x)dfRead(file.path(DF_FOLDER,"9Dez",x))))
 
 
 df_Nov13_LGCLVO$spec_name = "Experiment 3"
-df_Nov13_LGCLVO <- dplyr::filter(df_Nov13_LGCLVO,input_dataset=="Digit1")
+df_Nov13_LGCLVO <- dplyr::filter(df_Nov13_LGCLVO)
 
-
-
-ds <- "Digit1"
-aff <- "constant"
-
-
-if (aff == "constant"){
-  df_Nov13_LGCLVO <- dfCombine(
-    lapply(list(paste0("SIIS/",aff,"/12Dez_SIIS_constant_chap_",ds,"_joined.csv"),
-                paste0("GTAM/",aff,"/deg/12Dez_GTAM_deg_constant_chap_",ds,"_joined.csv"),
-                paste0("GTAM/",aff,"/nodeg/12Dez_GTAM_constant_chap_",ds,"_joined.csv"),
-                paste0("LGC/",aff,"/12Dez_LGC_constant_chap_",ds,"_joined.csv")
-                
-                
-    ), function(x)dfRead(file.path(DF_FOLDER,"12Dez",x))))
+  df_list = list(
+    df_Nov13_LGCLVO)
+  df = dfCombine(df_list)
+  if (nrow(df) == 0){stop("DF has 0 rows")}
   
-  df_Nov13_LGCLVO$spec_name = "Experiment 1"
-} else{
-  df_Nov13_LGCLVO <- dfCombine(
-    lapply(list(paste0("SIIS/",aff,"/12Dez_SIIS_chap_",ds,"_joined.csv"),
-                paste0("GTAM/",aff,"/deg/12Dez_GTAM_deg_chap_",ds,"_joined.csv"),
-                paste0("GTAM/",aff,"/nodeg/12Dez_GTAM_chap_",ds,"_joined.csv"),
-                paste0("LGC/",aff,"/12Dez_LGC_chap_",ds,"_joined.csv"),
-                paste0("GFHF/",aff,"/12Dez_GFHF_chap_",ds,"_joined.csv")
-                
-    ), function(x)dfRead(file.path(DF_FOLDER,"12Dez",x))))
-  df_Nov13_LGCLVO$spec_name = "Experiment 2"
-}
-if ("SIIS" %in% unique(df_Nov13_LGCLVO$alg_algorithm)){
-df_Nov13_LGCLVO[df_Nov13_LGCLVO$alg_algorithm == "SIIS","alg_mu"] <- df_Nov13_LGCLVO[df_Nov13_LGCLVO$alg_algorithm == "SIIS","alg_alpha"] 
-df_Nov13_LGCLVO[df_Nov13_LGCLVO$alg_algorithm == "SIIS","alg_alpha"] <- NA
-
-df_Nov13_LGCLVO[df_Nov13_LGCLVO$alg_algorithm == "SIIS","alg_mu_2"] <- df_Nov13_LGCLVO[df_Nov13_LGCLVO$alg_algorithm == "SIIS","alg_beta"] 
-}
-if ("GTAM" %in% unique(df_Nov13_LGCLVO$alg_algorithm)){
+  #############################################################
+  # DF fixes
+  if ("out_filter_recall_mean" %in% colnames(df)) {
+    #df$out_filter_FNR_mean <- 1 - df$out_filter_recall_mean
+    #df$out_filter_FNR_sd <- df$out_filter_recall_sd
+    #df$out_filter_fallout_mean <- 1 - df$out_filter_specificity_mean
+    #df$out_filter_fallout1_sd <- df$out_filter_specificity_sd
+    
+    
+    df$out_filter_precision_mean[is.na(df$out_filter_precision_mean)] <- 0
+    df$out_filter_recall_mean[is.na(df$out_filter_recall_mean)] <- 0
+    df$out_filter_f1_score_mean[is.na(df$out_filter_f1_score_mean)] <- 0
+  }
+  if ("alg_alpha" %in% colnames(df)){
+    df$alg_mu[!is.na(df$alg_alpha)] = sapply(df$alg_alpha[!is.na(df$alg_alpha)],
+                                             function(x){return((1-x)/x)}) 
+    df = subset(df, select=-c(alg_alpha))
+  }
+  df$alg_algorithm = as.character(df$alg_algorithm)
+  df[df$alg_algorithm == "MREG","alg_algorithm"] = "LE"
+  df$alg_algorithm = as.factor(df$alg_algorithm)
   
-  df_Nov13_LGCLVO$alg_weigh_by_degree <- as.character(df_Nov13_LGCLVO$alg_weigh_by_degree)
-  df_Nov13_LGCLVO[df_Nov13_LGCLVO$alg_algorithm == "GTAM" &
-                    is.na(df_Nov13_LGCLVO$alg_weigh_by_degree),"alg_weigh_by_degree"] <- "False"
-  df_Nov13_LGCLVO$alg_weigh_by_degree <- as.factor(df_Nov13_LGCLVO$alg_weigh_by_degree)
-  colnames(df_Nov13_LGCLVO)[colnames(df_Nov13_LGCLVO) == "alg_weigh_by_degree"] <- "use_deg"
-}
-
-
-ds <- "g241n"
-aff <- "constant"
-df_Dez21 <-  dfCombine(
-  lapply(list(paste0("21Dez_eigfuncs_",ds,"_joined.csv")
-              
-  ), function(x)dfRead(file.path(DF_FOLDER,"21Dez",x))))
-
-df_ldst_chapelle <-dfCombine(
-  lapply(list("31Dez_LDST3_mod_chap_joined.csv"
-              
-  ), function(x)dfRead(file.path(DF_FOLDER,x))))
-df_ldst_chapelle$flt_weigh_by_degree = levels(df_ldst_chapelle$flt_weigh_by_degree)[1]
-df_ldst_chapelle$flt_useZ = levels(df_ldst_chapelle$flt_useZ)[1]
-df_ldst_chapelle$flt_gradient_fix=levels(df_ldst_chapelle$flt_gradient_fix)[1]
-
-df_list = list(
-  df_ldst_chapelle)
-df = dfCombine(df_list)
-if (nrow(df) == 0){stop("DF has 0 rows!")}
-#############################################################
-# DF fixes
-
-if ("out_filter_recall_mean" %in% colnames(df)) {
-  #df$out_filter_FNR_mean <- 1 - df$out_filter_recall_mean
-  #df$out_filter_FNR_sd <- df$out_filter_recall_sd
-  #df$out_filter_fallout_mean <- 1 - df$out_filter_specificity_mean
-  #df$out_filter_fallout1_sd <- df$out_filter_specificity_sd
+  REMOVE_KEYWORDS = c("min","max","values")
+  for(x in REMOVE_KEYWORDS){
+    df <- df[,!grepl(pattern = x, x = colnames(df))]
+  }
+  #Round off values
+  df[,sapply(df,class)=="numeric"] <-  round(df[,sapply(df,class)=="numeric"],digits=5)
+  output_variables <- c("experiments","mean_acc","sd_acc","elapsed_time",
+                        "min_acc","max_acc","median_acc","each_acc")
   
+  output_variables <- colnames(df)[sapply(colnames(df),
+                                          function(x){grepl("out_",x)})]
   
-  df$out_filter_precision_mean[is.na(df$out_filter_precision_mean)] <- 0
-  df$out_filter_recall_mean[is.na(df$out_filter_recall_mean)] <- 0
-  df$out_filter_f1_score_mean[is.na(df$out_filter_f1_score_mean)] <- 0
-}
-if ("alg_alpha" %in% colnames(df)){
-  df$alg_mu[!is.na(df$alg_alpha)] = sapply(df$alg_alpha[!is.na(df$alg_alpha)],
-                                           function(x){return((1-x)/x)}) 
-  df = subset(df, select=-c(alg_alpha))
-}
-df$alg_algorithm = as.character(df$alg_algorithm)
-df[df$alg_algorithm == "MREG","alg_algorithm"] = "LE"
-df$alg_algorithm = as.factor(df$alg_algorithm)
-
-REMOVE_KEYWORDS = c("min","max","values")
-for(x in REMOVE_KEYWORDS){
-  df <- df[,!grepl(pattern = x, x = colnames(df))]
-}
-#Round off values
-df[,sapply(df,class)=="numeric"] <-  round(df[,sapply(df,class)=="numeric"],digits=5)
-output_variables <- c("experiments","mean_acc","sd_acc","elapsed_time",
-                      "min_acc","max_acc","median_acc","each_acc")
-
-output_variables <- colnames(df)[sapply(colnames(df),
-                                        function(x){grepl("out_",x)})]
-
-affmat_variables <- colnames(df)[sapply(colnames(df),
-                                        function(x){grepl("aff_",x)})]
-hyperparams <- !(colnames(df) %in% c(affmat_variables,output_variables))
-hyperparams <- colnames(df)[hyperparams]
-
-
-df[,grepl("acc_",colnames(df))] <- round(100* df[,grepl("acc_",colnames(df))],digits=2)
-
+  affmat_variables <- colnames(df)[sapply(colnames(df),
+                                          function(x){grepl("aff_",x)})]
+  hyperparams <- !(colnames(df) %in% c(affmat_variables,output_variables))
+  hyperparams <- colnames(df)[hyperparams]
 
 ############################################################################
 ####################################################
@@ -290,66 +233,63 @@ df[,grepl("acc_",colnames(df))] <- round(100* df[,grepl("acc_",colnames(df))],di
 #' 
 #' 
 texDf <- function(df,x_var,use_sd=T, out_var="acc",
-                  out_var_statistic="mean",type_var = "") {
-  out_var = paste0(OUTPUT_PREFIX,out_var)
-  f_cond <- Vectorize(function(x){
-    return (startsWith(x,OUTPUT_PREFIX))
-  })
-  ignore_var = colnames(df)[f_cond(colnames(df))]
-  df <- as.tibble(df)
+                       out_var_statistic="mean",type_var = "") {
   
-  #ignore_var <- ignore_var[!ignore_var %in% c(x_var,out_var)] 
+    df <- as.data.frame(df)
+    for(c in colnames(df)){
+      df[,c][df[,c] == ""] <- NA
+    }
   
-  #' Converts a dataframe row to a string listing the names and values
-  #' of that dataframe's columns, except if the value is NA.  
-  #' 
-  #' @param a a row from some dataframe.
-  #' @param sep the string used to separate each (name,value) pair
-  toStrExceptNA <- function(a,sep=";"){
-    temp <- as.logical(!is.na(a[1,]))
-    a <- a[1,temp]
-    if (length(a)==0) return("")
-    return(paste0(sapply(1:length(a),
-                         function(i){
-                           paste0(colnames(a)[i],"=",
-                                  as.character(a[[1,i]]),
-                                  sep)
-                         }
-    ),collapse=""))
+    out_var = paste0(OUTPUT_PREFIX,out_var)
+    f_cond <- Vectorize(function(x){
+      return (startsWith(x,OUTPUT_PREFIX))
+    })
+    ignore_var = colnames(df)[f_cond(colnames(df))]
+    #ignore_var <- ignore_var[!ignore_var %in% c(x_var,out_var)] 
     
-  }
-  
-  #b1: filters out columns that have only one value (that value could be NA)
-  b1 <- unname(apply(df,2,function(x){
-    return(length(unique(x[!is.na(x) & !x==""])))
-  }
-    ) > 1)
+    #' Converts a dataframe row to a string listing the names and values
+    #' of that dataframe's columns, except if the value is NA.  
+    #' 
+    #' @param a a row from some dataframe.
+    #' @param sep the string used to separate each (name,value) pair
+    toStrExceptNA <- function(a,sep=";"){
+      temp <- as.logical(!is.na(a[1,]))
+      a <- a[1,temp]
+      if (length(a)==0) return("")
+      return(paste0(sapply(1:length(a),
+                           function(i){
+                             paste0(colnames(a)[i],"=",
+                                    as.character(a[[1,i]]),
+                                    sep)
+                           }
+      ),collapse=""))
+      
+    }
+
+    #b1: filters out columns that have only one level (not counting NA or "")
+    b1 <- apply(df,2,function(x){
+      return(length(unique(x[!is.na(x) & !x==""])))
+    }
+    ) > 1
     #b2: filters out columns in 'ignore_var' 
     b2 <- !colnames(df) %in% c(x_var,out_var,type_var,ignore_var)
     
     
-
     #g: string describing the setting
-    g <- ""
-    if(any(b1 & b2)){
-      g <- sapply(1:nrow(df[,b1 & b2]),
-                  function(i){
-                    return(toStrExceptNA(df[i,b1 & b2]))
-                  }
-      )
-    }
+    g <- sapply(1:nrow(df[,b1 & b2]),
+                function(i){
+                  return(toStrExceptNA(df[i,b1 & b2]))
+                }
+    )
     b3 <- (startsWith(colnames(df),OUTPUT_PREFIX))
     
     #g_compl: string describing the non-output variables that appear
     #with a single, unique value
-    g_compl <- ""
-    if (any(!b1 & !b3)){
-      g_compl <- sapply(1:nrow(df),
-                        function(i){
-                          return(toStrExceptNA(df[i,!b1 & !b3],sep=";\n"))
-                        }
-      )
-    }
+    g_compl <- sapply(1:nrow(df),
+                      function(i){
+                        return(toStrExceptNA(df[i,!b1 & !b3],sep=";\n"))
+                      }
+    )
     
     
     df_fixed = df[,!b1 & !b3]
@@ -389,7 +329,7 @@ createTexTable <- function(fPath,tex_df,setting,x_var){
   fileConn <-file(fPath,open = "w")
   writeLines(text = c("\\begin{table}[h]","\\tiny",
                       paste0("\\begin{tabular}{@{}",paste0(rep("l",
-                                                               n_settings+1+(ncol(tex_df)-(n_settings+1))/2),collapse = ""),
+                                        n_settings+1+(ncol(tex_df)-(n_settings+1))/2),collapse = ""),
                              "@{}}","\\toprule")),con = fileConn)
   close(fileConn)
   fileConn <-file(fPath,open = "a")
@@ -399,11 +339,6 @@ createTexTable <- function(fPath,tex_df,setting,x_var){
                                    c("alg_mu","$\\mu$"),
                                    c("alg_p","p"),
                                    c("alg_algorithm","Algorithm"),
-                                   c("out_acc_labeled","Accuracy (labeled)"),
-                                   c("flt_gradient_fix","Stability fix"),
-                                   
-                                   c("out_acc_unlabeled","Accuracy (unlabeled)"),
-                                   
                                    c("CMN_acc","Accuracy (w/ class mass normalization)"),
                                    c("acc","Accuracy"))))
   translate <- as.data.frame(translate)
@@ -420,7 +355,7 @@ createTexTable <- function(fPath,tex_df,setting,x_var){
       colnames(tex_df)[which(colnames(tex_df) == translate$old[[i]])] <- translate$new[[i]]
     }
     if (translate$old[[i]] == x_var){
-      x_var <- translate$new[[i]]
+        x_var <- translate$new[[i]]
     }
     
   }
@@ -448,9 +383,9 @@ createTexTable <- function(fPath,tex_df,setting,x_var){
   
   if ("Noise" %in% colnames(tex_df)){
     tex_df[,"Noise"] <- sapply(tex_df[,"Noise"],
-                               function(x){
-                                 return(paste0(100*as.numeric(x),"\\%"))
-                               })
+                                          function(x){
+                                            return(paste0(100*as.numeric(x),"\\%"))
+                                          })
   }
   
   
@@ -469,13 +404,13 @@ createTexTable <- function(fPath,tex_df,setting,x_var){
       ln <- paste0(df[i,1:n_settings],collapse = " & ")
       ln <- paste0(ln," & ",df[i,x_var])
       for (j in seq(n_settings+2,ncol(df),2)){
-        if (!is.na(df[i,j]) & as.numeric(df[i,j]) == max(as.numeric(df[,j]),na.rm = T)) {
-          obs <- paste0(" & ","\\textbf{",df[i,j],"$\\pm$",df[i,j+1],"}")
-        } else{
-          
-          obs <- paste0(" & ",df[i,j],"$\\pm$",df[i,j+1])
-        }
-        ln <- paste0(ln,obs)
+      if (!is.na(df[i,j]) & df[i,j] == max(df[,j],na.rm = T)) {
+        obs <- paste0(" & ","\\textbf{",df[i,j],"$\\pm$",df[i,j+1],"}")
+      } else{
+        
+        obs <- paste0(" & ",df[i,j],"$\\pm$",df[i,j+1])
+      }
+      ln <- paste0(ln,obs)
       }
       ln <- paste0(ln,NL)
       ln <- str_replace_all(ln," NA ","---")
@@ -501,21 +436,17 @@ translate <-t(as.data.frame(list(c("out_filter_FNR", "False Negative Rate"),
                                  c("out_filter_f1_score","F1 Score"),
                                  c("input_dataset","Dataset"),
                                  c("flt_filter","Filter"),
-                                 c("alg_algorithm","Classifier"),
-                                 c("out_acc_labeled","Accuracy (labeled)"),
-                                 c("out_acc_unlabeled","Accuracy (unlabeled)"),
-                                 
                                  c("flt_normalize_rows","row normalization"),
                                  
                                  c("out_filter_precision","Noise elimination precision"),
-                                 c("flt_tuning_iter","Number of labels removed")
+                                 c("flt_tuning_iter","Number of removed instances")
 )
 ))
 translate_var <-  function(y){
   if (endsWith(y,'_mean')){
     underscore_ids <- which(grepl(pattern = "_",unlist(strsplit("out_filter_er2_mean",""))))
     y <- substr(y,start=0,stop= underscore_ids[length(underscore_ids)] - 1)
-  }
+   }
   
   
   for (i in seq(nrow(translate))){
@@ -525,9 +456,8 @@ translate_var <-  function(y){
   }
   return(y)
   stop(paste0("DID NOT FIND VAR NAME OF ",y))
-}
-
-
+  }
+  
 ####################################################
 #' Creates a line plot
 #'
@@ -567,29 +497,23 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
   )
   #b2: filters out columns in 'ignore_var' 
   b2 <- !colnames(df) %in% c(x_var,out_var,type_var,ignore_var)
-  
+
   
   #g: string describing the setting
-  g <- ""
-  if(any(b1 & b2)){
   g <- sapply(1:nrow(df[,b1 & b2]),
               function(i){
                 return(toStrExceptNA(df[i,b1 & b2]))
               }
   )
- }
   b3 <- (startsWith(colnames(df),OUTPUT_PREFIX))
   
   #g_compl: string describing the non-output variables that appear
   #with a single, unique value
-  g_compl <- ""
-  if (any(!b1 & !b3)){
   g_compl <- sapply(1:nrow(df),
                     function(i){
                       return(toStrExceptNA(df[i,!b1 & !b3],sep=";\n"))
                     }
   )
-  }
   print(g)
   
   n <- nrow(df)
@@ -610,12 +534,12 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
     new_df$Type = factor(new_df$Type,levels = levels(new_df$Type)[c(2,1)] )
     
     g <- ggplot(data = new_df,aes(x,y,
-                                  ymin =y_min, ymax = y_max,linetype=Type,
-                                  colour=Color,fill=Color)) 
+                                ymin =y_min, ymax = y_max,linetype=Type,
+                                colour=Color,fill=Color)) 
   }
   g <- g + geom_line(size=1.5)
   
-  
+   
   if(use_sd){
     g <- g + geom_ribbon(alpha=0.1) 
   }
@@ -633,6 +557,7 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
     theme(strip.text.y = element_text(size = 11, hjust = 0.5,
                                       vjust =    0.5, face = 'bold')) +
     scale_color_brewer(palette="Dark2") + 
+    scale_y_continuous(lim=c(min(new_df$y-new_df$sd)-0.05, max(new_df$y+new_df$sd)+0.05),breaks=round(seq(0,1,0.2),1)) + 
     scale_fill_brewer(palette="Dark2") +
     ggtitle(paste0(g_compl[1])) + xlab(translate_var(x_var)) +
     ylab(translate_var(out_var))
@@ -642,9 +567,9 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
 
 #######################################################################
 #Experiment Config
-EXP_NAME = file.path("31_Dezembro_LDSTvsLGCLVO")
+EXP_NAME = file.path("10_Dezembro_LGCLVO")
 cond <- T
-EXP_TYPE = 4
+EXP_TYPE = 1
 
 if (EXP_TYPE %in% c(1,2)){
   x_var = "noise_corruption_level"
@@ -726,7 +651,6 @@ for (ds in unique(df$input_dataset)) {
     joined_df[sd_cols] =  joined_df[sd_cols.sorted]
     colnames(joined_df)[sd_cols] = colnames(joined_df)[sd_cols.sorted]
     
-    print(fPath_table)
     
     createTexTable(fPath_table,joined_df,setting,x_var=x_var)
     
@@ -738,79 +662,80 @@ for (ds in unique(df$input_dataset)) {
 #
 #
 out_var_list = c("filter_f1_score","filter_precision","filter_specificity","filter_recall")
-#out_var_list = c("acc_labeled","acc_unlabeled")
+#out_var_list = c("CMN_acc")
 
 for (ds in unique(df$input_dataset)) {
-  for (lp in unique(df$input_labeled_percent)){
-    
-    #Filter df and create joined table
-    filtered_df <- dplyr::filter(df,cond)
-    if (nrow(filtered_df)==0){stop("ERROR: zero rows satisfy criteria")}
-    
-    for (out_var in out_var_list){
-      
-      filtered_df <- dplyr::filter(df,cond & flt_mu==0.1111 & input_labeled_percent==lp)
-      
-      if(lp == 0.01){
-        filtered_df <- dplyr::filter(filtered_df,flt_tuning_iter <= 15)
-        
-      }
-      if (nrow(filtered_df)==0){next}
-      
-      ### Determine export Folder
-      export_folder = file.path(getwd(),"results","plots_R",EXP_NAME,
-                                paste0('dataset=',as.character(ds)),
-                                paste0('labeledPercent=',as.character(lp))
-      ) 
-      if (!dir.exists(export_folder)){
-        dir.create(export_folder,recursive = T)
-      }
-      ### Save lineplot to folder
-      out_var = out_var
-      out_var_statistic = "mean"
-      use_sd = F
-      fPath = file.path(export_folder,paste0(out_var,"~",x_var,"_",out_var_statistic,
-                                             ",sd=",use_sd,".png"))
-      fPath_table = file.path(export_folder,paste0(out_var,"~",x_var,"_",out_var_statistic,
-                                                   ".txt"))
-      
-      
-      l <- texDf(filtered_df,x_var = x_var,type_var=type_var, 
-                 out_var = out_var, out_var_statistic = out_var_statistic,
-                 use_sd = use_sd)
-      new_df = l[[1]]
-      setting = l[[2]]
-      #createTexTable(fPath_table,new_df,setting,x_var=x_var)
-      #print(fPath_table)
-      
-      
-      g <- linePlot(df = filtered_df,x_var = x_var,type_var=type_var, 
-                    out_var = out_var, out_var_statistic = out_var_statistic,
-                    use_sd = use_sd)
-      ggsave(fPath, width = 12, height = 8,dpi=150)
-      plot(g)
-    }
-  }
+for (lp in unique(df$input_labeled_percent)){
+  
+#Filter df and create joined table
+filtered_df <- dplyr::filter(df,cond)
+if (nrow(filtered_df)==0){stop("ERROR: zero rows satisfy criteria")}
+
+for (out_var in out_var_list){
+
+filtered_df <- dplyr::filter(df,cond  & flt_tuning_iter > 0 &
+                               input_labeled_percent == lp)
+
+if(lp == 0.01){
+  filtered_df <- dplyr::filter(filtered_df,flt_tuning_iter <= 15)
+  
+}
+if (nrow(filtered_df)==0){next}
+
+### Determine export Folder
+export_folder = file.path(getwd(),"results","plots_R",EXP_NAME,
+                         paste0('dataset=',as.character(ds)),
+                         paste0('labeledPercent=',as.character(lp))
+                         ) 
+if (!dir.exists(export_folder)){
+  dir.create(export_folder,recursive = T)
+}
+### Save lineplot to folder
+out_var = out_var
+out_var_statistic = "mean"
+use_sd = F
+fPath = file.path(export_folder,paste0(out_var,"~",x_var,"_",out_var_statistic,
+                                       ",sd=",use_sd,".png"))
+fPath_table = file.path(export_folder,paste0(out_var,"~",x_var,"_",out_var_statistic,
+                                       ".txt"))
+
+
+l <- texDf(filtered_df,x_var = x_var,type_var=type_var, 
+                out_var = out_var, out_var_statistic = out_var_statistic,
+                use_sd = use_sd)
+new_df = l[[1]]
+setting = l[[2]]
+#createTexTable(fPath_table,new_df,setting,x_var=x_var)
+#print(fPath_table)
+
+
+g <- linePlot(df = filtered_df,x_var = x_var,type_var=type_var, 
+              out_var = out_var, out_var_statistic = out_var_statistic,
+              use_sd = use_sd)
+ggsave(fPath, width = 12, height = 8,dpi=150)
+plot(g)
+}
+}
 }
 ####################################################################
 
 latexToCSV <- function(fPath){
-  
-  library("data.table") # loads the smart "fast" fread function
-  
-  #import data into R
-  data <- fread(fPath, skip=8, sep="&", data.table=F) # skips in compatible lines
-  names <- read.table(fPath, skip=6, nrow=1, sep="&", stringsAsFactors=F)
-  
-  #remove latex symbols from header
-  names<-gsub("\\\\", "", as.character(names))
-  names<-gsub(" ", "", as.character(names))
-  colnames(data) <- names
-  
-  #data[,ncol(data)]<-gsub("\\\\", "", as.character(data[,ncol(data)]))
-  #data[,ncol(data)]<-gsub(" ", "", as.character(data[,ncol(data)]))
-  data[,ncol(data)] <- as.character(data[,ncol(data)]) #change type as desired
-  return(data)
+
+library("data.table") # loads the smart "fast" fread function
+
+#import data into R
+data <- fread(fPath, skip=8, sep="&", data.table=F) # skips in compatible lines
+names <- read.table(fPath, skip=6, nrow=1, sep="&", stringsAsFactors=F)
+
+#remove latex symbols from header
+names<-gsub("\\\\", "", as.character(names))
+names<-gsub(" ", "", as.character(names))
+colnames(data) <- names
+
+#data[,ncol(data)]<-gsub("\\\\", "", as.character(data[,ncol(data)]))
+#data[,ncol(data)]<-gsub(" ", "", as.character(data[,ncol(data)]))
+data[,ncol(data)] <- as.character(data[,ncol(data)]) #change type as desired
+return(data)
 }
 export_latex <- function(x, file, outPath){
   print(xtable(data.frame(x), type="latex", file=outPath))
@@ -818,7 +743,7 @@ export_latex <- function(x, file, outPath){
 
 lp <- 0.1
 fPath = paste0("/home/klaus/eclipse-workspace/Quali/Overleaf/images_results/CHAPELLE_V3/",
-               "dataset=Digit1/labeledPercent=",lp,"/CMN_acc~noise_corruption_level_mean.txt")
+"dataset=Digit1/labeledPercent=",lp,"/CMN_acc~noise_corruption_level_mean.txt")
 
 df <- latexToCSV(fPath = fPath)
 
@@ -827,16 +752,16 @@ df <- latexToCSV(fPath = fPath)
 #################################################################
 for (sd in c(0.4,1,2,3))
 {
-  temp = mlbench::mlbench.2dnormals(n=1000,sd = sd)
-  X = as.tibble(temp$x)
-  colnames(X) = c("V1","V2")
-  write.csv(X,
-            paste0("gaussians_sd=",sd,"_X.csv"))
-  X[,"y"] = temp$classes
-  ggplot(X,aes(V1,V2,color=y)) + geom_point()
-  
-  write.csv(as.numeric(temp$classes),
-            paste0("gaussians_sd=",sd,"_Y.csv"))
+temp = mlbench::mlbench.2dnormals(n=1000,sd = sd)
+X = as.tibble(temp$x)
+colnames(X) = c("V1","V2")
+write.csv(X,
+          paste0("gaussians_sd=",sd,"_X.csv"))
+X[,"y"] = temp$classes
+ggplot(X,aes(V1,V2,color=y)) + geom_point()
+
+write.csv(as.numeric(temp$classes),
+          paste0("gaussians_sd=",sd,"_Y.csv"))
 }
 ########################
 setwd("/home/klaus/eclipse-workspace/NoisyGSSL/src/input/dataset/toy_data")

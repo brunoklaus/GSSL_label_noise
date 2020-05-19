@@ -11,11 +11,11 @@ class GFHF(GSSLClassifier):
     """ Label Propagation based on Gaussian Fields and Harmonic Functions. See :cite:`Zhu_2003`. """
 
     @GSSLClassifier.autohooks
-    def __GFHF_iter(self,W,Y,labeledIndexes,num_iter,  hook = None):
+    def __GFHF_iter(self,X,W,Y,labeledIndexes,num_iter,  hook = None):
         W = W.todense()
         Y = np.copy(Y)
         
-        Y[np.logical_not(labeledIndexes)] = 0
+        Y[np.logical_not(labeledIndexes),:] = 0
         if Y.ndim == 1:
             Y = gutils.init_matrix(Y,labeledIndexes)
         if not W.shape[0] == Y.shape[0]:
@@ -27,15 +27,17 @@ class GFHF(GSSLClassifier):
         for i in range(num_iter):
             Y = P@Y
             Y[labeledIndexes,:] = Yl
+            if not hook is None:
+                hook._step(step=i,X=X,W=W,Y=Y,labeledIndexes=labeledIndexes) 
             
         return Y
         
         
     @GSSLClassifier.autohooks
-    def __GFHF(self,W,Y,labeledIndexes, hook = None):
+    def __GFHF(self,X,W,Y,labeledIndexes, hook = None):
         W = W.todense()
         Y = np.copy(Y)
-        Y[np.logical_not(labeledIndexes)] = 0
+        Y[np.logical_not(labeledIndexes),:] = 0
         
         if Y.ndim == 1:
             Y = gutils.init_matrix(Y,labeledIndexes)
@@ -66,9 +68,9 @@ class GFHF(GSSLClassifier):
 
     def fit (self,X,W,Y,labeledIndexes, hook=None):
         if self.num_iter is None:
-            return(self.__GFHF(W=W,Y=Y,labeledIndexes=labeledIndexes,hook=hook))
+            return(self.__GFHF(X=X,W=W,Y=Y,labeledIndexes=labeledIndexes,hook=hook))
         else:
-            return(self.__GFHF_iter(W=W,Y=Y,labeledIndexes=labeledIndexes,num_iter=self.num_iter,hook=hook))
+            return(self.__GFHF_iter(X=X,W=W,Y=Y,labeledIndexes=labeledIndexes,num_iter=self.num_iter,hook=hook))
     def __init__(self,num_iter=None):
         """ Constructor for GFHF classifier.
             

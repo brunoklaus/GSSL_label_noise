@@ -35,6 +35,7 @@ class ExpChapelle(EmptySpecification):
     
     def noiseConfig(self):
         s = spec.NOISE_UNIFORM_DET_SOME
+        s["corruption_level"] = [0.2]
         return P(s)
     
     def affmatConfig(self):
@@ -42,19 +43,8 @@ class ExpChapelle(EmptySpecification):
         return P(s)
     def algConfig(self):
         #s = spec.ALGORITHM_LGC_DEFAULT
-        
-        s = spec.ALGORITHM_SIIS_DEFAULT
-        s["alpha"] = [10.0,100.0,1000.0]
-        s["beta"] = [1.0]
-        s["m"] = [200]
-        s["max_iter"] = [200]
-        s= spec.ALGORITHM_LGC_DEFAULT
-        s = spec.ALGORITHM_MANIFOLDREG_DEFAULT
-        s["p"] = [1,2,3,4,5,6,7,10,15,20,100]
         s = spec.ALGORITHM_GFHF_DEFAULT
-        s = spec.ALGORITHM_LGC_DEFAULT
-        
-        s["alpha"] = 1/(1+99.0)
+        s["num_iter"] = [1000]
         return P(s)
 
     def __init__(self,ds):

@@ -161,6 +161,7 @@ class Experiment():
         
 
 
+
         
         print("Step 3: Create Affinity Matrix")
         #Generate Affinity Matrix
@@ -175,7 +176,6 @@ class Experiment():
         
         
         self.Y_filtered, self.labeledIndexes_filtered = ft.fit(self.X, self.Y_noisy, self.labeledIndexes, self.W, hook=hooks["FILTER"])
-
 
 
         print("Step 4: Classification")
@@ -239,14 +239,15 @@ class Experiment():
     
 
 def run_debug_example_one(hook_list=[]):
-    import experiment.specification.exp_debug as exp
+    import experiment.specification.exp_chapelle as exp
     
-    opt = exp.ExpDebug().get_all_configs()[0]
+    opt = exp.ExpChapelle("Digit1").get_all_configs()[0]
     
     for k,v in keys_multiplex(opt).items():
         print("{}:{}".format(k,v))
     Experiment(opt).run(hook_list=hook_list)
-
+    
+    
 def run_debug_example_all():
     import experiment.specification.exp_debug as exp
     exp.ExpDebug().run_all()
