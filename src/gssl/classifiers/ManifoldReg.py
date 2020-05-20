@@ -7,7 +7,8 @@ from gssl.classifiers.classifier import GSSLClassifier
 import numpy as np
 import gssl.graph.gssl_utils as gutils
 import scipy.linalg as sp
-import scipy.sparse 
+import scipy.sparse
+import log.logger as LOG
 
 class ManifoldReg(GSSLClassifier):
     """ Label Propagation based on Gaussian Fields and Harmonic Functions. See :cite:`Zhu_2003`. """
@@ -31,7 +32,7 @@ class ManifoldReg(GSSLClassifier):
     
         if p > Y.shape[0]:
             p = Y.shape[0]
-            #print("Warning: p greater than the number of labeled indexes")
+            LOG.warn("Warning: p greater than the number of labeled indexes",LOG.ll.CLASSIFIER)
         W = gutils.scipy_to_np(W)
         W =  0.5* (W + W.T)
         L = gutils.lap_matrix(W, is_normalized=False)
@@ -46,7 +47,7 @@ class ManifoldReg(GSSLClassifier):
         if check_symmetric(L):
             eigenVectors, E = sp.eigh(L,D,eigvals=(1,p))
         else:
-            print("Warning: Laplacian not symmetric")
+            LOG.warn("Warning: Laplacian not symmetric",LOG.ll.CLASSIFIER)
             eigenValues, eigenVectors = sp.eig(L,D)
             idx = eigenValues.argsort() 
             eigenValues = eigenValues[idx]
@@ -79,13 +80,11 @@ class ManifoldReg(GSSLClassifier):
             c = np.ones(num_lab)
             c[y_m != i] = -1
             a = A @ np.transpose(c)
-            print(a)
+            LOG.debug(a,LOG.ll.CLASSIFIER)
             for j in np.arange(F.shape[0]):
                 F[j,i] = np.dot(a,E[j,:])
                 F[j,i] = max(F[j,i],0)
         
-        print(F)
-        print(F.shape)
         #raise "E"
         return (F)
         

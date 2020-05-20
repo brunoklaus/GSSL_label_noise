@@ -8,10 +8,7 @@ import gssl.graph.gssl_utils as gutils
 
 def plot_labeled_indexes(X,Y,labeledIndexes,W=None,title="labeled indexes",plot_filepath = None,
                             mode="discrete",palette=None):  
-    print(Y.shape)
-    print(X.shape)
-    assert Y.shape[0] > 1
-
+    
     Y = gutils.get_pred(Y) if mode == "discrete" else Y
     assert Y.shape[0] > 1
 

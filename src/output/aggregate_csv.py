@@ -9,8 +9,13 @@ import sys
 import numpy as np
 from experiment.prefixes import OUTPUT_PREFIX
 from matplotlib.sphinxext.plot_directive import out_of_date
+import log.logger as LOG
 
+def debug(msg):
+    LOG.debug(msg,LOG.ll.OUTPUT)
 
+def info(msg):
+    LOG.debug(msg,LOG.ll.OUTPUT)
 
 def calculate_statistics(df):
     """ Obtains a dataframe which 'merges' runs that share the same configuration but different ``'id'``.
@@ -48,10 +53,10 @@ def calculate_statistics(df):
     out_cols = [x  for x in df.columns if x.startswith(OUTPUT_PREFIX) ]
     
     
-    print("rows:{}".format(df.shape[0]))
+    LOG.debug("rows:{}".format(df.shape[0]),LOG.ll.SPECIFICATION)
     
     for i in range(df.shape[0]):
-        print(i)
+        debug(i)
         k = str(df.loc[df.index[i],rel_cols].values)
 
         #Initialize with empty dicts
@@ -82,9 +87,9 @@ def calculate_statistics(df):
 
 
     
-    print("Num keys:{}".format(len(key_list)))
+    debug("Num keys:{}".format(len(key_list)))
     for i in range(len(key_list)):
-        print(i)
+        debug(i)
         k = key_list[i]
         new_df.loc[df.index[i],"out_num_experiments"] = freq_dict[k]   
        
@@ -136,8 +141,8 @@ def aggregate_csv(files_to_join,output_path):
     
     
     summarized_df = calculate_statistics(joined_df)
-    print(summarized_df.iloc[0:10,])
-    print(summarized_df.shape)
+    debug(summarized_df.iloc[0:10,])
+    debug("Summarized dataframe shape: {}".format(summarized_df.shape))
     
     summarized_df.to_csv(output_path)  
     

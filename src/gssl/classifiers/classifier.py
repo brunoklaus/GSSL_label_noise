@@ -12,7 +12,6 @@ class GSSLClassifier(object):
         def wrapper(self, *args, **kwargs):
             dct = dict(zip(fun.__code__.co_varnames[1:(len(args)+1)],args))
             slf = self
-            print(dct)
             
             kwargs.update(dct)
             hook = kwargs["hook"]

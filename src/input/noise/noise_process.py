@@ -38,7 +38,6 @@ class LabelNoiseProcess(object):
         """
         
         if not hook is None:
-            print(hook)
             hook._begin(Y=Y,labeledIndexes=labeledIndexes)
             
         if self.args["type"] == "NCAR":

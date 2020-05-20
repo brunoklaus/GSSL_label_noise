@@ -3,7 +3,7 @@ Created on 28 de mar de 2019
 
 @author: klaus
 '''
-from gssl.classifiers import LGC,GFHF,GTAM,RF,classifier, NN, SIIS
+from gssl.classifiers import LGC,GFHF,GTAM,RF,classifier,  SIIS
 from gssl.filters import LDST,filter,ldstRemoval,MRremoval, LGC_LVO
 from gssl.classifiers.classifier import GSSLClassifier
 from gssl.graph.gssl_affmat import AffMatGenerator
@@ -147,7 +147,6 @@ def select_classifier(**kwargs):
             "MREG": lambda: ManifoldReg.ManifoldReg(**kwargs),
             "SIIS": lambda: SIIS.SIISClassifier(**kwargs),
             
-            "NN": lambda: NN.NNClassifier(**kwargs),
             "RF": lambda: RF.RFClassifier(**kwargs),
             None:lambda:classifier.GSSLClassifier(**kwargs)      
             }
@@ -188,6 +187,9 @@ def select_filter(**kwargs):
 
 
 class HookTimes(Enum):
+    """
+        Information used to infer at which point of the execution a hook takes place.
+    """
     BEFORE_NOISE = 0
     DURING_NOISE = 1
     AFTER_NOISE = 2
@@ -248,23 +250,23 @@ def _get_hook_plot_fname(hook,spec_name):
 def select_and_add_hook(hook_list, mplex, experiment=None):
     """ Obtains the relevant hook for the classifier/filter.
     
-    Filename prefix is partially determined by the prefix t#, where # is given according to the enum :class:`experiment.selector.HookTimes`
+    Each hook is associated with a filename prefix, which is partially determined by the prefix t#, where # is given according to the enum :class:`experiment.selector.HookTimes`
     Currently available hooks:
     
-        * Hook.INIT_ALL: At HookTimes.BEFORE_NOISE, plots true labels of all instances
-        * Hook.INIT_LABELED: At HookTimes.BEFORE_NOISE, plots true labels of instances marked as 'labeled'
-        * Hook.NOISE_AFTER: At HookTimes.AFTER_NOISE, plots corrupted labels
-        * Hook.W_INIT_ALL : At HookTimes.BEFORE_FILTER, plots true labels of all instances, with the affinity matrix.
-        * Hook.W_INIT_LABELED : At HookTimes.BEFORE_FILTER, plots true labels of instances marked as 'labeled', with the affinity matrix.
-        * Hook.W_NOISE_AFTER : At HookTimes.BEFORE_FILTER, plots corrupted labels, with the affinity matrix.
-        * Hook.FILTER_AFTER: At HookTimes.AFTER_FILTER, plots filtered labels
-        * Hook.FILTER_ITER: At HookTimes.DURING_FILTER, plots the filtered labels at each step.
-        * Hook.ALG_ITER: At HookTimes.DURING_CLASSIFIER, plots the classification  at each step.
-        * Hook.ALG_RESULT: At HookTimes.AFTER_CLASSIFIER, plots classification of algorithm.
-        * Hook.T_NOISE: At HookTimes.AFTER_NOISE, adds time taken by the noise process to the output dictionary.        
-        * Hook.T_AFFMAT: At HookTimes.AFTER_AFFMAT, adds time taken by the affinity matrix generation to the output dictionary.
-        * Hook.T_FILTER: At HookTimes.AFTER_FILTER,  adds time taken by filtering process to the output dictionary.
-        * Hook.T_ALG: At HookTimes.AFTER_CLASSIFIER, adds time taken by the classification to the output dictionary.
+        * **Hook.INIT_ALL**: At HookTimes.BEFORE_NOISE, plots true labels of all instances
+        * **Hook.INIT_LABELED**: At HookTimes.BEFORE_NOISE, plots true labels of instances marked as 'labeled'
+        * **Hook.NOISE_AFTER**: At HookTimes.AFTER_NOISE, plots corrupted labels
+        * **Hook.W_INIT_ALL** : At HookTimes.BEFORE_FILTER, plots true labels of all instances, with the affinity matrix.
+        * **Hook.W_INIT_LABELED** : At HookTimes.BEFORE_FILTER, plots true labels of instances marked as 'labeled', with the affinity matrix.
+        * **Hook.W_NOISE_AFTER** : At HookTimes.BEFORE_FILTER, plots corrupted labels, with the affinity matrix.
+        * **Hook.FILTER_AFTER**: At HookTimes.AFTER_FILTER, plots filtered labels
+        * **Hook.FILTER_ITER**: At HookTimes.DURING_FILTER, plots the filtered labels at each step.
+        * **Hook.ALG_ITER**: At HookTimes.DURING_CLASSIFIER, plots the classification  at each step.
+        * **Hook.ALG_RESULT**: At HookTimes.AFTER_CLASSIFIER, plots classification of algorithm.
+        * **Hook.T_NOISE**: At HookTimes.AFTER_NOISE, adds time taken by the noise process to the output dictionary.        
+        * **Hook.T_AFFMAT**: At HookTimes.AFTER_AFFMAT, adds time taken by the affinity matrix generation to the output dictionary.
+        * **Hook.T_FILTER**: At HookTimes.AFTER_FILTER,  adds time taken by filtering process to the output dictionary.
+        * **Hook.T_ALG**: At HookTimes.AFTER_CLASSIFIER, adds time taken by the classification to the output dictionary.
         
         
         

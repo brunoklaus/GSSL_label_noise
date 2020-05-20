@@ -6,6 +6,7 @@ from functools import partial
 import numpy as np
 import shutil
 from sklearn.preprocessing import StandardScaler,MinMaxScaler
+import log.logger as LOG
 class GSSLHook():
     """ Skeleton for GSSL hooks (for plotting, for example). """
     
@@ -70,7 +71,9 @@ def _add_remaining_vars(f,kwargs,experiment):
     if isinstance(f, partial):
         f = f.func
     f_vars = [k for k,v in signature(f).parameters.items()]
-    print("FUNCTION NECESSARY VARS:{}".format(f_vars))
+    
+    LOG.debug("FUNCTION NECESSARY VARS:{}".format(f_vars),LOG.ll.HOOK)
+    
     for k in f_vars:
         if not k in kwargs.keys():
             kwargs[k] = getattr(experiment, k)

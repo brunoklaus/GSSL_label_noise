@@ -9,7 +9,7 @@ from experiment.selector import select_input, select_affmat, select_classifier, 
     select_filter
 import gssl.graph.gssl_utils as gutils
 from experiment.selector import Hook, select_and_add_hook
-
+import log.logger as LOG
 
 ## The hooks being utilized
 PLOT_HOOKS = [Hook.INIT_LABELED,Hook.INIT_ALL,Hook.NOISE_AFTER,Hook.ALG_RESULT,Hook.ALG_ITER] \
@@ -105,9 +105,9 @@ class Experiment():
          
          
          Attr:
-            X : the calculated input matrix
-            W (n by n numpy matrix) : the affinity matrix encoding the graph.
-            Y (n by c binary matrix) : matrix encoding initial belief
+            X (NDArray[float].shape[N,D]) : the calculated input matrix
+            W (NDArray[float].shape[N,N]) : the affinity matrix encoding the graph.
+            Y (NDArray[float].shape[N,C]) : matrix encoding initial belief
     """
     
     
@@ -135,7 +135,7 @@ class Experiment():
         hooks = select_and_add_hook(hook_list, mplex, self)
         
         
-        print("Step 1: Read Dataset")
+        LOG.info("Step 1: Read Dataset",LOG.ll.EXPERIMENT)
         
         #Select Input 
         self.X, self.Y_true, self.labeledIndexes = select_input(**mplex["INPUT"])
@@ -152,10 +152,10 @@ class Experiment():
             mplex["FILTER"].pop("know_estimated_freq")
             
         
-        print("X shape:{}".format(self.X.shape))
         
         
-        print("Step 2: Apply Noise")
+        
+        LOG.info("Step 2: Apply Noise",LOG.ll.EXPERIMENT)
         #Apply Noise
         self.Y_noisy = select_noise(**mplex["NOISE"]).corrupt(self.Y_true, self.labeledIndexes,hook=hooks["NOISE"])
         
@@ -163,13 +163,13 @@ class Experiment():
 
 
         
-        print("Step 3: Create Affinity Matrix")
+        LOG.info("Step 3: Create Affinity Matrix",LOG.ll.EXPERIMENT)
         #Generate Affinity Matrix
         self.W = select_affmat(**mplex["AFFMAT"]).generateAffMat(self.X,hook=hooks["AFFMAT"])
         
         
         
-        print("Step 3: Filtering")
+        LOG.info("Step 4: Filtering",LOG.ll.EXPERIMENT)
         #Create Filter
         ft = select_filter(**mplex["FILTER"])
 
@@ -178,7 +178,7 @@ class Experiment():
         self.Y_filtered, self.labeledIndexes_filtered = ft.fit(self.X, self.Y_noisy, self.labeledIndexes, self.W, hook=hooks["FILTER"])
 
 
-        print("Step 4: Classification")
+        LOG.info("Step 5: Classification",LOG.ll.EXPERIMENT)
         #Select Classifier 
         alg = select_classifier(**mplex["ALG"])
         #Get Classification
@@ -186,20 +186,21 @@ class Experiment():
         
 
         
-        print("Step 5: Evaluation")
+        LOG.info("Step 6: Evaluation",LOG.ll.EXPERIMENT)
+        LOG.debug("ALGORITHM settings:{}".format(mplex["ALG"]["algorithm"]),LOG.ll.EXPERIMENT)
         
+        """ Accuracy. """
         acc = gutils.accuracy(gutils.get_pred(self.F), gutils.get_pred(self.Y_true))
         
-
         
         acc_unlabeled = gutils.accuracy(gutils.get_pred(self.F)[np.logical_not(self.labeledIndexes)],\
                                          gutils.get_pred(self.Y_true)[np.logical_not(self.labeledIndexes)])
         acc_labeled = gutils.accuracy(gutils.get_pred(self.F)[self.labeledIndexes],\
                                          gutils.get_pred(self.Y_true)[self.labeledIndexes])
         
-        print("ALGORITHM:{}".format(mplex["ALG"]["algorithm"]))
         CMN_acc = gutils.accuracy(gutils.get_pred(gutils.class_mass_normalization(self.F,self.Y_filtered,self.labeledIndexes,normalize_rows=True)), gutils.get_pred(self.Y_true))
         
+        """ Accuracy with Class Mass Normalization. """
         CMN_rownorm_pred =gutils.get_pred(gutils.class_mass_normalization(self.F,self.Y_filtered,self.labeledIndexes,normalize_rows=False))
         
         CMN_rownorm_acc = gutils.accuracy(CMN_rownorm_pred, gutils.get_pred(self.Y_true))
@@ -212,27 +213,24 @@ class Experiment():
                                               gutils.get_pred(self.Y_true)[self.labeledIndexes])
         
         
+        """
+            Log accuracy results and update output dictionary
+        """
+        def _log(msg):
+            LOG.info(msg,LOG.ll.EXPERIMENT)
+        _log("Accuracy: {} / {}".format(acc,1-acc))
+        _log("Accuracy (unlabeled): {} / {}".format(acc_unlabeled,1-acc_unlabeled))
+        _log("Accuracy (labeled): {} / {}".format(acc_labeled,1-acc_labeled))    
+        _log("Accuracy w/ CMN: {} / {}".format(CMN_acc,1-CMN_acc))
+        _log("Accuracy w/ rownorm CMN: {} / {}".format(CMN_rownorm_acc, 1-CMN_rownorm_acc))
+        _log("Accuracy w/ rownorm CMN(unlabeled): {} / {}".format(CMN_rownorm_acc_unl, 1-CMN_rownorm_acc_unl))
         
-        print("Accuracy: {} / {}".format(acc,1-acc))
-        print("Accuracy (unlabeled): {} / {}".format(acc_unlabeled,1-acc_unlabeled))
-        print("Accuracy (labeled): {} / {}".format(acc_labeled,1-acc_labeled))
-        
-        print("Accuracy w/ CMN: {} / {}".format(CMN_acc,1-CMN_acc))
-        print("Accuracy w/ rownorm CMN: {} / {}".format(CMN_rownorm_acc, 1-CMN_rownorm_acc))
-        print("Accuracy w/ rownorm CMN(unlabeled): {} / {}".format(CMN_rownorm_acc_unl, 1-CMN_rownorm_acc_unl))
-        
-        
-    
         self.out_dict.update({OUTPUT_PREFIX + "acc" :acc})
         self.out_dict.update({OUTPUT_PREFIX + "acc_unlabeled" :acc_unlabeled})
         self.out_dict.update({OUTPUT_PREFIX + "acc_labeled" :acc_labeled})
-        
         self.out_dict.update({OUTPUT_PREFIX + "CMN_rownorm_acc" :CMN_rownorm_acc})
         self.out_dict.update({OUTPUT_PREFIX + "CMN_rownorm_acc_unl" :CMN_rownorm_acc_unl})
-        
         self.out_dict.update({OUTPUT_PREFIX + "CMN_acc" :CMN_acc})
-        
-        
         
         return self.out_dict
     
@@ -244,7 +242,7 @@ def run_debug_example_one(hook_list=[]):
     opt = exp.ExpChapelle("Digit1").get_all_configs()[0]
     
     for k,v in keys_multiplex(opt).items():
-        print("{}:{}".format(k,v))
+        LOG.debug("{}:{}".format(k,v),LOG.ll.EXPERIMENT)
     Experiment(opt).run(hook_list=hook_list)
     
     

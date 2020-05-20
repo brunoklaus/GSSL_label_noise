@@ -63,8 +63,6 @@ class LGCClassifier(GSSLClassifier):
         d_sqrt = sparse.diags(d_sqrt).tocsr()
         
         
-        print(d_sqrt.shape)
-        print(W.shape)
         
         F = sparse.csr_matrix.copy(Y)
         S = d_sqrt*W*d_sqrt
@@ -75,7 +73,7 @@ class LGCClassifier(GSSLClassifier):
                 F_dense = np.asarray(F.todense())
                 labeledIndexes = np.sum(F_dense,axis=1) > 0
                 hook._step(step=i,X=X,W=W,Y=F_dense,labeledIndexes=labeledIndexes) 
-            print(i)
+            
                         
 
         F_dense = np.asarray(F.todense())

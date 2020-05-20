@@ -5,7 +5,7 @@ Created on 3 de abr de 2019
 '''
 import experiment.hooks.hook_skeleton as hk
 import gssl.filters.filter_utils as futils
-
+import log.logger as LOG
 
 class LDSTFilterStatsHook(hk.GSSLHook):
     """ Hook that saves stats  of the filter at each step."""
@@ -31,7 +31,7 @@ class LDSTFilterStatsHook(hk.GSSLHook):
             self._collect_stats(step,**kwargs)
         
     def _end(self, **kwargs):
-        print("Best F1 score: {}".format(self.best_f1))
+        LOG.info("Best F1 score: {}".format(self.best_f1),LOG.ll.HOOK)
         pass
             
     def __init__(self,experiment,step_size=5):

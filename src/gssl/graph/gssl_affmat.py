@@ -16,6 +16,7 @@ import scipy.sparse
 import time
 import gssl.graph.gssl_utils as  gutils
 import faiss
+import log.logger as LOG
 def sort_coo(m):
     tuples = zip(m.row, m.col, m.data)
     s_tuple = sorted(tuples, key=lambda x: (x[2], x[1]))
@@ -48,13 +49,11 @@ class AffMatGenerator(object):
             M = K
             M[M==0] = np.infty 
             M = np.sort(M, axis=1)
-            #print(M[0,:])
             self.sigma = np.mean(M[:,9])/3
-            print("Adaptive sigma is {}".format(self.sigma))
-            print(self.dist_func(10))
+            LOG.info("Adaptive sigma is {}".format(self.sigma),LOG.ll.MATRIX)
         else:
             self.sigma = np.mean([np.sort(K.getrow(i).data)[9]/3 for i in range(K.shape[0])])
-            print("Adaptive sigma is {}".format(self.sigma))
+            LOG.info(("Adaptive sigma is {}".format(self.sigma)),LOG.ll.MATRIX)
         return partial(lambda d: np.exp(-(d*d)/(2*self.sigma*self.sigma)))
     
     def W_from_K(self,X,K):
@@ -78,7 +77,7 @@ class AffMatGenerator(object):
             Returns:
                 `NDArray[float].shape[N,N]: A dense affinity matrix.
          """
-        print("Creating Affinity Matrix...")
+        LOG.info("Creating Affinity Matrix...",LOG.ll.MATRIX)
         
         if not hook is None:
             hook._begin(X=X,Y=Y,labeledIndexes=labeledIndexes,W=None)
@@ -99,7 +98,7 @@ class AffMatGenerator(object):
             W = gutils.deg_matrix(W, pwr=-1.0, NA_replace_val=1.0) @ W 
         
         del K
-        print("Done!")
+        LOG.info("Creating Affinity Matrix...Done!",LOG.ll.MATRIX)
         assert(W.shape == (X.shape[0],X.shape[0]))
         if np.max(W)==0:
             raise Exception("Affinity matrix cannot have all entries equal to zero.")
@@ -200,7 +199,6 @@ def epsilonMask(X,eps,metric="euclidean"):
         **[i,j]** entries correspond to distances between neighbors **X[i,:],X[j,:]** .
     
     """
-    print(type(X))
     assert isinstance(X, np.ndarray)
     
     K = scipydist.cdist(X,X,metric=metric)
@@ -258,7 +256,7 @@ def _faiss_knn(X,k, symm= True, inner_prod = False):
     c = time.time()
     D, I = index.search(X, k + 1)
     elapsed = time.time() - c
-    print('kNN Search done in %d seconds' % elapsed)
+    LOG.info(('kNN Search done in %d seconds'.format(elapsed)),LOG.ll.UTILS)
 
 
 

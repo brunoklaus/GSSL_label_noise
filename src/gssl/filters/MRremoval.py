@@ -6,7 +6,7 @@ Created on 1 de abr de 2019
 from gssl.filters.filter import GSSLFilter
 import numpy as np
 import scipy.linalg as sp
-
+import log.logger as LOG
 import gssl.graph.gssl_utils as gutils
 from gssl.graph.gssl_utils import scipy_to_np
 class MRRemover(GSSLFilter):
@@ -24,24 +24,24 @@ class MRRemover(GSSLFilter):
         l = np.reshape(np.array(np.where(labeledIndexes)),(-1))
         num_lab = l.shape[0]
         
+        
         if not isinstance(p, int):
             p = int(p * num_lab)
+        if p > Y.shape[0]:
+            p = Y.shape[0]
+            LOG.warn("Warning: p greater than the number of labeled indexes",LOG.ll.FILTER)
         
         
         W = scipy_to_np(W)
-        if p > Y.shape[0]:
-            p = Y.shape[0]
-            #print("Warning: p greater than the number of labeled indexes")
-        
         L = gutils.lap_matrix(W, is_normalized=False)
         D = gutils.deg_matrix(W)
         def check_symmetric(a, tol=1e-8):
-            return np.allclose(a, a.T, atol=tol)
+            return np.allclose(a, a.T, atol=tol)    
         
         if check_symmetric(L):
             E = sp.eigh(L,D,eigvals=(1,p))[1]
         else:
-            print("Warning: Laplacian not symmetric")
+            LOG.warn("Warning: Laplacian not symmetric",LOG.ll.FILTER)
             eigenValues, eigenVectors = sp.eig(L,D)
             idx = eigenValues.argsort() 
             eigenValues = eigenValues[idx]
@@ -49,11 +49,9 @@ class MRRemover(GSSLFilter):
             eigenVectors = eigenVectors[:,idx]
             E = eigenVectors[:,1:(p+1)]
         
-        #for j in range(p):
-        #    E[:,j] = (E[:,j]-np.mean(E[:,j]))/np.std(E[:,j])
         
         e_lab = E[labeledIndexes,:]
-        #TIK = np.ones(shape=e_lab.shape)
+        """ TIKHONOV REGULARIZATION. Currently set to 0."""
         TIK = np.zeros(shape=e_lab.shape)
         try:
             A = np.linalg.inv(e_lab.T @ e_lab + TIK.T@TIK) @ e_lab.T        
@@ -70,7 +68,7 @@ class MRRemover(GSSLFilter):
             c = np.ones(num_lab)
             c[y_m != i] = -1
             a = A @ np.transpose(c)
-            print(a)
+            LOG.debug(a,LOG.ll.FILTER)
             for j in np.arange(F.shape[0]):
                 F[j,i] = np.dot(a,E[j,:])
         

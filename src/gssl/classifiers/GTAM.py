@@ -8,7 +8,7 @@ import numpy as np
 import gssl.graph.gssl_utils as gutils
 import os
 import datetime
-
+import log.logger as LOG
 import scipy.sparse
 class GTAMClassifier(GSSLClassifier):
     """ Classifier using Graph Transduction Through Alternating Minimization (GTAM - see :cite:`Wang2008`).
@@ -43,7 +43,7 @@ class GTAMClassifier(GSSLClassifier):
                     
         else:
             estimatedFreq = np.repeat(1/num_classes,num_classes)
-        print(estimatedFreq)
+        LOG.debug("Estimated frequency: {}".format(estimatedFreq),LOG.ll.CLASSIFIER)
 
         
         """ IMPORTANT! ERASES LABELS """        

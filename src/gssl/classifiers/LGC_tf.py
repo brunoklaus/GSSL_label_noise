@@ -9,10 +9,10 @@ from gssl.classifiers.classifier import GSSLClassifier
 
 import time
 from scipy import sparse
+import log.logger as LOG 
 
 def get_S_fromtensor(W):
     wsum = tf.sparse.reduce_sum(W,axis=1)
-    print(wsum)
     wsum = tf.reshape(wsum,(-1,))
     d_sqrt = tf.reciprocal(tf.sqrt(wsum))
     d_sqrt = tf.where(tf.is_finite(d_sqrt),d_sqrt,tf.ones(shape=tf.shape(d_sqrt)))
@@ -36,7 +36,6 @@ def update_F(TOTAL_ITER,ALPHA,S,F_0):
             
 def get_P(TOTAL_ITER,ALPHA,S,F_0):
     i = tf.constant(0)
-    print(TOTAL_ITER)
     c = lambda i,F: tf.less(i, TOTAL_ITER)
     b = lambda i,F: (tf.add(i, 1),(1 - ALPHA)*F_0 + ALPHA*tf.sparse.matmul(S,F))
     r = tf.while_loop(c, b, [i,F_0])
@@ -85,7 +84,7 @@ def LGC_iter_TF(X,W,Y,labeledIndexes, alpha = 0.1,num_iter = 1000, hook=None):
         
         """ Convert W to tensor """
         W = convert_sparse_matrix_to_sparse_tensor(W)
-        print(W)
+        LOG.debug(W,LOG.ll.CLASSIFIER)
         
         """ Get degree Matrix """
         D =  tf.sparse.reduce_sum(W,axis=1)
@@ -125,7 +124,8 @@ def LGC_iter_TF(X,W,Y,labeledIndexes, alpha = 0.1,num_iter = 1000, hook=None):
         c = time.time()
         sess.run(assign_to_F)
         elapsed = time.time() - c
-        print('Label Prop (excluding initialization) done in %d seconds' % elapsed)
+        LOG.info('Label Prop (excluding initialization) done in %d seconds'.format(elapsed),
+                 LOG.ll.CLASSIFIER)
         
         result  = F.eval(sess) 
         sess.close()

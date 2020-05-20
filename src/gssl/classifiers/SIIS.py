@@ -9,7 +9,7 @@ import gssl.graph.gssl_utils as gutils
 import scipy.linalg as sp
 import scipy.sparse
 import scipy.linalg
-
+import log.logger as LOG
 from gssl.graph.gssl_utils import scipy_to_np as _to_np
 
 class SIISClassifier(GSSLClassifier):
@@ -32,7 +32,7 @@ class SIISClassifier(GSSLClassifier):
             plt.hist(W.data)
             plt.show()
             plt.close()
-            print(scipy.stats.describe(W.data))
+            LOG.debug(scipy.stats.describe(W.data),LOG.ll.CLASSIFIER)
             raise ""
             """
             for k in range(nz):
@@ -114,8 +114,7 @@ class SIISClassifier(GSSLClassifier):
         improvement  = 1
         iter = 0
         
-        if False:
-            """ Work in progress: Tensorflow version """
+        """ TODO: Tensorflow version 
             import tensorflow as tf
             with tf.Session() as sess:
                 A = tf.Variable(1e-06*tf.ones((m,c),dtype=tf.float64))
@@ -127,75 +126,75 @@ class SIISClassifier(GSSLClassifier):
                 opt = tf.train.AdamOptimizer(learning_rate=0.5*1e-02)
                 opt_min = opt.minimize(C)
                 sess.run(tf.global_variables_initializer())
-                #print(sess.run(C))
                 for i in range(2000):
                     sess.run(opt_min)
-                    print(sess.run(C))
-                print(sess.run(C))
-                    
+                    LOG.debug(sess.run(C),LOG.ll.CLASSIFIER)
+                LOG.debug(sess.run(C),LOG.ll.CLASSIFIER)    
                 F = _to_np(U)@sess.run(A)
                 
-                print(F.shape)
+                LOG.debug(F.shape,LOG.ll.CLASSIFIER)
             
-        if True:
+        
+        """
+        A = np.zeros((m,c))
+        while  iter <= max_iter and improvement > eps:
             
-            A = np.zeros((m,c))
-            while  iter <= max_iter and improvement > eps:
-                
-                """ Update Q """
-                N = PU@A - (1/mu)*LAMB_1
-                N_norm = np.linalg.norm(N, axis=1)
-                
-                
-                to_zero = N_norm <= (1/mu)
-                mult = ((N_norm - (1/mu))/N_norm)
-                N = N * mult[:,np.newaxis]
-                
-                
-                N[to_zero,:] = 0.0
-                Q = N 
-                
-                """ Update B """
-                M = JU@A - Y - (1/mu)*LAMB_2
-                M_norm = np.linalg.norm(M,axis=1)
-                to_zero = M_norm <= (alpha/mu)
-                mult = ((M_norm - (alpha/mu))/M_norm)
-                M = M * mult[:,np.newaxis]
-                M[to_zero,:] = 0.0 
-                B = M
-                
-                
-                old_A = A
-                """ Update A """
-                
-                A_inv_term = 2*beta*SIGMA + mu*PU_T@PU + mu*JU_T@JU
-                A_inv_term = np.linalg.inv(A_inv_term) 
-                A = A_inv_term @ \
-                    (PU_T@ LAMB_1 + JU_T@LAMB_2 +\
-                      mu * PU_T@Q + mu* JU_T @ (B + Y) )
-            
-                """ Update Lagrangian coeffs """
-                LAMB_1 = LAMB_1 + mu* (Q - PU@A)
-                LAMB_2 = LAMB_2 + mu*(B- JU@A + Y)
-                """ Update penalty coeffficients """
-                mu = min(rho*mu,mu_max)
+            """ Update Q """
+            N = PU@A - (1/mu)*LAMB_1
+            N_norm = np.linalg.norm(N, axis=1)
             
             
-                
-                if not old_A is None:
-                    improvement = (np.max(np.abs(A-old_A)))/np.max(np.abs(old_A))
-                    
-                
-                
-                print("Iter {}".format(iter))
-                iter += 1
+            to_zero = N_norm <= (1/mu)
+            mult = ((N_norm - (1/mu))/N_norm)
+            N = N * mult[:,np.newaxis]
             
-            C = np.sum(np.linalg.norm(PU@A,axis=1)) + alpha*np.sum(np.linalg.norm(JU@A - Y,axis=1)) +\
-                 beta*np.trace(A.T@SIGMA@A)
-            print("Iter {} - Cost {}".format(iter,C))
+            
+            N[to_zero,:] = 0.0
+            Q = N 
+            
+            """ Update B """
+            M = JU@A - Y - (1/mu)*LAMB_2
+            M_norm = np.linalg.norm(M,axis=1)
+            to_zero = M_norm <= (alpha/mu)
+            mult = ((M_norm - (alpha/mu))/M_norm)
+            M = M * mult[:,np.newaxis]
+            M[to_zero,:] = 0.0 
+            B = M
+            
+            
+            old_A = A
+            """ Update A """
+            
+            A_inv_term = 2*beta*SIGMA + mu*PU_T@PU + mu*JU_T@JU
+            A_inv_term = np.linalg.inv(A_inv_term) 
+            A = A_inv_term @ \
+                (PU_T@ LAMB_1 + JU_T@LAMB_2 +\
+                  mu * PU_T@Q + mu* JU_T @ (B + Y) )
+        
+            """ Update Lagrangian coeffs """
+            LAMB_1 = LAMB_1 + mu* (Q - PU@A)
+            LAMB_2 = LAMB_2 + mu*(B- JU@A + Y)
+            """ Update penalty coeffficients """
+            mu = min(rho*mu,mu_max)
+        
+        
+            
+            if not old_A is None:
+                improvement = (np.max(np.abs(A-old_A)))/np.max(np.abs(old_A))
                 
             
-            F = U@A
+            
+            LOG.debug("Iter {}".format(iter),LOG.ll.CLASSIFIER)
+            iter += 1
+        
+        C = np.sum(np.linalg.norm(PU@A,axis=1)) + alpha*np.sum(np.linalg.norm(JU@A - Y,axis=1)) +\
+             beta*np.trace(A.T@SIGMA@A)
+        LOG.debug("Iter {} - Cost {}".format(iter,C),LOG.ll.CLASSIFIER)
+            
+        
+        F = U@A
+            
+            
         for i in range(F.shape[0]):
             mx = np.argmax(F[i,:])
             F[i,:] = 0.0
@@ -226,54 +225,7 @@ class SIISClassifier(GSSLClassifier):
         
         
 if __name__ == "__main__":
-    
-    mu = 100.0
-    Q = np.random.rand(100,100)
-    
-    N = 1000*np.triu(np.random.rand(100,100))
-    N_norm_col = np.linalg.norm(N,axis=0)
-    N_norm_row = np.linalg.norm(N,axis=1)
-    
-    to_zero_row = N_norm_row <= (1/mu)
-    to_zero_col = N_norm_col <= (1/mu)
-    
-    
-    
-    Sol_1 = N * ((N_norm_col - (1/mu))/N_norm_col)
-    Sol_1[:,to_zero_col] = 0.0
-    
-    
-    
-    Sol_2 = N * ((N_norm_row - (1/mu))/N_norm_row)[:,np.newaxis]
-    Sol_2[to_zero_row,:] = 0.0
-    
-    
-    C1 = (1/mu) * np.sum(np.linalg.norm(Sol_1,axis=1)) + 0.5*np.linalg.norm(Sol_1-N)
-    
-    C2 = (1/mu) * np.sum(np.linalg.norm(Sol_2,axis=1)) + 0.5*np.linalg.norm(Sol_2-N)
-    
-    import tensorflow as tf
-    Sol_3 = tf.Variable(tf.ones(Sol_1.shape))
-    C3 = (1/mu) * tf.reduce_sum(tf.linalg.norm(Sol_3,axis=1)) + 0.5*tf.linalg.norm(Sol_3-N)
-    
-    with tf.Session() as sess:
-        opt = tf.train.AdamOptimizer(learning_rate=1e-01)
-        opt_min = opt.minimize(C3)
-        sess.run(tf.global_variables_initializer())
-        print(sess.run(C3))
-        for i in range(10000):
-            sess.run(opt_min)
-            print(sess.run(C3))         
-        Sol_3 = sess.run(Sol_3)
-        C3 = sess.run(C3)
-    print("Cost for Sol 1 (column norm) :{}".format(C1))
-    print("Cost for Sol 2 (row norm) :{}".format(C2))
-    
-    C3 = (1/mu) * np.sum(np.linalg.norm(Sol_3,axis=1)) + 0.5*np.linalg.norm(Sol_3-N)
-    
-    print("Cost for Sol 3 (row norm) :{}".format(C3))
-    
-    
+    pass
     
     
     

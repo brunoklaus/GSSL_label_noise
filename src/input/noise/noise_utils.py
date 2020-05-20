@@ -7,7 +7,7 @@ import numpy as np
 import gssl.graph.gssl_utils as gutils
 from _heapq import heappush
 from builtins import isinstance
-
+import log.logger as LOG
 def uniform_noise_transition_prob_mat(Y,p):
     """ Obtains the transition probabilities between each class for uniform label noise.
     
@@ -53,7 +53,8 @@ def transition_count_mat(Y,A):
     class_freq = [int(round(sum(Y[:,i]))) for i in range(c)]
     num_clean = int(np.round(sum([class_freq[i]*A[i,i] for i in range(c)])))
     
-    print("NUM CLEAN:{};NUM NOISY:{};TOTAL:{}".format(num_clean,np.sum(class_freq)-num_clean,np.sum(class_freq) ))
+    LOG.info("NUM CLEAN:{};NUM NOISY:{};TOTAL:{}".format(num_clean,np.sum(class_freq)-num_clean,np.sum(class_freq) ),
+             LOG.ll.NOISE)
     
     
     
@@ -210,7 +211,7 @@ def apply_noise(Y,labeledIndexes,A,seed=None,deterministic=True):
     np.random.seed(seed)
     old_A = np.copy(np.asarray(A))
     if not np.all(old_A <= 1):
-        print(old_A)
+        LOG.debug(old_A,LOG.ll.NOISE)
         raise Exception("trans. mat has value >1")
     old_Y = np.copy(Y)
     is_flat = np.ndim(Y) == 1
@@ -255,58 +256,8 @@ def apply_noise(Y,labeledIndexes,A,seed=None,deterministic=True):
             A[j,new_j] += 1
         
         assert np.sum(A) == np.sum(labeledIndexes)
-        print(A)
+        LOG.debug(A,LOG.ll.NOISE)
         ###############
-       
-        """
-        
-        B = __pick_from([class_freq[i] for i in range(c)], num_clean, M=[np.sum(Y[:,i]) for i in range(c)])
-        
-        
-        A = np.zeros((c,c)).astype(np.int32)
-        #print(B)
-        for my_id in B:
-            A[my_id,my_id] += 1
-        assert np.sum(A) == num_clean
-            
-            
-        #print(A)
-        for row in range(c):
-            row_clean = A[row,row]
-            A[row,row] = 0
-            M = np.inf * np.ones((c,))
-            M[row] = 0
-            B = __pick_from(old_A[row,:], class_freq[row]- row_clean, M=M)
-            for my_id in B:
-                A[row,my_id] += 1
-            A[row,row] = row_clean
-            assert np.sum(A[row,:]) == class_freq[row]
-        assert np.sum(A) == np.sum(labeledIndexes)    
-        
-    print(A)
-    raise ""
-    """
-
-
-    """
-    if deterministic == False:
-        for i in range(c):
-            old_A[i,i] = 0.0
-            if np.sum(old_A[i,:]) > 0:
-                old_A[i,:] /= np.sum(old_A[i,:])
-        
-        for i in zip(range(A.shape[0])):
-            num_clean = A[i,i]
-            num_noisy = np.sum(A[i,:]) - num_clean 
-            A[i,:] = 0
-            A[i,i] = num_clean
-            if num_noisy == 0:
-                continue
-            for noisy_choice in np.random.choice(c,num_noisy,p=np.squeeze(old_A[i,:]),replace=True):
-                A[i,noisy_choice] += 1
-    """           
-
-    
 
     for i in np.arange(Y_flat.shape[0]):
         current_class = Y_flat[vec[i]]
@@ -322,7 +273,8 @@ def apply_noise(Y,labeledIndexes,A,seed=None,deterministic=True):
     for l in range(Y_flat.shape[0]):
         noisy_Y[labeledIndexes_where[l],Y_flat[l]] = 1    
     noisy_Y[np.logical_not(labeledIndexes),:] = old_Y[np.logical_not(labeledIndexes),:]
-    print("Changed {} percent of entries".format(np.round(1-gutils.accuracy(np.argmax(Y,axis=1),Y_flat),6)))
+    LOG.info("Changed {} percent of entries".format(np.round(1-gutils.accuracy(np.argmax(Y,axis=1),Y_flat),6)),
+             LOG.ll.NOISE)
 
     
 

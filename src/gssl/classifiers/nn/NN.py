@@ -1,8 +1,8 @@
-'''
-Created on 27 de mar de 2019
+"""
 
-@author: klaus
-'''
+A Neural Network approach I was previously using for some experiments. Ignore this for now.
+
+"""
 from gssl.classifiers.classifier import GSSLClassifier
 import numpy as np
 import gssl.graph.gssl_utils as gutils
@@ -17,11 +17,12 @@ from input.dataset.cifar10 import INPUT_FOLDER
 import time
 import faiss
 from faiss import normalize_L2
-from calendar import EPOCH
 from output import plot_core, plots
-
+import log.logger as LOG
 import tensorflow as tf
 
+def debug(msg):
+    LOG.debug(msg,LOG.ll.CLASSIFIER)
 
 class Accumulator():
     
@@ -55,8 +56,8 @@ def get_S(W):
     d_sqrt = np.reciprocal(np.sqrt(wsum))
     d_sqrt[np.logical_not(np.isfinite(d_sqrt))] = 1
     d_sqrt = sparse.diags(d_sqrt).tocsr()
-    print(d_sqrt.shape)
-    print(W.shape)
+    debug(d_sqrt.shape)
+    debug(W.shape)
     
     S = d_sqrt*W*d_sqrt
     return S
@@ -64,7 +65,7 @@ def get_S(W):
 
 def get_S_fromtensor(W):
     wsum = tf.sparse.reduce_sum(W,axis=1)
-    print(wsum)
+    LOG.debug(wsum,LOG.ll.CLASSIFIER)
     wsum = tf.reshape(wsum,(-1,))
     d_sqrt = tf.reciprocal(tf.sqrt(wsum))
     d_sqrt = tf.where(tf.is_finite(d_sqrt),d_sqrt,tf.ones(shape=tf.shape(d_sqrt)))
@@ -131,7 +132,9 @@ def xent(distr_1,distr_2):
 
 class NNClassifier(GSSLClassifier):
     
-    """ NN Classifier. """
+    """ A NN classifier that was intended to optimize a labeled and unlabeled objective at the same time. Please ignore this for the time being
+    
+     """
         
     def _model(self,input_shape,out_size):
         from gssl.classifiers.nn import models
@@ -302,7 +305,6 @@ class NNClassifier(GSSLClassifier):
                                                      self.eval_ids_i:ids_i[i:nxt_i],
                                                      self.eval_ids_j:ids_j[i:nxt_i],
                                                      self.eval_X_descr:self.X_descr})
-            #print(i) 
             i = nxt_i
         
         
@@ -357,7 +359,7 @@ class NNClassifier(GSSLClassifier):
         c = time.time()
         D, I = index.search(X, k + 1)
         elapsed = time.time() - c
-        print('kNN Search done in %d seconds' % elapsed)
+        LOG.debug('kNN Search done in %d seconds'.format(elapsed),LOG.ll.CLASSIFIER)
 
         # Create the graph
         D = D[:,1:] ** 3
@@ -392,7 +394,7 @@ class NNClassifier(GSSLClassifier):
         N_u = np.sum(np.logical_not(labeledIndexes))
         M = len(W.data)        
         self.AVG_NEIGHBORS = len(W.data)/W.shape[0]
-        print("Number of  labeled examples : {}".format(N_l))
+        debug("Number of  labeled examples : {}".format(N_l))
         
         
         """ Convert W to coo. Makes it easy to set the value of the weights """
@@ -448,7 +450,7 @@ class NNClassifier(GSSLClassifier):
         tmp[labeledIndexes] = 0.0
         
         self.F_ent = tf.Variable(np.copy(tmp).astype(np.float32),name="F_ent")
-        print(ent(self.F).shape)
+        debug(ent(self.F).shape)
         update_F_ent = tf.assign(self.F_ent,ent(self.F)) #run this op to update entr
         
         """
@@ -461,7 +463,7 @@ class NNClassifier(GSSLClassifier):
                                     tf.equal(tf.argmax(self.F,axis=1),i),
                                 tf.int64)),
                             tf.range(out_size,dtype=tf.int64))
-        print(calc_class_freq.shape)
+        debug(calc_class_freq.shape)
         update_class_freq = tf.assign(self.class_freq,tf.cast(calc_class_freq,tf.float32) )
         
         
@@ -703,7 +705,7 @@ class NNClassifier(GSSLClassifier):
         if True:
             grads,vars= zip(*optim.compute_gradients(total_loss_NN))
             get_g_NN = [(g,v) for g,v in zip(grads,vars) if v.name and v.name.startswith("MODEL")]
-            print(get_g_NN)
+            debug(get_g_NN)
             
             get_g_F = optim_F.compute_gradients(total_loss_F,[self.F])
             #opt_2 = optim_F.apply_gradients(get_g_F, global_step)
@@ -783,7 +785,7 @@ class NNClassifier(GSSLClassifier):
 
         l_iterator_train = iterator_l.make_initializer(ds_l_train)
         ul_iterator_train = iterator_ul.make_initializer(ds_ul_pairs)
-        print(ds_R)
+        debug(ds_R)
         r_iterator_train = iterator_R.make_initializer(ds_R)
         
         l_iterator_val = iterator_l.make_initializer(ds_l_val)
@@ -813,7 +815,7 @@ class NNClassifier(GSSLClassifier):
             if path.isdir(MODEL_PATH):
                 shutil.rmtree(MODEL_PATH)
             
-            print(path.join(MODEL_PATH,"labeled"))
+            debug(path.join(MODEL_PATH,"labeled"))
             
             train_Writer = tf.summary.FileWriter(path.join(MODEL_PATH,"train"), sess.graph)
             val_Writer = tf.summary.FileWriter(path.join(MODEL_PATH,"val"), sess.graph)
@@ -837,7 +839,7 @@ class NNClassifier(GSSLClassifier):
                 for descr_id,descr in enumerate(descr_l):     
                     sess.run(iterator_pred)
                     sh = [self.X.shape[0]]+list(sess.run(tf.shape(descr_l[descr_id])[1:]))
-                    print(sh)
+                    debug(sh)
                     self.ALL_DESCR.append(np.zeros(shape=sh, dtype=np.float32))                
                     sess.run(iterator_pred) #It runs again here, as getting the shape seems to consume the first batch
                 with p_bar(self.X.shape[0],"Training - EPOCH {} -mode={}...".format(i,"DESCRIPTORS")) as p:
@@ -869,7 +871,7 @@ class NNClassifier(GSSLClassifier):
                     """ 
                     OBTAIN AFFINITY MATRIX
                     """
-                    print("Building graph...")
+                    debug("Building graph...")
                     self.sess = sess
                     W_sparse_tensor_values = self.evaluate_simfunc(\
                                                convert_sparse_matrix_to_sparse_tensor(self.build_graph(self.X_descr, k=10))
@@ -886,7 +888,7 @@ class NNClassifier(GSSLClassifier):
                     """
                         Label PROP
                     """
-                    print("Running Label Prop...")
+                    debug("Running Label Prop...")
                     _,gf0 = sess.run([opt_F,tf.convert_to_tensor(grad_F0[0])],feed_dict=W_feed_dict)
                     
                     gf0[np.logical_not(self.labeledIndexes),:] = np.inf
@@ -895,15 +897,15 @@ class NNClassifier(GSSLClassifier):
                                                            np.argmax(self.Y_noisy,axis=1) != np.argmax(self.Y_true,axis=1))
                     
                     import scipy.stats
-                    print(scipy.stats.describe(gf0) )
-                    print(np.round(gf0[labeledIndexes,:],3) )
-                    print(np.round(gf0[noisy_labels,:],3) )
+                    debug(scipy.stats.describe(gf0) )
+                    debug(np.round(gf0[labeledIndexes,:],3) )
+                    debug(np.round(gf0[noisy_labels,:],3) )
                     
                     num_noisy = np.sum(noisy_labels)
                     detected_labels = np.asarray([False] * self.X.shape[0])                    
                     num_detected = 0
                     ptr = 0
-                    print(gf0_ids)
+                    debug(gf0_ids)
                     gf0_ids = gf0_ids.tolist()
                     gf0_ids_i = [x // out_size for x in gf0_ids]
                     while num_detected < num_noisy:
@@ -916,7 +918,7 @@ class NNClassifier(GSSLClassifier):
                     recall = np.sum(np.logical_and(noisy_labels,detected_labels))/np.sum(noisy_labels)
                     
                     
-                    print("%Recall:{}".format(recall))
+                    debug("%Recall:{}".format(recall))
                     
                     """ 
                     VISUALIZE TSNE
@@ -928,7 +930,7 @@ class NNClassifier(GSSLClassifier):
                         lb = np.copy(labeledIndexes)
                         lb[0:10000] = True
                         embeddings = TSNE(n_jobs=16,random_state=123456).fit_transform(normalize(self.X_descr)[np.where(lb)[0],:])
-                        print("Creating TSNE...Done!")
+                        debug("Creating TSNE...Done!")
                         F = sess.run(self.F)
                         self.eval_W = scipy.sparse.coo_matrix((W_sparse_tensor_values.values,
                                        (W_sparse_tensor_values.indices[:,0],
@@ -964,25 +966,25 @@ class NNClassifier(GSSLClassifier):
                     if i == 5:
                         raise ""
                     
-                    #print(gf0)
+                    #debug(gf0)
                     
-                    print("Running Label Prop...Done!")
-                    
-                    
+                    debug("Running Label Prop...Done!")
                     
                     
-                    #print(stats.describe(sess.run(self.F_ent)) )
+                    
+                    
+                    #debug(stats.describe(sess.run(self.F_ent)) )
                     sess.run(update_class_freq)
                     sess.run(update_F_ent)
-                    #print(stats.describe(sess.run(self.F_ent)) )
+                    #debug(stats.describe(sess.run(self.F_ent)) )
                     
                     F_acc = sess.run(temp_acc,feed_dict={temp_F:sess.run(self.F)})
-                    print("Label Prop acc : {}".format(F_acc))
+                    debug("Label Prop acc : {}".format(F_acc))
                     descr_acc.append(F_acc)
                     
                     #Adicionamos pred 
                     F = sess.run(tf.one_hot(indices=temp_argmax,depth=out_size),feed_dict={temp_F:sess.run(self.F)})
-                    print(F)
+                    debug(F)
                     ensemble_pred.append(F)
                     
                     
@@ -1004,23 +1006,23 @@ class NNClassifier(GSSLClassifier):
                     ensemble_acc.append(sess.run(temp_acc,feed_dict={temp_F:p_ens}))
 
                     
-                print(descr_acc)
-                print(ensemble_acc)
+                debug(descr_acc)
+                debug(ensemble_acc)
                 """ Get W as scipy matrix """
                 self.eval_D = sess.run(calc_D,feed_dict=W_feed_dict)
                 self.eval_W = scipy.sparse.coo_matrix((W_sparse_tensor_values.values,
                                                        (W_sparse_tensor_values.indices[:,0],
                                                         W_sparse_tensor_values.indices[:,1])), shape = W_sparse_tensor_values.dense_shape)
                 del W_sparse_tensor_values
-                print("Building graph...Done!")
+                debug("Building graph...Done!")
                 
                 
                 """ 
-                PRINT STATS
+                debug STATS
                 """
                 from scipy import stats
-                print("Stats about W values:")
-                print(stats.describe(self.eval_W.data))
+                debug("Stats about W values:")
+                debug(stats.describe(self.eval_W.data))
                 
                 
                 
@@ -1069,13 +1071,13 @@ class NNClassifier(GSSLClassifier):
                         except tf.errors.OutOfRangeError:
                             break
                             """for acm in self.accumulators:
-                                print("AVG {}:{}".format(acm.name,acm.avg))
+                                debug("AVG {}:{}".format(acm.name,acm.avg))
                             break
                             """
 
                     if mode == 'val':
                         for acm in self.accumulators:
-                            print("AVG {}:{}".format(acm.name,sess.run(acm.avg) ))
+                            debug("AVG {}:{}".format(acm.name,sess.run(acm.avg) ))
                             
                         
                     writer.add_summary(sess.run(acm_summaries[mode]),sess.run(global_step))
@@ -1087,7 +1089,7 @@ class NNClassifier(GSSLClassifier):
             for i in range(self.NUM_EPOCHS):
                 train_loop(i, 'train')    
                 train_loop(i, 'val')
-                print(i)
+                debug(i)
                 if self.X.shape[0] > 10000:
                     continue
                 if (not hook is None and i % 25 == 0) or i == self.NUM_EPOCHS-1:                        

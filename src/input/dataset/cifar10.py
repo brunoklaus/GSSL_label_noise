@@ -56,7 +56,6 @@ def get_cifar10(flattened=False):
     for b_id in range(1,7):
         if b_id == 6:
             features, labels = load_cifar10_test()
-            print(features)
         else:
             features, labels = load_cifar10_batch(b_id)
         if flattened:

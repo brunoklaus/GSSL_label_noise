@@ -18,6 +18,8 @@ import numpy as np
 import seaborn as sns
 import scipy.sparse
 from output.folders import PLOT_FOLDER
+import log.logger as LOG
+
 
 #Set a timeout of 1 minute for orca
 plotly.io.orca.config.timeout = 60
@@ -35,7 +37,7 @@ def authenticate_plotly():
             api_key = f.readline()
             plotly.tools.set_credentials_file(username=username, api_key=api_key)
     else:
-        print("Could not find auth.txt on {}".format(auth_file))
+        LOG.warn("Could not find auth.txt on {}".format(auth_file),LOG.ll.OUTPUT)
 authenticate_plotly()       
 
 
@@ -244,17 +246,17 @@ def plotGraph(X,W,labeledIndexes,vertex_opt,plot_filepath = None, online = False
         fig=go.Figure(data=data, layout=layout)
         
         
-        print("Plotting graph..." + title)
+        LOG.info("Plotting graph ({}) ...".format(title),LOG.ll.OUTPUT)
         if online:
             try:
                 py.iplot(fig)
             except plotly.exceptions.PlotlyRequestError:
-                print("Warning: Could not plot online")
+                LOG.warn("Warning: Could not plot online",LOG.ll.OUTPUT)
                 
         if interactive:
             pyoff.offline.plot(fig)
         pio.write_image(fig,plot_filepath)
-        print("Done!")  
+        LOG.info("Plotting graph({})...Done!".format(title),LOG.ll.OUTPUT)
 
 
 def _traceVertex(X,labeledIndexes,plot_dim, v_opt):
@@ -452,6 +454,6 @@ def color_scale_continuous(Y,palette="coolwarm",num_palette=70):
 
 
 if __name__ == "__main__":
-    print(PLOT_FOLDER)
+    LOG.info(PLOT_FOLDER,LOG.ll.OTHER)
 
     

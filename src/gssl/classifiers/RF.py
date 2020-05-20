@@ -10,8 +10,6 @@ class RFClassifier(GSSLClassifier):
     """
     @GSSLClassifier.autohooks
     def __RF(self,X,W,Y,labeledIndexes,n_estimators, hook=None):
-        XL = X[labeledIndexes,:]
-        print("RF")
         rf = RandomForestClassifier(n_estimators=n_estimators,verbose=2)
         rf.fit(X[labeledIndexes,:],np.argmax(Y[labeledIndexes,:],axis=1) )
         pred = rf.predict(X)

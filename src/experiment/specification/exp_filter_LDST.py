@@ -17,7 +17,7 @@ from experiment.selector import Hook
 
 from experiment.specification.specification_bits import allPermutations as P,\
     AFFMAT_DEFAULT
-
+import log.logger as LOG
 
 class FilterLDST(EmptySpecification):
     '''
@@ -71,8 +71,6 @@ class FilterLDST(EmptySpecification):
         stat_dict = res.pop("flt_stat_dict")
         L = []
         
-        if not (cfg[FILTER_PREFIX + "tuning_iter"]  <= len([int(k) for k in stat_dict.keys()]) ):
-            print(np.sort())
         
         
         for k,v in stat_dict.items():

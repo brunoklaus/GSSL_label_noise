@@ -13,6 +13,7 @@ import shutil
 from sklearn.preprocessing import StandardScaler,MinMaxScaler
 import experiment.hooks.hook_skeleton as hk
 import  scipy.sparse
+import log.logger as LOG
 class plotHook(hk.GSSLHook):
     """ Hook that plots labels. Uses a callback to an `Experiment` object to get X and W, if available. """
     
@@ -144,21 +145,21 @@ class plotIterHook(plotHook):
         
         if self.steps_taken==0:
             return
-        print("Creating video...")
+        LOG.info("Creating video...",LOG.ll.HOOK)
         video_command = "ffmpeg -r {} -y  -pattern_type glob -i '{}' -c:v libx264 -vf fps=25 -pix_fmt yuv420p '{}'".format(\
             self.steps_taken/(15.0*5.0),
             os.path.join(self.filename_dir,self.temp_subfolder_name,"*.png".format(self.str_len)),
             os.path.join(self.filename_dir,self.video_path)
             )
-        print(video_command)
+        LOG.debug(video_command,LOG.ll.HOOK)
         os.system(video_command)
-        print("Created video...")
+        LOG.info("Created video...",LOG.ll.HOOK)
         
     def rmFolders(self):
         if self.keep_images:
             return
         shutil.rmtree(os.path.join(self.filename_dir,self.temp_subfolder_name))
-        print("Deleted images....")
+        LOG.info("Deleted images....",LOG.ll.HOOK)
         
     def __init__(self, video_path,title,experiment,only_labeled=True,step_size=5,force_Y_callback = None,
                  force_lb_callback=None,temp_subfolder_name="iter",

@@ -63,7 +63,6 @@ def lap_matrix(W,is_normalized):
         
     if is_normalized:
             d_sqrt = deg_matrix(W,pwr=-1/2,NA_replace_val=1.0,flat=False)
-            print(d_sqrt.shape)
             S = (d_sqrt @ W) @ d_sqrt 
             I = scipy.sparse.identity(W.shape[0]) if scipy.sparse.issparse(W) else np.identity(W.shape[0]) 
             return( I - S )
@@ -163,7 +162,7 @@ def class_mass_normalization(F,Y,labeledIndexes,normalize_rows=True):
     for j in range(Y.shape[1]):
         q[j] = np.sum(Y[labeledIndexes,j])
     
-    print(F)
+    
     F = np.array(F)
     
     if normalize_rows:

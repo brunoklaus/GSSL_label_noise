@@ -8,32 +8,19 @@ import numpy as np
 import gssl.graph.gssl_utils as gutils
 from gssl.classifiers.LGC_tf import LGC_iter_TF
 from gssl.graph.gssl_utils import scipy_to_np as _to_np
-
+import log.logger as LOG
 import scipy.sparse
 import itertools
 
 class LGC_LVO_Filter(GSSLFilter):
     
     
-    def get_prop_W(self,W,Y,mu):
-        alpha = 1/(1+mu)
-        #Get D^{-1/2}
-        d_sqrt = np.reciprocal(np.sqrt(np.sum(W,axis=0)))
-        d_sqrt[np.logical_not(np.isfinite(d_sqrt))] = 1
-        d_sqrt = np.diag(d_sqrt)
-        
-        
-        S = np.matmul(d_sqrt,np.matmul(W,d_sqrt))
-        I = np.identity(Y.shape[0])
-        
-        return np.linalg.inv(I - alpha*S)
-    
     
     '''
     classdocs
     '''
     @GSSLFilter.autohooks
-    def LDST(self,X,W,Y,labeledIndexes,mu = 99.0,useEstimatedFreq=True,tuning_iter = 0,hook=None,
+    def LGCLVO(self,X,W,Y,labeledIndexes,mu = 99.0,useEstimatedFreq=True,tuning_iter = 0,hook=None,
              constant_prop = False,useZ=True,normalize_rows=True):
         '''BEGIN initialization'''
         
@@ -44,7 +31,6 @@ class LGC_LVO_Filter(GSSLFilter):
         #We make a deep copy of labeledindexes
         labeledIndexes = np.array(labeledIndexes)        
         lids = np.where(labeledIndexes)[0]
-        
         if Y.ndim == 1:
             Y = gutils.init_matrix(Y,labeledIndexes)
         Y[np.logical_not(labeledIndexes),:] = 0
@@ -260,13 +246,11 @@ class LGC_LVO_Filter(GSSLFilter):
                 ax[1].text(j, i, '{:0.1f}'.format(z), ha='center', va='center')
                 
             
-            print(PL.shape)
-            
             plt.show()
             """    
             
         '''END iterations'''
-        print("NUMBER OF DETECTED NOISY INSTANCES:{}".format(len(detected_noisylabels)))    
+        LOG.info("NUMBER OF DETECTED NOISY INSTANCES:{}".format(len(detected_noisylabels)),LOG.ll.FILTER)    
 
         
         
@@ -284,19 +268,32 @@ class LGC_LVO_Filter(GSSLFilter):
             tuning_iter = self.tuning_iter
         
 
-        return self.LDST(X, W, Y, labeledIndexes, self.mu, self.useEstimatedFreq, tuning_iter,\
+        return self.LGCLVO(X, W, Y, labeledIndexes, self.mu, self.useEstimatedFreq, tuning_iter,\
                           hook, self.constantProp,self.useZ,self.normalize_rows)
     
     def __init__(self, tuning_iter,mu = 99.0, useEstimatedFreq=True,constantProp=False,useZ=True,
                  tuning_iter_as_pct=False, normalize_rows = True, early_stop=False, use_baseline=False,
                  relabel=True):
-        """ Constructor for LDST-Removal Filter.
+        """ Constructor for the LGCLVO filter.
         
         Args:
             mu (float) :  a parameter determining the importance of the fitting term. Default is ``99.0``.
-            tuning_iter (int) : The number of tuning iterations. 
+            tuning_iter (float) : The number of tuning iterations.
+            tuning_iter_as_pct (bool) :  If  ``True``, then  `tuning_iter` is to be interpreted as a percentage of the 
+                number of labels.
+            constantProp (bool) : If  ``True``, the number of labels detected for each class will be 
+                proportional to the estimated frequency. Default is `False`.
             useEstimatedFreq (bool) : If ``True``, then use estimated class freq. to balance the propagation.
                     Otherwise, assume classes are equiprobable. Default is ``True``.
+            useZ (bool) : If  ``True``, then normalize the label matrix at each step. Default is `True`.
+            normalize_row (bool) : If  ``True``, then each row of the classification matrix  and label matrix will sum up
+                to one. Highly recommended. Default is ``True``.
+            early_stop (bool) : If  ``True``, a label will not be considered for removal if it cannot be reached by other labels. Default is ``False``.
+            use_baseline (bool) : If  ``True``, we will use a baseline which calculates the criteria once instead of updating at each iteration, sacrificing
+                precision for performance. Default is ``False``.
+            relabel (bool) : If  ``False``, the relevant label indices are removed. If ``True``, the returned label matrix is directly modified to keep indices,
+                but changing the label. Default is ``False``.
+            
             
         """
     

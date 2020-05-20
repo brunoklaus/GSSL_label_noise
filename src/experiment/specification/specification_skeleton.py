@@ -16,7 +16,7 @@ from experiment.experiments import TIME_HOOKS
 from output.folders import CSV_FOLDER
 import progressbar
 from output.aggregate_csv import aggregate_csv
-
+import log.logger as LOG
 import traceback
 from functools import wraps
 from multiprocessing import Process, Queue
@@ -161,7 +161,8 @@ class EmptySpecification(object):
                    not (x[ALG_PREFIX+"algorithm"]=="LGC" and \
                    x[FILTER_PREFIX+"filter"]in["LDST","LGC_LVO"] and np.round((1-x[ALG_PREFIX+"alpha"])/x[ALG_PREFIX+"alpha"],4) != np.round(x[FILTER_PREFIX+"mu"],4))]
             
-            print("REMOVED CONFIGS: {}".format(old_len-len(res)))
+            LOG.debug("Number of configurations removed due to forcing GTAM have same mu param as filter: {}"\
+                      .format(old_len-len(res)),LOG.ll.SPECIFICATION)
             
         if self.TUNING_ITER_AS_NOISE_PCT:
             for x in res:
@@ -243,7 +244,7 @@ class EmptySpecification(object):
             sys.stdout = oldstdout
             #Append to csv if conditions are met
             if i == cfgs_size-1 or i % self.WRITE_FREQ == 0:
-                print("appending csv...")
+                LOG.info("appending csv...",LOG.ll.SPECIFICATION)
                 csv_exists = os.path.isfile(CSV_PATH)
                 if self.OVERWRITE:
                     if csv_exists and has_written_already:
@@ -255,7 +256,7 @@ class EmptySpecification(object):
                         f_mode = 'a'
                     else:
                         f_mode = 'w'
-                print("f_mode={}".format(f_mode))
+                LOG.debug("f_mode={}".format(f_mode),LOG.ll.SPECIFICATION)
                 self._append_to_csv(output_dicts,CSV_PATH,f_mode,cfgs_keys)
                 has_written_already = True
                 output_dicts.clear()

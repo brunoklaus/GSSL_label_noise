@@ -27,7 +27,7 @@ class LDST(GSSLFilter):
     classdocs
     '''
     @GSSLFilter.autohooks
-    def LDST(self,X,W,Y,labeledIndexes,mu = 99.0,useEstimatedFreq=True,tuning_iter = 0,hook=None,
+    def LGCLVO(self,X,W,Y,labeledIndexes,mu = 99.0,useEstimatedFreq=True,tuning_iter = 0,hook=None,
              constant_prop = False,useLGCMat=False,useZ=False):
         '''BEGIN initialization'''
         
@@ -133,11 +133,11 @@ class LDST(GSSLFilter):
         
 
     def fit (self,X,Y,labeledIndexes,W = None,hook=None):
-        return self.LDST(X, W, Y, labeledIndexes, self.mu, self.useEstimatedFreq, self.tuning_iter, hook, \
+        return self.LGCLVO(X, W, Y, labeledIndexes, self.mu, self.useEstimatedFreq, self.tuning_iter, hook, \
                          self.constantProp,self.useLGCMat,self.useZ)
     
     def __init__(self, tuning_iter,mu = 99.0, useEstimatedFreq=True,constantProp=False,useLGCMat=False,useZ=True):
-        """" Constructor for GTAM classifier.
+        """" Constructor for the LDST filter.
         
         Args:
             mu (float) :  a parameter determining the importance of the fitting term. Default is ``99.0``.
