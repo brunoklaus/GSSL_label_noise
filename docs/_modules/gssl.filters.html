@@ -95,6 +95,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="input.html">input package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log.html">log package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output.html">output package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
@@ -182,14 +183,14 @@
 <em class="property">class </em><code class="descclassname">gssl.filters.LDST.</code><code class="descname">LDST</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useLGCMat=False</em>, <em>useZ=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.filters.filter.GSSLFilter" title="gssl.filters.filter.GSSLFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.filters.filter.GSSLFilter</span></code></a></p>
 <dl class="method">
-<dt id="gssl.filters.LDST.LDST.LDST">
-<code class="descname">LDST</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.LDST" title="Permalink to this definition">¶</a></dt>
+<dt id="gssl.filters.LDST.LDST.LGCLVO">
+<code class="descname">LGCLVO</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.LGCLVO" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="gssl.filters.LDST.LDST.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useLGCMat=False</em>, <em>useZ=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>” Constructor for GTAM classifier.</p>
+<dd><p>” Constructor for the LDST filter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -250,24 +251,37 @@ Otherwise, assume classes are equiprobable. Default is <code class="docutils lit
 <dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter">
 <em class="property">class </em><code class="descclassname">gssl.filters.LGC_LVO.</code><code class="descname">LGC_LVO_Filter</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useZ=True</em>, <em>tuning_iter_as_pct=False</em>, <em>normalize_rows=True</em>, <em>early_stop=False</em>, <em>use_baseline=False</em>, <em>relabel=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.filters.filter.GSSLFilter" title="gssl.filters.filter.GSSLFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.filters.filter.GSSLFilter</span></code></a></p>
+<p>classdocs</p>
 <dl class="method">
-<dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter.LDST">
-<code class="descname">LDST</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.LDST" title="Permalink to this definition">¶</a></dt>
+<dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter.LGCLVO">
+<code class="descname">LGCLVO</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.LGCLVO" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useZ=True</em>, <em>tuning_iter_as_pct=False</em>, <em>normalize_rows=True</em>, <em>early_stop=False</em>, <em>use_baseline=False</em>, <em>relabel=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructor for LDST-Removal Filter.</p>
+<dd><p>Constructor for the LGCLVO filter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>mu</strong> (<em>float</em>) – a parameter determining the importance of the fitting term. Default is <code class="docutils literal notranslate"><span class="pre">99.0</span></code>.</li>
-<li><strong>tuning_iter</strong> (<em>int</em>) – The number of tuning iterations.</li>
+<li><strong>tuning_iter</strong> (<em>float</em>) – The number of tuning iterations.</li>
+<li><strong>tuning_iter_as_pct</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then  <cite>tuning_iter</cite> is to be interpreted as a percentage of the
+number of labels.</li>
+<li><strong>constantProp</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, the number of labels detected for each class will be
+proportional to the estimated frequency. Default is <cite>False</cite>.</li>
 <li><strong>useEstimatedFreq</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then use estimated class freq. to balance the propagation.
 Otherwise, assume classes are equiprobable. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
+<li><strong>useZ</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then normalize the label matrix at each step. Default is <cite>True</cite>.</li>
+<li><strong>normalize_row</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then each row of the classification matrix  and label matrix will sum up
+to one. Highly recommended. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
+<li><strong>early_stop</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, a label will not be considered for removal if it cannot be reached by other labels. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
+<li><strong>use_baseline</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, we will use a baseline which calculates the criteria once instead of updating at each iteration, sacrificing
+precision for performance. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
+<li><strong>relabel</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">False</span></code>, the relevant label indices are removed. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the returned label matrix is directly modified to keep indices,
+but changing the label. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
 </ul>
 </td>
 </tr>
@@ -302,11 +316,6 @@ Otherwise, assume classes are equiprobable. Default is <code class="docutils lit
 </tbody>
 </table>
 </dd></dl>
-
-<dl class="method">
-<dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter.get_prop_W">
-<code class="descname">get_prop_W</code><span class="sig-paren">(</span><em>W</em>, <em>Y</em>, <em>mu</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.get_prop_W" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

@@ -98,6 +98,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="gssl.html">gssl package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="input.html">input package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log.html">log package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output.html">output package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
@@ -220,9 +221,9 @@
 </ol>
 <dl class="docutils">
 <dt>Attr:</dt>
-<dd>X : the calculated input matrix
-W (n by n numpy matrix) : the affinity matrix encoding the graph.
-Y (n by c binary matrix) : matrix encoding initial belief</dd>
+<dd>X (NDArray[float].shape[N,D]) : the calculated input matrix
+W (NDArray[float].shape[N,N]) : the affinity matrix encoding the graph.
+Y (NDArray[float].shape[N,C]) : matrix encoding initial belief</dd>
 </dl>
 <dl class="method">
 <dt id="experiment.experiments.Experiment.__init__">
@@ -232,7 +233,7 @@ Y (n by c binary matrix) : matrix encoding initial belief</dd>
 
 <dl class="method">
 <dt id="experiment.experiments.Experiment.run">
-<code class="descname">run</code><span class="sig-paren">(</span><em>hook_list=[&lt;Hook.INIT_LABELED: 6&gt;, &lt;Hook.INIT_ALL: 11&gt;, &lt;Hook.NOISE_AFTER: 12&gt;, &lt;Hook.ALG_RESULT: 9&gt;, &lt;Hook.ALG_ITER: 3&gt;, &lt;Hook.GTAM_Q: 13&gt;, &lt;Hook.GTAM_F: 7&gt;, &lt;Hook.GTAM_Y: 10&gt;]</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.experiments.Experiment.run" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run</code><span class="sig-paren">(</span><em>hook_list=[&lt;Hook.INIT_LABELED: 7&gt;, &lt;Hook.INIT_ALL: 13&gt;, &lt;Hook.NOISE_AFTER: 8&gt;, &lt;Hook.ALG_RESULT: 9&gt;, &lt;Hook.ALG_ITER: 3&gt;, &lt;Hook.GTAM_Q: 2&gt;, &lt;Hook.GTAM_F: 12&gt;, &lt;Hook.GTAM_Y: 1&gt;]</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.experiments.Experiment.run" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -290,37 +291,37 @@ Y (n by c binary matrix) : matrix encoding initial belief</dd>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.FILTER_AFTER">
-<code class="descname">FILTER_AFTER</code><em class="property"> = 8</em><a class="headerlink" href="#experiment.selector.Hook.FILTER_AFTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">FILTER_AFTER</code><em class="property"> = 6</em><a class="headerlink" href="#experiment.selector.Hook.FILTER_AFTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.FILTER_ITER">
-<code class="descname">FILTER_ITER</code><em class="property"> = 2</em><a class="headerlink" href="#experiment.selector.Hook.FILTER_ITER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">FILTER_ITER</code><em class="property"> = 4</em><a class="headerlink" href="#experiment.selector.Hook.FILTER_ITER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.GTAM_F">
-<code class="descname">GTAM_F</code><em class="property"> = 7</em><a class="headerlink" href="#experiment.selector.Hook.GTAM_F" title="Permalink to this definition">¶</a></dt>
+<code class="descname">GTAM_F</code><em class="property"> = 12</em><a class="headerlink" href="#experiment.selector.Hook.GTAM_F" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.GTAM_Q">
-<code class="descname">GTAM_Q</code><em class="property"> = 13</em><a class="headerlink" href="#experiment.selector.Hook.GTAM_Q" title="Permalink to this definition">¶</a></dt>
+<code class="descname">GTAM_Q</code><em class="property"> = 2</em><a class="headerlink" href="#experiment.selector.Hook.GTAM_Q" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.GTAM_Y">
-<code class="descname">GTAM_Y</code><em class="property"> = 10</em><a class="headerlink" href="#experiment.selector.Hook.GTAM_Y" title="Permalink to this definition">¶</a></dt>
+<code class="descname">GTAM_Y</code><em class="property"> = 1</em><a class="headerlink" href="#experiment.selector.Hook.GTAM_Y" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.INIT_ALL">
-<code class="descname">INIT_ALL</code><em class="property"> = 11</em><a class="headerlink" href="#experiment.selector.Hook.INIT_ALL" title="Permalink to this definition">¶</a></dt>
+<code class="descname">INIT_ALL</code><em class="property"> = 13</em><a class="headerlink" href="#experiment.selector.Hook.INIT_ALL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.INIT_LABELED">
-<code class="descname">INIT_LABELED</code><em class="property"> = 6</em><a class="headerlink" href="#experiment.selector.Hook.INIT_LABELED" title="Permalink to this definition">¶</a></dt>
+<code class="descname">INIT_LABELED</code><em class="property"> = 7</em><a class="headerlink" href="#experiment.selector.Hook.INIT_LABELED" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -330,7 +331,7 @@ Y (n by c binary matrix) : matrix encoding initial belief</dd>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.NOISE_AFTER">
-<code class="descname">NOISE_AFTER</code><em class="property"> = 12</em><a class="headerlink" href="#experiment.selector.Hook.NOISE_AFTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">NOISE_AFTER</code><em class="property"> = 8</em><a class="headerlink" href="#experiment.selector.Hook.NOISE_AFTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -355,22 +356,22 @@ Y (n by c binary matrix) : matrix encoding initial belief</dd>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.W_FILTER_AFTER">
-<code class="descname">W_FILTER_AFTER</code><em class="property"> = 1</em><a class="headerlink" href="#experiment.selector.Hook.W_FILTER_AFTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">W_FILTER_AFTER</code><em class="property"> = 11</em><a class="headerlink" href="#experiment.selector.Hook.W_FILTER_AFTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.W_INIT_ALL">
-<code class="descname">W_INIT_ALL</code><em class="property"> = 5</em><a class="headerlink" href="#experiment.selector.Hook.W_INIT_ALL" title="Permalink to this definition">¶</a></dt>
+<code class="descname">W_INIT_ALL</code><em class="property"> = 10</em><a class="headerlink" href="#experiment.selector.Hook.W_INIT_ALL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.W_INIT_LABELED">
-<code class="descname">W_INIT_LABELED</code><em class="property"> = 4</em><a class="headerlink" href="#experiment.selector.Hook.W_INIT_LABELED" title="Permalink to this definition">¶</a></dt>
+<code class="descname">W_INIT_LABELED</code><em class="property"> = 14</em><a class="headerlink" href="#experiment.selector.Hook.W_INIT_LABELED" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="experiment.selector.Hook.W_NOISE_AFTER">
-<code class="descname">W_NOISE_AFTER</code><em class="property"> = 14</em><a class="headerlink" href="#experiment.selector.Hook.W_NOISE_AFTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">W_NOISE_AFTER</code><em class="property"> = 5</em><a class="headerlink" href="#experiment.selector.Hook.W_NOISE_AFTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -379,7 +380,7 @@ Y (n by c binary matrix) : matrix encoding initial belief</dd>
 <dt id="experiment.selector.HookTimes">
 <em class="property">class </em><code class="descclassname">experiment.selector.</code><code class="descname">HookTimes</code><a class="headerlink" href="#experiment.selector.HookTimes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Information used to infer at which point of the execution a hook takes place.</p>
 <dl class="attribute">
 <dt id="experiment.selector.HookTimes.AFTER_AFFMAT">
 <code class="descname">AFTER_AFFMAT</code><em class="property"> = 5</em><a class="headerlink" href="#experiment.selector.HookTimes.AFTER_AFFMAT" title="Permalink to this definition">¶</a></dt>
@@ -466,24 +467,24 @@ More extensive documentation on the affinity matrix specification can be found t
 <dt id="experiment.selector.select_and_add_hook">
 <code class="descclassname">experiment.selector.</code><code class="descname">select_and_add_hook</code><span class="sig-paren">(</span><em>hook_list</em>, <em>mplex</em>, <em>experiment=None</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.selector.select_and_add_hook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Obtains the relevant hook for the classifier/filter.</p>
-<p>Filename prefix is partially determined by the prefix t#, where # is given according to the enum <a class="reference internal" href="#experiment.selector.HookTimes" title="experiment.selector.HookTimes"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.selector.HookTimes</span></code></a>
+<p>Each hook is associated with a filename prefix, which is partially determined by the prefix t#, where # is given according to the enum <a class="reference internal" href="#experiment.selector.HookTimes" title="experiment.selector.HookTimes"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.selector.HookTimes</span></code></a>
 Currently available hooks:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Hook.INIT_ALL: At HookTimes.BEFORE_NOISE, plots true labels of all instances</li>
-<li>Hook.INIT_LABELED: At HookTimes.BEFORE_NOISE, plots true labels of instances marked as ‘labeled’</li>
-<li>Hook.NOISE_AFTER: At HookTimes.AFTER_NOISE, plots corrupted labels</li>
-<li>Hook.W_INIT_ALL : At HookTimes.BEFORE_FILTER, plots true labels of all instances, with the affinity matrix.</li>
-<li>Hook.W_INIT_LABELED : At HookTimes.BEFORE_FILTER, plots true labels of instances marked as ‘labeled’, with the affinity matrix.</li>
-<li>Hook.W_NOISE_AFTER : At HookTimes.BEFORE_FILTER, plots corrupted labels, with the affinity matrix.</li>
-<li>Hook.FILTER_AFTER: At HookTimes.AFTER_FILTER, plots filtered labels</li>
-<li>Hook.FILTER_ITER: At HookTimes.DURING_FILTER, plots the filtered labels at each step.</li>
-<li>Hook.ALG_ITER: At HookTimes.DURING_CLASSIFIER, plots the classification  at each step.</li>
-<li>Hook.ALG_RESULT: At HookTimes.AFTER_CLASSIFIER, plots classification of algorithm.</li>
-<li>Hook.T_NOISE: At HookTimes.AFTER_NOISE, adds time taken by the noise process to the output dictionary.</li>
-<li>Hook.T_AFFMAT: At HookTimes.AFTER_AFFMAT, adds time taken by the affinity matrix generation to the output dictionary.</li>
-<li>Hook.T_FILTER: At HookTimes.AFTER_FILTER,  adds time taken by filtering process to the output dictionary.</li>
-<li>Hook.T_ALG: At HookTimes.AFTER_CLASSIFIER, adds time taken by the classification to the output dictionary.</li>
+<li><strong>Hook.INIT_ALL</strong>: At HookTimes.BEFORE_NOISE, plots true labels of all instances</li>
+<li><strong>Hook.INIT_LABELED</strong>: At HookTimes.BEFORE_NOISE, plots true labels of instances marked as ‘labeled’</li>
+<li><strong>Hook.NOISE_AFTER</strong>: At HookTimes.AFTER_NOISE, plots corrupted labels</li>
+<li><strong>Hook.W_INIT_ALL</strong> : At HookTimes.BEFORE_FILTER, plots true labels of all instances, with the affinity matrix.</li>
+<li><strong>Hook.W_INIT_LABELED</strong> : At HookTimes.BEFORE_FILTER, plots true labels of instances marked as ‘labeled’, with the affinity matrix.</li>
+<li><strong>Hook.W_NOISE_AFTER</strong> : At HookTimes.BEFORE_FILTER, plots corrupted labels, with the affinity matrix.</li>
+<li><strong>Hook.FILTER_AFTER</strong>: At HookTimes.AFTER_FILTER, plots filtered labels</li>
+<li><strong>Hook.FILTER_ITER</strong>: At HookTimes.DURING_FILTER, plots the filtered labels at each step.</li>
+<li><strong>Hook.ALG_ITER</strong>: At HookTimes.DURING_CLASSIFIER, plots the classification  at each step.</li>
+<li><strong>Hook.ALG_RESULT</strong>: At HookTimes.AFTER_CLASSIFIER, plots classification of algorithm.</li>
+<li><strong>Hook.T_NOISE</strong>: At HookTimes.AFTER_NOISE, adds time taken by the noise process to the output dictionary.</li>
+<li><strong>Hook.T_AFFMAT</strong>: At HookTimes.AFTER_AFFMAT, adds time taken by the affinity matrix generation to the output dictionary.</li>
+<li><strong>Hook.T_FILTER</strong>: At HookTimes.AFTER_FILTER,  adds time taken by filtering process to the output dictionary.</li>
+<li><strong>Hook.T_ALG</strong>: At HookTimes.AFTER_CLASSIFIER, adds time taken by the classification to the output dictionary.</li>
 </ul>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">

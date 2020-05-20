@@ -7,5 +7,6 @@ src
    experiment
    gssl
    input
+   log
    output
    settings

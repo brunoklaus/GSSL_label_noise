@@ -51,14 +51,6 @@ gssl.classifiers.ManifoldReg module
     :undoc-members:
     :show-inheritance:
 
-gssl.classifiers.NN module
---------------------------
-
-.. automodule:: gssl.classifiers.NN
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 gssl.classifiers.RF module
 --------------------------
 

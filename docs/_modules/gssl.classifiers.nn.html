@@ -95,6 +95,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="input.html">input package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log.html">log package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="output.html">output package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
@@ -174,6 +175,182 @@
 <h1>gssl.classifiers.nn package<a class="headerlink" href="#gssl-classifiers-nn-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-gssl.classifiers.nn.NN">
+<span id="gssl-classifiers-nn-nn-module"></span><h2>gssl.classifiers.nn.NN module<a class="headerlink" href="#module-gssl.classifiers.nn.NN" title="Permalink to this headline">¶</a></h2>
+<p>A Neural Network approach I was previously using for some experiments. Ignore this for now.</p>
+<dl class="class">
+<dt id="gssl.classifiers.nn.NN.Accumulator">
+<em class="property">class </em><code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">Accumulator</code><span class="sig-paren">(</span><em>tensor</em>, <em>name</em>, <em>init_val=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.Accumulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.Accumulator.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>tensor</em>, <em>name</em>, <em>init_val=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.Accumulator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gssl.classifiers.nn.NN.NNClassifier">
+<em class="property">class </em><code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">NNClassifier</code><span class="sig-paren">(</span><em>image_shape=None</em>, <em>OUT_SIZE=10</em>, <em>NUM_EPOCHS=2000</em>, <em>BATCH_SIZE=50</em>, <em>AUGMENT=False</em>, <em>model_choice='simple'</em>, <em>LEARNING_RATE=0.0001</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="gssl.classifiers.html#gssl.classifiers.classifier.GSSLClassifier" title="gssl.classifiers.classifier.GSSLClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.classifiers.classifier.GSSLClassifier</span></code></a></p>
+<p>A NN classifier that was intended to optimize a labeled and unlabeled objective at the same time. Please ignore this for the time being</p>
+<dl class="attribute">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.ALPHA">
+<code class="descname">ALPHA</code><em class="property"> = 0.1</em><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.ALPHA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.LAMBDA">
+<code class="descname">LAMBDA</code><em class="property"> = 0.5</em><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.LAMBDA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.RECALC_W">
+<code class="descname">RECALC_W</code><em class="property"> = False</em><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.RECALC_W" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.SIGMA">
+<code class="descname">SIGMA</code><em class="property"> = &lt;tf.Tensor 'Const:0' shape=() dtype=float32&gt;</em><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.SIGMA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.USE_UNLABELED">
+<code class="descname">USE_UNLABELED</code><em class="property"> = True</em><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.USE_UNLABELED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>image_shape=None</em>, <em>OUT_SIZE=10</em>, <em>NUM_EPOCHS=2000</em>, <em>BATCH_SIZE=50</em>, <em>AUGMENT=False</em>, <em>model_choice='simple'</em>, <em>LEARNING_RATE=0.0001</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for NN classifier.</p>
+<p>Args:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.build_graph">
+<code class="descname">build_graph</code><span class="sig-paren">(</span><em>X</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.build_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.eval_get_data">
+<code class="descname">eval_get_data</code><em class="property"> = None</em><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.eval_get_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.evaluate_simfunc">
+<code class="descname">evaluate_simfunc</code><span class="sig-paren">(</span><em>W_sparse_vals</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.evaluate_simfunc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>W</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>hook=None</em>, <em>Y_true=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classifies the input data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
+<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – The affinity matrix encoding the weighted edges.</li>
+<li><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – The initial belief matrix</li>
+<li><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">An updated belief matrix.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,C]</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.labeled_gen">
+<code class="descname">labeled_gen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.labeled_gen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.pred_gen">
+<code class="descname">pred_gen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.pred_gen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.random_gen">
+<code class="descname">random_gen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.random_gen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.unlabeled_gen">
+<code class="descname">unlabeled_gen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.unlabeled_gen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gssl.classifiers.nn.NN.NNClassifier.unlabeled_pairs_gen">
+<code class="descname">unlabeled_pairs_gen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.NNClassifier.unlabeled_pairs_gen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.convert_sparse_matrix_to_sparse_tensor">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">convert_sparse_matrix_to_sparse_tensor</code><span class="sig-paren">(</span><em>X</em>, <em>var_values=False</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.convert_sparse_matrix_to_sparse_tensor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.cos_decay">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">cos_decay</code><span class="sig-paren">(</span><em>init_val</em>, <em>EPOCH_VAR</em>, <em>rampdown_length</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.cos_decay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.debug">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">debug</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.ent">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">ent</code><span class="sig-paren">(</span><em>Y</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.ent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.gather">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">gather</code><span class="sig-paren">(</span><em>x</em>, <em>F</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.gather" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.get_S">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">get_S</code><span class="sig-paren">(</span><em>W</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.get_S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.get_S_fromtensor">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">get_S_fromtensor</code><span class="sig-paren">(</span><em>W</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.get_S_fromtensor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.kl_divergence">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">kl_divergence</code><span class="sig-paren">(</span><em>self</em>, <em>p</em>, <em>q</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.kl_divergence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.repeat">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">repeat</code><span class="sig-paren">(</span><em>x</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.repeat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.row_normalize">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">row_normalize</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.row_normalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="gssl.classifiers.nn.NN.xent">
+<code class="descclassname">gssl.classifiers.nn.NN.</code><code class="descname">xent</code><span class="sig-paren">(</span><em>distr_1</em>, <em>distr_2</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.nn.NN.xent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-gssl.classifiers.nn.models">
 <span id="gssl-classifiers-nn-models-module"></span><h2>gssl.classifiers.nn.models module<a class="headerlink" href="#module-gssl.classifiers.nn.models" title="Permalink to this headline">¶</a></h2>
