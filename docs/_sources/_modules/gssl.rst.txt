@@ -5,15 +5,16 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
-    gssl.classifiers
-    gssl.filters
-    gssl.graph
+   gssl.classifiers
+   gssl.filters
+   gssl.graph
 
 Module contents
 ---------------
 
 .. automodule:: gssl
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

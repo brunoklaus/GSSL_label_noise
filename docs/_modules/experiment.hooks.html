@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -103,7 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
 </ul>
 
             
@@ -179,35 +180,32 @@
 </div>
 <div class="section" id="module-experiment.hooks.hook_skeleton">
 <span id="experiment-hooks-hook-skeleton-module"></span><h2>experiment.hooks.hook_skeleton module<a class="headerlink" href="#module-experiment.hooks.hook_skeleton" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="experiment.hooks.hook_skeleton.CompositeHook">
-<em class="property">class </em><code class="descclassname">experiment.hooks.hook_skeleton.</code><code class="descname">CompositeHook</code><span class="sig-paren">(</span><em>hook_list</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.hook_skeleton.CompositeHook" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">experiment.hooks.hook_skeleton.</code><code class="sig-name descname">CompositeHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hook_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.hook_skeleton.CompositeHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A hook that calls other hooks.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.hook_skeleton.CompositeHook.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>hook_list</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.hook_skeleton.CompositeHook.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hook_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.hook_skeleton.CompositeHook.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for CompositeHook.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hook_list</strong> (<em>List</em><em>[</em><a class="reference internal" href="#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a><em>]</em>) – The list of hooks forming this CompositeHook.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hook_list</strong> (<em>List</em><em>[</em><a class="reference internal" href="#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a><em>]</em>) – The list of hooks forming this CompositeHook.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="experiment.hooks.hook_skeleton.GSSLHook">
-<em class="property">class </em><code class="descclassname">experiment.hooks.hook_skeleton.</code><code class="descname">GSSLHook</code><a class="headerlink" href="#experiment.hooks.hook_skeleton.GSSLHook" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">experiment.hooks.hook_skeleton.</code><code class="sig-name descname">GSSLHook</code><a class="headerlink" href="#experiment.hooks.hook_skeleton.GSSLHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Skeleton for GSSL hooks (for plotting, for example).</p>
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.hook_skeleton.GSSLHook.get_step_rate">
-<code class="descname">get_step_rate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.hook_skeleton.GSSLHook.get_step_rate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_step_rate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.hook_skeleton.GSSLHook.get_step_rate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specifies how many steps it takes to call the “step” procedure on this hook.</p>
 </dd></dl>
 
@@ -218,33 +216,29 @@
 <span id="experiment-hooks-ldst-filterstats-hook-module"></span><h2>experiment.hooks.ldst_filterstats_hook module<a class="headerlink" href="#module-experiment.hooks.ldst_filterstats_hook" title="Permalink to this headline">¶</a></h2>
 <p>Created on 3 de abr de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook">
-<em class="property">class </em><code class="descclassname">experiment.hooks.ldst_filterstats_hook.</code><code class="descname">LDSTFilterStatsHook</code><span class="sig-paren">(</span><em>experiment</em>, <em>step_size=5</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">experiment.hooks.ldst_filterstats_hook.</code><code class="sig-name descname">LDSTFilterStatsHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">step_size</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.hooks.hook_skeleton.GSSLHook</span></code></a></p>
 <p>Hook that saves stats  of the filter at each step.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>experiment</em>, <em>step_size=5</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">step_size</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for LDSTFilterStatsHook.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object.
-The experiment’s <code class="docutils literal notranslate"><span class="pre">output_dict</span></code> will be modified.</li>
-<li><strong>step_size</strong> (<em>int</em>) – Determines after how many iterations to save the filter stats.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object.
+The experiment’s <code class="docutils literal notranslate"><span class="pre">output_dict</span></code> will be modified.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em>) – Determines after how many iterations to save the filter stats.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook.best_f1">
-<code class="descname">best_f1</code><em class="property"> = -1.0</em><a class="headerlink" href="#experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook.best_f1" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">best_f1</code><em class="property"> = -1.0</em><a class="headerlink" href="#experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook.best_f1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -254,124 +248,113 @@ The experiment’s <code class="docutils literal notranslate"><span class="pre">
 <span id="experiment-hooks-plot-hooks-module"></span><h2>experiment.hooks.plot_hooks module<a class="headerlink" href="#module-experiment.hooks.plot_hooks" title="Permalink to this headline">¶</a></h2>
 <p>Created on 2 de abr de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="experiment.hooks.plot_hooks.plotHook">
-<em class="property">class </em><code class="descclassname">experiment.hooks.plot_hooks.</code><code class="descname">plotHook</code><span class="sig-paren">(</span><em>filename_path</em>, <em>title</em>, <em>experiment</em>, <em>when='begin'</em>, <em>only_labeled=True</em>, <em>force_Y_callback=None</em>, <em>force_lb_callback=None</em>, <em>plot_mode='discrete'</em>, <em>palette=None</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotHook" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">experiment.hooks.plot_hooks.</code><code class="sig-name descname">plotHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename_path</span></em>, <em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">when</span><span class="o">=</span><span class="default_value">'begin'</span></em>, <em class="sig-param"><span class="n">only_labeled</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_Y_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force_lb_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">plot_mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.hooks.hook_skeleton.GSSLHook</span></code></a></p>
 <p>Hook that plots labels. Uses a callback to an <cite>Experiment</cite> object to get X and W, if available.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.plot_hooks.plotHook.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>filename_path</em>, <em>title</em>, <em>experiment</em>, <em>when='begin'</em>, <em>only_labeled=True</em>, <em>force_Y_callback=None</em>, <em>force_lb_callback=None</em>, <em>plot_mode='discrete'</em>, <em>palette=None</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotHook.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename_path</span></em>, <em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">when</span><span class="o">=</span><span class="default_value">'begin'</span></em>, <em class="sig-param"><span class="n">only_labeled</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_Y_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force_lb_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">plot_mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotHook.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for the plotHook.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filename_path</strong> (<em>str</em>) – Path to the output file (including filename and extension).</li>
-<li><strong>title</strong> (<em>str</em>) – The title to be displayed on the plot.</li>
-<li><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object, used for callbacks.</li>
-<li><strong>when</strong> (<em>str</em>) – Either ‘begin’ or ‘end’. If it is ‘begin’, plotting occurs when ‘_begin’ method is called. Otherwise, it
-occurs when ‘_end’ is called. Default is <code class="docutils literal notranslate"><span class="pre">'begin'</span></code>.</li>
-<li><strong>only_labeled</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, future calls must have ‘labeledIndexes’ kwarg, and data marked as unlabeled will
-have a different color. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
-<li><strong>force_Y_callback</strong> (<em>str</em>) – Optional. Should be an attribute from <a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a> that
-will override the Y variable (which determines the color of the plot).</li>
-<li><strong>plot_mode</strong> (<em>str</em>) – Either <code class="docutils literal notranslate"><span class="pre">'discrete'`</span></code> or <code class="docutils literal notranslate"><span class="pre">'continuous'</span></code>. The plot type. Default is <code class="docutils literal notranslate"><span class="pre">'discrete'</span></code>.</li>
-<li><strong>palette</strong> (<em>str</em>) – Optional. Overrides the palette setting for the plot.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename_path</strong> (<em>str</em>) – Path to the output file (including filename and extension).</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title to be displayed on the plot.</p></li>
+<li><p><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object, used for callbacks.</p></li>
+<li><p><strong>when</strong> (<em>str</em>) – Either ‘begin’ or ‘end’. If it is ‘begin’, plotting occurs when ‘_begin’ method is called. Otherwise, it
+occurs when ‘_end’ is called. Default is <code class="docutils literal notranslate"><span class="pre">'begin'</span></code>.</p></li>
+<li><p><strong>only_labeled</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, future calls must have ‘labeledIndexes’ kwarg, and data marked as unlabeled will
+have a different color. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>force_Y_callback</strong> (<em>str</em>) – Optional. Should be an attribute from <a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a> that
+will override the Y variable (which determines the color of the plot).</p></li>
+<li><p><strong>plot_mode</strong> (<em>str</em>) – Either <code class="docutils literal notranslate"><span class="pre">'discrete'`</span></code> or <code class="docutils literal notranslate"><span class="pre">'continuous'</span></code>. The plot type. Default is <code class="docutils literal notranslate"><span class="pre">'discrete'</span></code>.</p></li>
+<li><p><strong>palette</strong> (<em>str</em>) – Optional. Overrides the palette setting for the plot.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.plot_hooks.plotHook.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotHook.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotHook.plot" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="experiment.hooks.plot_hooks.plotIterGTAMHook">
-<em class="property">class </em><code class="descclassname">experiment.hooks.plot_hooks.</code><code class="descname">plotIterGTAMHook</code><span class="sig-paren">(</span><em>video_path</em>, <em>title</em>, <em>experiment</em>, <em>step_size=10</em>, <em>mode='Y'</em>, <em>palette=None</em>, <em>keep_images=False</em>, <em>create_video=True</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterGTAMHook" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">experiment.hooks.plot_hooks.</code><code class="sig-name descname">plotIterGTAMHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video_path</span></em>, <em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">step_size</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'Y'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_images</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">create_video</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterGTAMHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#experiment.hooks.plot_hooks.plotIterHook" title="experiment.hooks.plot_hooks.plotIterHook"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.hooks.plot_hooks.plotIterHook</span></code></a></p>
 <p>Hook that is specific to the GTAM algorithm. There are 3 modes:
 1. <code class="docutils literal notranslate"><span class="pre">'Y'</span></code>: Plots the updated initial belief matrix for each iteration.
 2. <code class="docutils literal notranslate"><span class="pre">'Q'</span></code>: Plots the argmin of each row of the gradient. The lower the values, the more the cost function is decreased</p>
 <blockquote>
-<div>with the labeling of that instance.</div></blockquote>
+<div><p>with the labeling of that instance.</p>
+</div></blockquote>
 <ol class="arabic simple" start="3">
-<li><code class="docutils literal notranslate"><span class="pre">'F'</span></code>: Plots the updated classification  for each iteration.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'F'</span></code>: Plots the updated classification  for each iteration.</p></li>
 </ol>
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.plot_hooks.plotIterGTAMHook.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>video_path</em>, <em>title</em>, <em>experiment</em>, <em>step_size=10</em>, <em>mode='Y'</em>, <em>palette=None</em>, <em>keep_images=False</em>, <em>create_video=True</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterGTAMHook.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video_path</span></em>, <em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">step_size</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'Y'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_images</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">create_video</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterGTAMHook.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for the plotIterGTAMHook.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>video_path</strong> (<em>str</em>) – Path to the output video (including filename and ‘.mp4’ extension).</li>
-<li><strong>title</strong> (<em>str</em>) – The title to be displayed on the plot.</li>
-<li><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object, used for callbacks.</li>
-<li><strong>step_size</strong> (<em>int</em>) – Determines after how many steps should a plotting operation occur.</li>
-<li><strong>mode</strong> (<em>str</em>) – The mode of this plotIterGTAMHook. Must be in <code class="docutils literal notranslate"><span class="pre">['Y','Q','F']</span></code>. Default is <cite>Y</cite>.</li>
-<li><strong>palette</strong> (<em>str</em>) – Optional. Overrides the palette setting for the plot.</li>
-<li><strong>keep_images</strong> (<em>bool</em>) – Whether to keep the images. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>create_video</strong> (<em>bool</em>) – Whether to create a video showcasing a slideshow of the images. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video_path</strong> (<em>str</em>) – Path to the output video (including filename and ‘.mp4’ extension).</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title to be displayed on the plot.</p></li>
+<li><p><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object, used for callbacks.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em>) – Determines after how many steps should a plotting operation occur.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – The mode of this plotIterGTAMHook. Must be in <code class="docutils literal notranslate"><span class="pre">['Y','Q','F']</span></code>. Default is <cite>Y</cite>.</p></li>
+<li><p><strong>palette</strong> (<em>str</em>) – Optional. Overrides the palette setting for the plot.</p></li>
+<li><p><strong>keep_images</strong> (<em>bool</em>) – Whether to keep the images. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>create_video</strong> (<em>bool</em>) – Whether to create a video showcasing a slideshow of the images. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="experiment.hooks.plot_hooks.plotIterHook">
-<em class="property">class </em><code class="descclassname">experiment.hooks.plot_hooks.</code><code class="descname">plotIterHook</code><span class="sig-paren">(</span><em>video_path</em>, <em>title</em>, <em>experiment</em>, <em>only_labeled=True</em>, <em>step_size=5</em>, <em>force_Y_callback=None</em>, <em>force_lb_callback=None</em>, <em>temp_subfolder_name='iter'</em>, <em>plot_mode='discrete'</em>, <em>palette=None</em>, <em>keep_images=False</em>, <em>create_video=True</em>, <em>slowdown_factor=1.0</em>, <em>plot_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">experiment.hooks.plot_hooks.</code><code class="sig-name descname">plotIterHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video_path</span></em>, <em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">only_labeled</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">step_size</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">force_Y_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force_lb_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">temp_subfolder_name</span><span class="o">=</span><span class="default_value">'iter'</span></em>, <em class="sig-param"><span class="n">plot_mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_images</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">create_video</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">slowdown_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">plot_id</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#experiment.hooks.plot_hooks.plotHook" title="experiment.hooks.plot_hooks.plotHook"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.hooks.plot_hooks.plotHook</span></code></a></p>
 <p>Hook that plots the labels iteratively. Uses a callback to an <cite>Experiment</cite> object to get X and W, if available.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.plot_hooks.plotIterHook.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>video_path</em>, <em>title</em>, <em>experiment</em>, <em>only_labeled=True</em>, <em>step_size=5</em>, <em>force_Y_callback=None</em>, <em>force_lb_callback=None</em>, <em>temp_subfolder_name='iter'</em>, <em>plot_mode='discrete'</em>, <em>palette=None</em>, <em>keep_images=False</em>, <em>create_video=True</em>, <em>slowdown_factor=1.0</em>, <em>plot_id=0</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video_path</span></em>, <em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">only_labeled</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">step_size</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">force_Y_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force_lb_callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">temp_subfolder_name</span><span class="o">=</span><span class="default_value">'iter'</span></em>, <em class="sig-param"><span class="n">plot_mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_images</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">create_video</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">slowdown_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">plot_id</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for the plotHook.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>video_path</strong> (<em>str</em>) – Path to the output video (including filename and ‘.mp4’ extension).</li>
-<li><strong>title</strong> (<em>str</em>) – The title to be displayed on the plot.</li>
-<li><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object, used for callbacks.</li>
-<li><strong>only_labeled</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, future calls must have ‘labeledIndexes’ kwarg, and data marked as unlabeled will
-have a different color. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
-<li><strong>step_size</strong> (<em>int</em>) – Determines after how many steps should a plotting operation occur.</li>
-<li><strong>force_Y_callback</strong> (<em>str</em>) – Optional. Should be an attribute from <a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a> that
-will override the Y variable (which determines the color of the plot).</li>
-<li><strong>temp_subfolder_name</strong> (<em>str</em>) – Determines the name of the temporary subfolder to store the plot slideshow images.
-Default is <code class="docutils literal notranslate"><span class="pre">'iter'</span></code>.</li>
-<li><strong>plot_mode</strong> (<em>str</em>) – Either <code class="docutils literal notranslate"><span class="pre">'discrete'`</span></code> or <code class="docutils literal notranslate"><span class="pre">'continuous'</span></code>. The plot type. Default is <code class="docutils literal notranslate"><span class="pre">'discrete'</span></code>.</li>
-<li><strong>palette</strong> (<em>str</em>) – Optional. Overrides the palette setting for the plot.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video_path</strong> (<em>str</em>) – Path to the output video (including filename and ‘.mp4’ extension).</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title to be displayed on the plot.</p></li>
+<li><p><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object, used for callbacks.</p></li>
+<li><p><strong>only_labeled</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, future calls must have ‘labeledIndexes’ kwarg, and data marked as unlabeled will
+have a different color. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em>) – Determines after how many steps should a plotting operation occur.</p></li>
+<li><p><strong>force_Y_callback</strong> (<em>str</em>) – Optional. Should be an attribute from <a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a> that
+will override the Y variable (which determines the color of the plot).</p></li>
+<li><p><strong>temp_subfolder_name</strong> (<em>str</em>) – Determines the name of the temporary subfolder to store the plot slideshow images.
+Default is <code class="docutils literal notranslate"><span class="pre">'iter'</span></code>.</p></li>
+<li><p><strong>plot_mode</strong> (<em>str</em>) – Either <code class="docutils literal notranslate"><span class="pre">'discrete'`</span></code> or <code class="docutils literal notranslate"><span class="pre">'continuous'</span></code>. The plot type. Default is <code class="docutils literal notranslate"><span class="pre">'discrete'</span></code>.</p></li>
+<li><p><strong>palette</strong> (<em>str</em>) – Optional. Overrides the palette setting for the plot.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.plot_hooks.plotIterHook.createVideo">
-<code class="descname">createVideo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook.createVideo" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">createVideo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook.createVideo" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.plot_hooks.plotIterHook.rmFolders">
-<code class="descname">rmFolders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook.rmFolders" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">rmFolders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.plot_hooks.plotIterHook.rmFolders" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -381,30 +364,26 @@ Default is <code class="docutils literal notranslate"><span class="pre">'iter'</
 <span id="experiment-hooks-time-hook-module"></span><h2>experiment.hooks.time_hook module<a class="headerlink" href="#module-experiment.hooks.time_hook" title="Permalink to this headline">¶</a></h2>
 <p>Created on 2 de abr de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="experiment.hooks.time_hook.timeHook">
-<em class="property">class </em><code class="descclassname">experiment.hooks.time_hook.</code><code class="descname">timeHook</code><span class="sig-paren">(</span><em>experiment</em>, <em>timer_name</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.time_hook.timeHook" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">experiment.hooks.time_hook.</code><code class="sig-name descname">timeHook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">timer_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.time_hook.timeHook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.hooks.hook_skeleton.GSSLHook</span></code></a></p>
 <p>Hook that times some part of the experiment execution.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="experiment.hooks.time_hook.timeHook.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>experiment</em>, <em>timer_name</em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.time_hook.timeHook.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">experiment</span></em>, <em class="sig-param"><span class="n">timer_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.hooks.time_hook.timeHook.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for the timeHook.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object.
-The experiment’s <code class="docutils literal notranslate"><span class="pre">output_dict</span></code> will be modified.</li>
-<li><strong>timer_name</strong> (<em>str</em>) – The name of the timer. This name will be a key added to <code class="docutils literal notranslate"><span class="pre">experiment.output_dict</span></code>. Initially the
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>experiment</strong> (<a class="reference internal" href="experiment.html#experiment.experiments.Experiment" title="experiment.experiments.Experiment"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.experiments.Experiment</span></code></a>) – The Experiment object.
+The experiment’s <code class="docutils literal notranslate"><span class="pre">output_dict</span></code> will be modified.</p></li>
+<li><p><strong>timer_name</strong> (<em>str</em>) – The name of the timer. This name will be a key added to <code class="docutils literal notranslate"><span class="pre">experiment.output_dict</span></code>. Initially the
 corresponding value will be <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>, but at the end it will be updated to be the time taken between <cite>_begin</cite> and
-<cite>_end</cite> calls.</li>
+<cite>_end</cite> calls.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

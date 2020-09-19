@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -100,7 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
 </ul>
 
             
@@ -179,192 +180,170 @@
 <div class="section" id="gssl-affmat-py">
 <h3>gssl_affmat.py<a class="headerlink" href="#gssl-affmat-py" title="Permalink to this headline">¶</a></h3>
 <p>Module that handles the construction of affinity matrices.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="gssl.graph.gssl_affmat.AffMatGenerator">
-<em class="property">class </em><code class="descclassname">gssl.graph.gssl_affmat.</code><code class="descname">AffMatGenerator</code><span class="sig-paren">(</span><em>dist_func</em>, <em>mask_func</em>, <em>metric='euclidean'</em>, <em>load_path=None</em>, <em>num_anchors=None</em>, <em>**arg</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">AffMatGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dist_func</span></em>, <em class="sig-param"><span class="n">mask_func</span></em>, <em class="sig-param"><span class="n">metric</span><span class="o">=</span><span class="default_value">'euclidean'</span></em>, <em class="sig-param"><span class="n">load_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_anchors</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">arg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Constructs a dense affinity matrix from some specification.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.graph.gssl_affmat.AffMatGenerator.W_from_K">
-<code class="descname">W_from_K</code><span class="sig-paren">(</span><em>X</em>, <em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.W_from_K" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">W_from_K</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">K</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.W_from_K" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.graph.gssl_affmat.AffMatGenerator.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>dist_func</em>, <em>mask_func</em>, <em>metric='euclidean'</em>, <em>load_path=None</em>, <em>num_anchors=None</em>, <em>**arg</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dist_func</span></em>, <em class="sig-param"><span class="n">mask_func</span></em>, <em class="sig-param"><span class="n">metric</span><span class="o">=</span><span class="default_value">'euclidean'</span></em>, <em class="sig-param"><span class="n">load_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_anchors</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">arg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs the Affinity Matrix Generator.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – A matrix containing the vertex positions.</li>
-<li><strong>dist_func</strong> (<em>str</em>) – <p>specifies the distance function to be used. Supported values:
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – A matrix containing the vertex positions.</p></li>
+<li><p><strong>dist_func</strong> (<em>str</em>) – <p>specifies the distance function to be used. Supported values:
 {</p>
 <blockquote>
 <div><ul>
-<li>gaussian: <code class="docutils literal notranslate"><span class="pre">np.exp(-(d*d)/(2*sigma*sigma))</span></code>, where d is the distance. Requires <code class="docutils literal notranslate"><span class="pre">sigma</span></code> on <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs.</li>
-<li>LNP: Linear neighborhood propagaton. Requires <code class="docutils literal notranslate"><span class="pre">k</span></code> on <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs.</li>
-<li>NLNP: Normalized reciprocal of  Linear neighborhood propagation. Requires <code class="docutils literal notranslate"><span class="pre">k</span></code> on <a href="#id5"><span class="problematic" id="id6">**</span></a>kwargs.</li>
-<li>constant: Every weight is set to 1.</li>
-<li>inv_norm: <code class="docutils literal notranslate"><span class="pre">1/d</span></code>, where d is the distance</li>
+<li><p>gaussian: <code class="docutils literal notranslate"><span class="pre">np.exp(-(d*d)/(2*sigma*sigma))</span></code>, where d is the distance. Requires <code class="docutils literal notranslate"><span class="pre">sigma</span></code> on <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs.</p></li>
+<li><p>LNP: Linear neighborhood propagaton. Requires <code class="docutils literal notranslate"><span class="pre">k</span></code> on <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs.</p></li>
+<li><p>NLNP: Normalized reciprocal of  Linear neighborhood propagation. Requires <code class="docutils literal notranslate"><span class="pre">k</span></code> on <a href="#id5"><span class="problematic" id="id6">**</span></a>kwargs.</p></li>
+<li><p>constant: Every weight is set to 1.</p></li>
+<li><p>inv_norm: <code class="docutils literal notranslate"><span class="pre">1/d</span></code>, where d is the distance</p></li>
 </ul>
 </div></blockquote>
 <p>}</p>
-</li>
-<li><strong>mask_func</strong> (<em>str</em>) – <p>specifies the function used to determine the neighborhood. Supported Values:
+</p></li>
+<li><p><strong>mask_func</strong> (<em>str</em>) – <p>specifies the function used to determine the neighborhood. Supported Values:
 {</p>
 <blockquote>
 <div><ul>
-<li>epsilon: Epsilon-neighborhood. Requires <code class="docutils literal notranslate"><span class="pre">eps</span></code> on <a href="#id7"><span class="problematic" id="id8">**</span></a>args.</li>
-<li>knn: K-nearest neighbors Requires <code class="docutils literal notranslate"><span class="pre">k</span></code> on <a href="#id9"><span class="problematic" id="id10">**</span></a>args.</li>
-<li>load: loads CSR matrix specified by <cite>load_path</cite></li>
+<li><p>epsilon: Epsilon-neighborhood. Requires <code class="docutils literal notranslate"><span class="pre">eps</span></code> on <a href="#id7"><span class="problematic" id="id8">**</span></a>args.</p></li>
+<li><p>knn: K-nearest neighbors Requires <code class="docutils literal notranslate"><span class="pre">k</span></code> on <a href="#id9"><span class="problematic" id="id10">**</span></a>args.</p></li>
+<li><p>load: loads CSR matrix specified by <cite>load_path</cite></p></li>
 </ul>
 </div></blockquote>
 <p>}</p>
-</li>
-<li><strong>load_path</strong> (<em>str</em>) – Path from where to load CSR Knn matrix with precalculated distances.</li>
-<li><strong>metric</strong> (<em>str</em>) – specifies the metric when computing the distance. Default is <cite>euclidean</cite>. See the documentation of
-<cite>scipy.spatial.distance.cdist</cite> for more details.</li>
-<li><strong>**arg</strong> – Remaining arguments.</li>
+</p></li>
+<li><p><strong>load_path</strong> (<em>str</em>) – Path from where to load CSR Knn matrix with precalculated distances.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – specifies the metric when computing the distance. Default is <cite>euclidean</cite>. See the documentation of
+<cite>scipy.spatial.distance.cdist</cite> for more details.</p></li>
+<li><p><strong>**arg</strong> – Remaining arguments.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.graph.gssl_affmat.AffMatGenerator.generateAffMat">
-<code class="descname">generateAffMat</code><span class="sig-paren">(</span><em>X</em>, <em>Y=None</em>, <em>labeledIndexes=None</em>, <em>hook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.generateAffMat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generateAffMat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.generateAffMat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates the Affinity Matrix.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dense affinity matrix.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a href="#id11"><span class="problematic" id="id12">`</span></a>NDArray[float].shape[N,N]</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dense affinity matrix.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a href="#id11"><span class="problematic" id="id12">`</span></a>NDArray[float].shape[N,N]</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.graph.gssl_affmat.AffMatGenerator.get_or_calc_Mask">
-<code class="descname">get_or_calc_Mask</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.get_or_calc_Mask" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_or_calc_Mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.get_or_calc_Mask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the previously computed mask for affinity matrix, or computes it.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.graph.gssl_affmat.AffMatGenerator.handle_adaptive_sigma">
-<code class="descname">handle_adaptive_sigma</code><span class="sig-paren">(</span><em>K</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.handle_adaptive_sigma" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">handle_adaptive_sigma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">K</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.AffMatGenerator.handle_adaptive_sigma" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_affmat.LNP">
-<code class="descclassname">gssl.graph.gssl_affmat.</code><code class="descname">LNP</code><span class="sig-paren">(</span><em>X</em>, <em>K</em>, <em>symm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.LNP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">LNP</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">symm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.LNP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the edge weights through Linear Neighborhood Propagation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>K</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Dense Affinity mask, whose positive entries correspond to neighbors.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>K</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Dense Affinity mask, whose positive entries correspond to neighbors.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dense affinity matrix whose weights minimize the linear reconstruction of each instance.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,N]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dense affinity matrix whose weights minimize the linear reconstruction of each instance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,N]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_affmat.NLNP">
-<code class="descclassname">gssl.graph.gssl_affmat.</code><code class="descname">NLNP</code><span class="sig-paren">(</span><em>X</em>, <em>K</em>, <em>symm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.NLNP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">NLNP</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">symm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.NLNP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the normalized reciprocals of the edge weights through Linear Neighborhood Propagation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>K</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Dense Affinity mask, whose positive entries correspond to neighbors.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>K</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Dense Affinity mask, whose positive entries correspond to neighbors.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dense affinity matrix whose weights are the normalized reciprocals of the ones given by Linear Neighborhood Propagation.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,N]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dense affinity matrix whose weights are the normalized reciprocals of the ones given by Linear Neighborhood Propagation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,N]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_affmat.epsilonMask">
-<code class="descclassname">gssl.graph.gssl_affmat.</code><code class="descname">epsilonMask</code><span class="sig-paren">(</span><em>X</em>, <em>eps</em>, <em>metric='euclidean'</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.epsilonMask" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">epsilonMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">eps</span></em>, <em class="sig-param"><span class="n">metric</span><span class="o">=</span><span class="default_value">'euclidean'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.epsilonMask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the distances only in the epsilon-neighborhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>eps</strong> (<em>float</em>) – A parameter such that K[i,j] = 0 if dist(X_i,X_j) &gt;= eps.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>eps</strong> (<em>float</em>) – A parameter such that K[i,j] = 0 if dist(X_i,X_j) &gt;= eps.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a dense matrix ´K´ of shape <cite>[N,N]</cite> whose nonzero
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dense matrix ´K´ of shape <cite>[N,N]</cite> whose nonzero
 <strong>[i,j]</strong> entries correspond to distances between neighbors <strong>X[i,:],X[j,:]</strong> .</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[int].shape[N,N]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[int].shape[N,N]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_affmat.knnMask">
-<code class="descclassname">gssl.graph.gssl_affmat.</code><code class="descname">knnMask</code><span class="sig-paren">(</span><em>X</em>, <em>k</em>, <em>symm=True</em>, <em>metric='euclidean'</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.knnMask" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">knnMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">k</span></em>, <em class="sig-param"><span class="n">symm</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">metric</span><span class="o">=</span><span class="default_value">'euclidean'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.knnMask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the distances only in the knn-neighborhood.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>k</strong> (<em>int</em>) – A parameter such that ´K[i,j] = 1´ iff X_i is one of the k-nearest neighbors of X_j</li>
-<li><strong>symm</strong> (<em>bool</em>) – if True, then <code class="docutils literal notranslate"><span class="pre">K[i,j]</span> <span class="pre">=</span> <span class="pre">max(K[i,j],K[j,i])</span></code>. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – A parameter such that ´K[i,j] = 1´ iff X_i is one of the k-nearest neighbors of X_j</p></li>
+<li><p><strong>symm</strong> (<em>bool</em>) – if True, then <code class="docutils literal notranslate"><span class="pre">K[i,j]</span> <span class="pre">=</span> <span class="pre">max(K[i,j],K[j,i])</span></code>. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a dense matrix ´K´ of shape <cite>[N,N]</cite> whose nonzero
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dense matrix ´K´ of shape <cite>[N,N]</cite> whose nonzero
 <strong>[i,j]</strong> entries correspond to distances between neighbors <strong>X[i,:],X[j,:]</strong> .</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[int].shape[N,N]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[int].shape[N,N]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_affmat.sort_coo">
-<code class="descclassname">gssl.graph.gssl_affmat.</code><code class="descname">sort_coo</code><span class="sig-paren">(</span><em>m</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.sort_coo" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">sort_coo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.sort_coo" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -374,209 +353,188 @@
 <div class="section" id="gssl-utils-py">
 <h3>gssl_utils.py<a class="headerlink" href="#gssl-utils-py" title="Permalink to this headline">¶</a></h3>
 <p>Module containing utilities for GSSL algorithms.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.accuracy">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">accuracy</code><span class="sig-paren">(</span><em>Y_pred</em>, <em>Y_true</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.accuracy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y_pred</span></em>, <em class="sig-param"><span class="n">Y_true</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.accuracy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates percentage of correct predictions.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.accuracy_unlabeled">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">accuracy_unlabeled</code><span class="sig-paren">(</span><em>Y_pred</em>, <em>Y_true</em>, <em>labeled_indexes</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.accuracy_unlabeled" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">accuracy_unlabeled</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y_pred</span></em>, <em class="sig-param"><span class="n">Y_true</span></em>, <em class="sig-param"><span class="n">labeled_indexes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.accuracy_unlabeled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates percentage of correct predictions on unlabeled indexes only.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.calc_Z">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">calc_Z</code><span class="sig-paren">(</span><em>Y</em>, <em>labeledIndexes</em>, <em>D</em>, <em>estimatedFreq=None</em>, <em>weigh_by_degree=False</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.calc_Z" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">calc_Z</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">D</span></em>, <em class="sig-param"><span class="n">estimatedFreq</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">weigh_by_degree</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.calc_Z" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates matrix Z used for GTAM/LDST label propagation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – confidence matrix</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – determines which indices are to be considered as labeled.</li>
-<li><strong>D</strong> (<cite>[NDArray[float].shape[N]</cite>) – array of diagonal entries of degree matrix.</li>
-<li><strong>estimatedFreq</strong> (<em>´NDArray</em><em>[</em><em>float</em><em>]</em><em>shape</em><em>[</em><em>C</em><em>]</em><em>`</em>) – Optional. The estimated class frequencies. If absent, it is assumed all
-classes occur equally often.</li>
-<li><strong>reciprocal</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use reciprocal of the degree instead. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – confidence matrix</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – determines which indices are to be considered as labeled.</p></li>
+<li><p><strong>D</strong> (<cite>[NDArray[float].shape[N]</cite>) – array of diagonal entries of degree matrix.</p></li>
+<li><p><strong>estimatedFreq</strong> (<em>´NDArray</em><em>[</em><em>float</em><em>]</em><em>shape</em><em>[</em><em>C</em><em>]</em><em>`</em>) – Optional. The estimated class frequencies. If absent, it is assumed all
+classes occur equally often.</p></li>
+<li><p><strong>reciprocal</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use reciprocal of the degree instead. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Matrix Z, which normalizes Y by class frequencies and degree.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>[NDArray[int].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix Z, which normalizes Y by class frequencies and degree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>[NDArray[int].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.class_mass_normalization">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">class_mass_normalization</code><span class="sig-paren">(</span><em>F</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>normalize_rows=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.class_mass_normalization" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">class_mass_normalization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">F</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">normalize_rows</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.class_mass_normalization" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.deg_matrix">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">deg_matrix</code><span class="sig-paren">(</span><em>W</em>, <em>pwr=1</em>, <em>flat=False</em>, <em>NA_replace_val=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.deg_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">deg_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">pwr</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">flat</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">NA_replace_val</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.deg_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a diagonal matrix with the row-wise sums of a matrix W.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.extract_lap_eigvec">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">extract_lap_eigvec</code><span class="sig-paren">(</span><em>L</em>, <em>m</em>, <em>D=None</em>, <em>remove_first_eig=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.extract_lap_eigvec" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">extract_lap_eigvec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">D</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remove_first_eig</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.extract_lap_eigvec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract  <code class="docutils literal notranslate"><span class="pre">m</span></code> eigenvectors and eigenvalues of the laplacian, in non-decreasing order.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>L</strong> (<cite>[NDArray[float].shape[N,N]</cite>) – laplacian matrix</li>
-<li><strong>m</strong> (<em>int</em>) – number of eigenvectors to extract</li>
-<li><strong>D</strong> (<cite>[NDArray[float].shape[N,N]</cite>) – extra matrix for generalized eigenvalue problem</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L</strong> (<cite>[NDArray[float].shape[N,N]</cite>) – laplacian matrix</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of eigenvectors to extract</p></li>
+<li><p><strong>D</strong> (<cite>[NDArray[float].shape[N,N]</cite>) – extra matrix for generalized eigenvalue problem</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">matrix of eigenvectors, and diagonal matrix of eigenvalues</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Pair[NDArray[float]shape[M,N],NDArray[float]shape[M,M]]</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>matrix of eigenvectors, and diagonal matrix of eigenvalues</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Pair[NDArray[float]shape[M,N],NDArray[float]shape[M,M]]</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.get_Isomap">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">get_Isomap</code><span class="sig-paren">(</span><em>X</em>, <em>n_neighbors=5</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_Isomap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">get_Isomap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">n_neighbors</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_Isomap" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.get_PCA">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">get_PCA</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_PCA" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">get_PCA</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_PCA" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.get_Standardized">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">get_Standardized</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_Standardized" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">get_Standardized</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_Standardized" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.get_pred">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">get_pred</code><span class="sig-paren">(</span><em>Y</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_pred" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">get_pred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.get_pred" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates predictions from a belief matrix.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – belief matrix.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">prediction vector, each entry numbered from 0 to C-1.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>NDArray[int].shape[N]</cite></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – belief matrix.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>prediction vector, each entry numbered from 0 to C-1.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[int].shape[N]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.init_matrix">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">init_matrix</code><span class="sig-paren">(</span><em>Y</em>, <em>labeledIndexes</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.init_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">init_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.init_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a matrix containing the confidence for each class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y</strong> (<cite>[NDArray[int].shape[N]</cite>) – array of true labels.</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – determines which indices are to be considered as labeled.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>[NDArray[int].shape[N]</cite>) – array of true labels.</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – determines which indices are to be considered as labeled.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A matrix <cite>init</cite> such that <cite>init[i,j]</cite> has the confidence that the i-th instance has
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A matrix <cite>init</cite> such that <cite>init[i,j]</cite> has the confidence that the i-th instance has
 the label corresponding to the j-th class.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>[NDArray[float].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>[NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.init_matrix_argmax">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">init_matrix_argmax</code><span class="sig-paren">(</span><em>Y</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.init_matrix_argmax" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">init_matrix_argmax</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.init_matrix_argmax" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the argmax of each row of a matrix.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.labels_indicator">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">labels_indicator</code><span class="sig-paren">(</span><em>labeledIndexes</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.labels_indicator" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">labels_indicator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">labeledIndexes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.labels_indicator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a Diagonal matrix J indicating whether the instance is labeled or not
 :param labeledIndexes:
 :type labeledIndexes: <cite>[NDArray[bool].shape[N]</cite></p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.lap_matrix">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">lap_matrix</code><span class="sig-paren">(</span><em>W</em>, <em>is_normalized</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.lap_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">lap_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">is_normalized</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.lap_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the graph Laplacian of some matrix W.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – The given matrix.</li>
-<li><strong>is_normalized</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns <span class="math notranslate nohighlight">\(L = I - D^{-1/2} W D^{-1/2}\)</span>. Otherwise, returns <span class="math notranslate nohighlight">\(L = D^{-1}W\)</span>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – The given matrix.</p></li>
+<li><p><strong>is_normalized</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns <span class="math notranslate nohighlight">\(L = I - D^{-1/2} W D^{-1/2}\)</span>. Otherwise, returns <span class="math notranslate nohighlight">\(L = D^{-1}W\)</span>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The normalized or unnormalized graph Laplacian</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,N]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The normalized or unnormalized graph Laplacian</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,N]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.scipy_to_np">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">scipy_to_np</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.scipy_to_np" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">scipy_to_np</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.scipy_to_np" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.graph.gssl_utils.split_indices">
-<code class="descclassname">gssl.graph.gssl_utils.</code><code class="descname">split_indices</code><span class="sig-paren">(</span><em>Y</em>, <em>split_p=0.5</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.split_indices" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_utils.</code><code class="sig-name descname">split_indices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">split_p</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_utils.split_indices" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a percentage p of indices, using stratification.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y</strong> (<cite>NDArray.shape[N]</cite>) – the vector from which to split with stratification w.r.t. each number that appears.</li>
-<li><strong>split_p</strong> (<em>float</em>) – the percentage of stratified indexes to return</li>
-<li><strong>seed</strong> (<em>float</em>) – Optional. Used to reproduce results.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>NDArray.shape[N]</cite>) – the vector from which to split with stratification w.r.t. each number that appears.</p></li>
+<li><p><strong>split_p</strong> (<em>float</em>) – the percentage of stratified indexes to return</p></li>
+<li><p><strong>seed</strong> (<em>float</em>) – Optional. Used to reproduce results.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">vector with <cite>split_p</cite> of indexes after stratified sampling.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><cite>NDArray.shape[N*split_p]</cite></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – if <cite>split_p</cite> is an invalid percentage.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>vector with <cite>split_p</cite> of indexes after stratified sampling.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray.shape[N*split_p]</cite></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if <cite>split_p</cite> is an invalid percentage.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

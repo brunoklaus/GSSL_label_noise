@@ -5,14 +5,15 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
-    input.dataset
-    input.noise
+   input.dataset
+   input.noise
 
 Module contents
 ---------------
 
 .. automodule:: input
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

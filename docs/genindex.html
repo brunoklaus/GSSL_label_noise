@@ -22,10 +22,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -172,6 +173,7 @@
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
  | <a href="#Z"><strong>Z</strong></a>
  
 </div>
@@ -203,21 +205,21 @@
 </li>
         <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.ManifoldReg.ManifoldReg.__init__">(gssl.classifiers.ManifoldReg.ManifoldReg method)</a>
 </li>
-        <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.RF.RFClassifier.__init__">(gssl.classifiers.RF.RFClassifier method)</a>
-</li>
-        <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.SIIS.SIISClassifier.__init__">(gssl.classifiers.SIIS.SIISClassifier method)</a>
-</li>
         <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.Accumulator.__init__">(gssl.classifiers.nn.NN.Accumulator method)</a>
 </li>
         <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.NNClassifier.__init__">(gssl.classifiers.nn.NN.NNClassifier method)</a>
 </li>
+        <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.RF.RFClassifier.__init__">(gssl.classifiers.RF.RFClassifier method)</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.SIIS.SIISClassifier.__init__">(gssl.classifiers.SIIS.SIISClassifier method)</a>
+</li>
         <li><a href="_modules/gssl.filters.html#gssl.filters.LDST.LDST.__init__">(gssl.filters.LDST.LDST method)</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#gssl.filters.ldstRemoval.LDSTRemover.__init__">(gssl.filters.ldstRemoval.LDSTRemover method)</a>
 </li>
         <li><a href="_modules/gssl.filters.html#gssl.filters.LGC_LVO.LGC_LVO_Filter.__init__">(gssl.filters.LGC_LVO.LGC_LVO_Filter method)</a>
 </li>
         <li><a href="_modules/gssl.filters.html#gssl.filters.MRremoval.MRRemover.__init__">(gssl.filters.MRremoval.MRRemover method)</a>
-</li>
-        <li><a href="_modules/gssl.filters.html#gssl.filters.ldstRemoval.LDSTRemover.__init__">(gssl.filters.ldstRemoval.LDSTRemover method)</a>
 </li>
         <li><a href="_modules/gssl.graph.html#gssl.graph.gssl_affmat.AffMatGenerator.__init__">(gssl.graph.gssl_affmat.AffMatGenerator method)</a>
 </li>
@@ -316,9 +318,9 @@
 </li>
       <li><a href="_modules/experiment.specification.html#experiment.specification.specification_bits.allPermutations">allPermutations() (in module experiment.specification.specification_bits)</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.LGC.LGCClassifier.alpha">alpha (gssl.classifiers.LGC.LGCClassifier attribute)</a>
-</li>
       <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.NNClassifier.ALPHA">ALPHA (gssl.classifiers.nn.NN.NNClassifier attribute)</a>
+</li>
+      <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.LGC.LGCClassifier.alpha">alpha() (gssl.classifiers.LGC.LGCClassifier property)</a>
 </li>
       <li><a href="_modules/input.noise.html#input.noise.noise_utils.apply_noise">apply_noise() (in module input.noise.noise_utils)</a>
 </li>
@@ -460,44 +462,124 @@
 </li>
       <li><a href="_modules/experiment.specification.html#experiment.specification.exp_debug.ExpDebug">ExpDebug (class in experiment.specification.exp_debug)</a>
 </li>
+      <li>
+    experiment
+
+      <ul>
+        <li><a href="_modules/experiment.html#module-experiment">module</a>
+</li>
+      </ul></li>
       <li><a href="_modules/experiment.html#experiment.experiments.Experiment">Experiment (class in experiment.experiments)</a>
 </li>
       <li><a href="_modules/log.html#log.logger.LogLocation.EXPERIMENT">EXPERIMENT (log.logger.LogLocation attribute)</a>
 </li>
+      <li>
+    experiment.experiments
+
+      <ul>
+        <li><a href="_modules/experiment.html#module-experiment.experiments">module</a>
+</li>
+      </ul></li>
+      <li>
+    experiment.hooks
+
+      <ul>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks">module</a>
+</li>
+      </ul></li>
+      <li>
+    experiment.hooks.hook_skeleton
+
+      <ul>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.hook_skeleton">module</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_modules/experiment.html#module-experiment">experiment (module)</a>
+      <li>
+    experiment.hooks.ldst_filterstats_hook
+
+      <ul>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.ldst_filterstats_hook">module</a>
 </li>
-      <li><a href="_modules/experiment.html#module-experiment.experiments">experiment.experiments (module)</a>
+      </ul></li>
+      <li>
+    experiment.hooks.plot_hooks
+
+      <ul>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.plot_hooks">module</a>
 </li>
-      <li><a href="_modules/experiment.hooks.html#module-experiment.hooks">experiment.hooks (module)</a>
+      </ul></li>
+      <li>
+    experiment.hooks.time_hook
+
+      <ul>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.time_hook">module</a>
 </li>
-      <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.hook_skeleton">experiment.hooks.hook_skeleton (module)</a>
+      </ul></li>
+      <li>
+    experiment.prefixes
+
+      <ul>
+        <li><a href="_modules/experiment.html#module-experiment.prefixes">module</a>
 </li>
-      <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.ldst_filterstats_hook">experiment.hooks.ldst_filterstats_hook (module)</a>
+      </ul></li>
+      <li>
+    experiment.selector
+
+      <ul>
+        <li><a href="_modules/experiment.html#module-experiment.selector">module</a>
 </li>
-      <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.plot_hooks">experiment.hooks.plot_hooks (module)</a>
+      </ul></li>
+      <li>
+    experiment.specification
+
+      <ul>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification">module</a>
 </li>
-      <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.time_hook">experiment.hooks.time_hook (module)</a>
+      </ul></li>
+      <li>
+    experiment.specification.exp_chapelle
+
+      <ul>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_chapelle">module</a>
 </li>
-      <li><a href="_modules/experiment.html#module-experiment.prefixes">experiment.prefixes (module)</a>
+      </ul></li>
+      <li>
+    experiment.specification.exp_cifar
+
+      <ul>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_cifar">module</a>
 </li>
-      <li><a href="_modules/experiment.html#module-experiment.selector">experiment.selector (module)</a>
+      </ul></li>
+      <li>
+    experiment.specification.exp_debug
+
+      <ul>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_debug">module</a>
 </li>
-      <li><a href="_modules/experiment.specification.html#module-experiment.specification">experiment.specification (module)</a>
+      </ul></li>
+      <li>
+    experiment.specification.exp_filter_LDST
+
+      <ul>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_filter_LDST">module</a>
 </li>
-      <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_chapelle">experiment.specification.exp_chapelle (module)</a>
+      </ul></li>
+      <li>
+    experiment.specification.specification_bits
+
+      <ul>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.specification_bits">module</a>
 </li>
-      <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_cifar">experiment.specification.exp_cifar (module)</a>
+      </ul></li>
+      <li>
+    experiment.specification.specification_skeleton
+
+      <ul>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.specification_skeleton">module</a>
 </li>
-      <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_debug">experiment.specification.exp_debug (module)</a>
-</li>
-      <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_filter_LDST">experiment.specification.exp_filter_LDST (module)</a>
-</li>
-      <li><a href="_modules/experiment.specification.html#module-experiment.specification.specification_bits">experiment.specification.specification_bits (module)</a>
-</li>
-      <li><a href="_modules/experiment.specification.html#module-experiment.specification.specification_skeleton">experiment.specification.specification_skeleton (module)</a>
-</li>
+      </ul></li>
       <li><a href="_modules/gssl.graph.html#gssl.graph.gssl_utils.extract_lap_eigvec">extract_lap_eigvec() (in module gssl.graph.gssl_utils)</a>
 </li>
   </ul></td>
@@ -555,21 +637,21 @@
 </li>
         <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.ManifoldReg.ManifoldReg.fit">(gssl.classifiers.ManifoldReg.ManifoldReg method)</a>
 </li>
+        <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.NNClassifier.fit">(gssl.classifiers.nn.NN.NNClassifier method)</a>
+</li>
         <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.RF.RFClassifier.fit">(gssl.classifiers.RF.RFClassifier method)</a>
 </li>
         <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.SIIS.SIISClassifier.fit">(gssl.classifiers.SIIS.SIISClassifier method)</a>
 </li>
-        <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.NNClassifier.fit">(gssl.classifiers.nn.NN.NNClassifier method)</a>
+        <li><a href="_modules/gssl.filters.html#gssl.filters.filter.GSSLFilter.fit">(gssl.filters.filter.GSSLFilter method)</a>
 </li>
         <li><a href="_modules/gssl.filters.html#gssl.filters.LDST.LDST.fit">(gssl.filters.LDST.LDST method)</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#gssl.filters.ldstRemoval.LDSTRemover.fit">(gssl.filters.ldstRemoval.LDSTRemover method)</a>
 </li>
         <li><a href="_modules/gssl.filters.html#gssl.filters.LGC_LVO.LGC_LVO_Filter.fit">(gssl.filters.LGC_LVO.LGC_LVO_Filter method)</a>
 </li>
         <li><a href="_modules/gssl.filters.html#gssl.filters.MRremoval.MRRemover.fit">(gssl.filters.MRremoval.MRRemover method)</a>
-</li>
-        <li><a href="_modules/gssl.filters.html#gssl.filters.filter.GSSLFilter.fit">(gssl.filters.filter.GSSLFilter method)</a>
-</li>
-        <li><a href="_modules/gssl.filters.html#gssl.filters.ldstRemoval.LDSTRemover.fit">(gssl.filters.ldstRemoval.LDSTRemover method)</a>
 </li>
       </ul></li>
       <li><a href="_modules/experiment.specification.html#experiment.specification.specification_skeleton.EmptySpecification.FORCE_GTAM_LDST_SAME_MU">FORCE_GTAM_LDST_SAME_MU (experiment.specification.specification_skeleton.EmptySpecification attribute)</a>
@@ -650,8 +732,6 @@
 </li>
       <li><a href="_modules/gssl.graph.html#gssl.graph.gssl_utils.get_pred">get_pred() (in module gssl.graph.gssl_utils)</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#gssl.filters.LDST.LDST.get_prop_W">get_prop_W() (gssl.filters.LDST.LDST method)</a>
-</li>
       <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.get_S">get_S() (in module gssl.classifiers.nn.NN)</a>
 </li>
       <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.LGC_tf.get_S_fromtensor">get_S_fromtensor() (in module gssl.classifiers.LGC_tf)</a>
@@ -684,8 +764,6 @@
         <li><a href="_modules/experiment.specification.html#experiment.specification.specification_skeleton.EmptySpecification.get_spec_name">(experiment.specification.specification_skeleton.EmptySpecification method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_modules/gssl.graph.html#gssl.graph.gssl_utils.get_Standardized">get_Standardized() (in module gssl.graph.gssl_utils)</a>
 </li>
       <li><a href="_modules/experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook.get_step_rate">get_step_rate() (experiment.hooks.hook_skeleton.GSSLHook method)</a>
@@ -698,54 +776,171 @@
 </li>
       <li><a href="_modules/input.dataset.html#input.dataset.toy_ds.getTFDataset">getTFDataset() (in module input.dataset.toy_ds)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.GFHF.GFHF">GFHF (class in gssl.classifiers.GFHF)</a>
 </li>
-      <li><a href="_modules/gssl.html#module-gssl">gssl (module)</a>
+      <li>
+    gssl
+
+      <ul>
+        <li><a href="_modules/gssl.html#module-gssl">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers">gssl.classifiers (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.classifier">gssl.classifiers.classifier (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.classifier
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.classifier">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.GFHF">gssl.classifiers.GFHF (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.GFHF
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.GFHF">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.GTAM">gssl.classifiers.GTAM (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.GTAM
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.GTAM">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.LGC">gssl.classifiers.LGC (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.LGC
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.LGC">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.LGC_tf">gssl.classifiers.LGC_tf (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.LGC_tf
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.LGC_tf">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.ManifoldReg">gssl.classifiers.ManifoldReg (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.ManifoldReg
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.ManifoldReg">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn">gssl.classifiers.nn (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.nn
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn.models">gssl.classifiers.nn.models (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.nn.models
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn.models">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn.NN">gssl.classifiers.nn.NN (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.nn.NN
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn.NN">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.RF">gssl.classifiers.RF (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.RF
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.RF">module</a>
 </li>
-      <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.SIIS">gssl.classifiers.SIIS (module)</a>
+      </ul></li>
+      <li>
+    gssl.classifiers.SIIS
+
+      <ul>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.SIIS">module</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#module-gssl.filters">gssl.filters (module)</a>
+      </ul></li>
+      <li>
+    gssl.filters
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters">module</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#module-gssl.filters.filter">gssl.filters.filter (module)</a>
+      </ul></li>
+      <li>
+    gssl.filters.filter
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.filter">module</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#module-gssl.filters.filter_utils">gssl.filters.filter_utils (module)</a>
+      </ul></li>
+      <li>
+    gssl.filters.filter_utils
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.filter_utils">module</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#module-gssl.filters.LDST">gssl.filters.LDST (module)</a>
+      </ul></li>
+      <li>
+    gssl.filters.LDST
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.LDST">module</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#module-gssl.filters.ldstRemoval">gssl.filters.ldstRemoval (module)</a>
+      </ul></li>
+      <li>
+    gssl.filters.ldstRemoval
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.ldstRemoval">module</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#module-gssl.filters.LGC_LVO">gssl.filters.LGC_LVO (module)</a>
+      </ul></li>
+      <li>
+    gssl.filters.LGC_LVO
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.LGC_LVO">module</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#module-gssl.filters.MRremoval">gssl.filters.MRremoval (module)</a>
+      </ul></li>
+      <li>
+    gssl.filters.MRremoval
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.MRremoval">module</a>
 </li>
-      <li><a href="_modules/gssl.graph.html#module-gssl.graph">gssl.graph (module)</a>
+      </ul></li>
+      <li>
+    gssl.graph
+
+      <ul>
+        <li><a href="_modules/gssl.graph.html#module-gssl.graph">module</a>
 </li>
-      <li><a href="_modules/gssl.graph.html#module-gssl.graph.gssl_affmat">gssl.graph.gssl_affmat (module)</a>
+      </ul></li>
+      <li>
+    gssl.graph.gssl_affmat
+
+      <ul>
+        <li><a href="_modules/gssl.graph.html#module-gssl.graph.gssl_affmat">module</a>
 </li>
-      <li><a href="_modules/gssl.graph.html#module-gssl.graph.gssl_utils">gssl.graph.gssl_utils (module)</a>
+      </ul></li>
+      <li>
+    gssl.graph.gssl_utils
+
+      <ul>
+        <li><a href="_modules/gssl.graph.html#module-gssl.graph.gssl_utils">module</a>
 </li>
+      </ul></li>
       <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.classifier.GSSLClassifier">GSSLClassifier (class in gssl.classifiers.classifier)</a>
 </li>
       <li><a href="_modules/gssl.filters.html#gssl.filters.filter.GSSLFilter">GSSLFilter (class in gssl.filters.filter)</a>
@@ -796,24 +991,64 @@
 </li>
       <li><a href="_modules/gssl.graph.html#gssl.graph.gssl_utils.init_matrix_argmax">init_matrix_argmax() (in module gssl.graph.gssl_utils)</a>
 </li>
-      <li><a href="_modules/input.html#module-input">input (module)</a>
+      <li>
+    input
+
+      <ul>
+        <li><a href="_modules/input.html#module-input">module</a>
 </li>
-      <li><a href="_modules/input.dataset.html#module-input.dataset">input.dataset (module)</a>
+      </ul></li>
+      <li>
+    input.dataset
+
+      <ul>
+        <li><a href="_modules/input.dataset.html#module-input.dataset">module</a>
 </li>
-      <li><a href="_modules/input.dataset.html#module-input.dataset.cifar10">input.dataset.cifar10 (module)</a>
+      </ul></li>
+      <li>
+    input.dataset.cifar10
+
+      <ul>
+        <li><a href="_modules/input.dataset.html#module-input.dataset.cifar10">module</a>
 </li>
-      <li><a href="_modules/input.dataset.html#module-input.dataset.mnist">input.dataset.mnist (module)</a>
+      </ul></li>
+      <li>
+    input.dataset.mnist
+
+      <ul>
+        <li><a href="_modules/input.dataset.html#module-input.dataset.mnist">module</a>
 </li>
-      <li><a href="_modules/input.dataset.html#module-input.dataset.toy_ds">input.dataset.toy_ds (module)</a>
+      </ul></li>
+      <li>
+    input.dataset.toy_ds
+
+      <ul>
+        <li><a href="_modules/input.dataset.html#module-input.dataset.toy_ds">module</a>
 </li>
-      <li><a href="_modules/input.noise.html#module-input.noise">input.noise (module)</a>
+      </ul></li>
+      <li>
+    input.noise
+
+      <ul>
+        <li><a href="_modules/input.noise.html#module-input.noise">module</a>
 </li>
-      <li><a href="_modules/input.noise.html#module-input.noise.noise_process">input.noise.noise_process (module)</a>
-</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_modules/input.noise.html#module-input.noise.noise_utils">input.noise.noise_utils (module)</a>
+      <li>
+    input.noise.noise_process
+
+      <ul>
+        <li><a href="_modules/input.noise.html#module-input.noise.noise_process">module</a>
 </li>
+      </ul></li>
+      <li>
+    input.noise.noise_utils
+
+      <ul>
+        <li><a href="_modules/input.noise.html#module-input.noise.noise_utils">module</a>
+</li>
+      </ul></li>
       <li><a href="_modules/experiment.specification.html#experiment.specification.exp_chapelle.ExpChapelle.inputConfig">inputConfig() (experiment.specification.exp_chapelle.ExpChapelle method)</a>
 
       <ul>
@@ -872,8 +1107,12 @@
 </li>
       <li><a href="_modules/gssl.filters.html#gssl.filters.LDST.LDST">LDST (class in gssl.filters.LDST)</a>
 </li>
-      <li><a href="_modules/gssl.filters.html#gssl.filters.ldstRemoval.LDSTRemover.LDST">LDST() (gssl.filters.ldstRemoval.LDSTRemover method)</a>
+      <li><a href="_modules/gssl.filters.html#gssl.filters.LDST.LDST.LDST">LDST() (gssl.filters.LDST.LDST method)</a>
+
+      <ul>
+        <li><a href="_modules/gssl.filters.html#gssl.filters.ldstRemoval.LDSTRemover.LDST">(gssl.filters.ldstRemoval.LDSTRemover method)</a>
 </li>
+      </ul></li>
       <li><a href="_modules/experiment.html#experiment.selector.Hook.LDST_STATS_HOOK">LDST_STATS_HOOK (experiment.selector.Hook attribute)</a>
 </li>
       <li><a href="_modules/experiment.hooks.html#experiment.hooks.ldst_filterstats_hook.LDSTFilterStatsHook">LDSTFilterStatsHook (class in experiment.hooks.ldst_filterstats_hook)</a>
@@ -888,12 +1127,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_modules/gssl.filters.html#gssl.filters.LDST.LDST.LGCLVO">LGCLVO() (gssl.filters.LDST.LDST method)</a>
-
-      <ul>
-        <li><a href="_modules/gssl.filters.html#gssl.filters.LGC_LVO.LGC_LVO_Filter.LGCLVO">(gssl.filters.LGC_LVO.LGC_LVO_Filter method)</a>
+      <li><a href="_modules/gssl.filters.html#gssl.filters.LGC_LVO.LGC_LVO_Filter.LGCLVO">LGCLVO() (gssl.filters.LGC_LVO.LGC_LVO_Filter method)</a>
 </li>
-      </ul></li>
       <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.models.linear">linear() (in module gssl.classifiers.nn.models)</a>
 </li>
       <li><a href="_modules/log.html#log.logger.ll">ll (in module log.logger)</a>
@@ -908,12 +1143,22 @@
 </li>
       <li><a href="_modules/settings.html#settings.load_sparse_csr">load_sparse_csr() (in module settings)</a>
 </li>
-      <li><a href="_modules/log.html#module-log">log (module)</a>
+      <li>
+    log
+
+      <ul>
+        <li><a href="_modules/log.html#module-log">module</a>
 </li>
+      </ul></li>
       <li><a href="_modules/log.html#log.logger.log">log() (in module log.logger)</a>
 </li>
-      <li><a href="_modules/log.html#module-log.logger">log.logger (module)</a>
+      <li>
+    log.logger
+
+      <ul>
+        <li><a href="_modules/log.html#module-log.logger">module</a>
 </li>
+      </ul></li>
       <li><a href="_modules/log.html#log.logger.LogLocation">LogLocation (class in log.logger)</a>
 </li>
   </ul></td>
@@ -926,12 +1171,127 @@
 </li>
       <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.ManifoldReg.ManifoldReg">ManifoldReg (class in gssl.classifiers.ManifoldReg)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_modules/log.html#log.logger.LogLocation.MATRIX">MATRIX (log.logger.LogLocation attribute)</a>
 </li>
       <li><a href="_modules/experiment.specification.html#experiment.specification.exp_filter_LDST.MNIST">MNIST (class in experiment.specification.exp_filter_LDST)</a>
 </li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="_modules/experiment.html#module-experiment">experiment</a>
+</li>
+        <li><a href="_modules/experiment.html#module-experiment.experiments">experiment.experiments</a>
+</li>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks">experiment.hooks</a>
+</li>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.hook_skeleton">experiment.hooks.hook_skeleton</a>
+</li>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.ldst_filterstats_hook">experiment.hooks.ldst_filterstats_hook</a>
+</li>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.plot_hooks">experiment.hooks.plot_hooks</a>
+</li>
+        <li><a href="_modules/experiment.hooks.html#module-experiment.hooks.time_hook">experiment.hooks.time_hook</a>
+</li>
+        <li><a href="_modules/experiment.html#module-experiment.prefixes">experiment.prefixes</a>
+</li>
+        <li><a href="_modules/experiment.html#module-experiment.selector">experiment.selector</a>
+</li>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification">experiment.specification</a>
+</li>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_chapelle">experiment.specification.exp_chapelle</a>
+</li>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_cifar">experiment.specification.exp_cifar</a>
+</li>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_debug">experiment.specification.exp_debug</a>
+</li>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.exp_filter_LDST">experiment.specification.exp_filter_LDST</a>
+</li>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.specification_bits">experiment.specification.specification_bits</a>
+</li>
+        <li><a href="_modules/experiment.specification.html#module-experiment.specification.specification_skeleton">experiment.specification.specification_skeleton</a>
+</li>
+        <li><a href="_modules/gssl.html#module-gssl">gssl</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers">gssl.classifiers</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.classifier">gssl.classifiers.classifier</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.GFHF">gssl.classifiers.GFHF</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.GTAM">gssl.classifiers.GTAM</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.LGC">gssl.classifiers.LGC</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.LGC_tf">gssl.classifiers.LGC_tf</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.ManifoldReg">gssl.classifiers.ManifoldReg</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn">gssl.classifiers.nn</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn.models">gssl.classifiers.nn.models</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.nn.html#module-gssl.classifiers.nn.NN">gssl.classifiers.nn.NN</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.RF">gssl.classifiers.RF</a>
+</li>
+        <li><a href="_modules/gssl.classifiers.html#module-gssl.classifiers.SIIS">gssl.classifiers.SIIS</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters">gssl.filters</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.filter">gssl.filters.filter</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.filter_utils">gssl.filters.filter_utils</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.LDST">gssl.filters.LDST</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.ldstRemoval">gssl.filters.ldstRemoval</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.LGC_LVO">gssl.filters.LGC_LVO</a>
+</li>
+        <li><a href="_modules/gssl.filters.html#module-gssl.filters.MRremoval">gssl.filters.MRremoval</a>
+</li>
+        <li><a href="_modules/gssl.graph.html#module-gssl.graph">gssl.graph</a>
+</li>
+        <li><a href="_modules/gssl.graph.html#module-gssl.graph.gssl_affmat">gssl.graph.gssl_affmat</a>
+</li>
+        <li><a href="_modules/gssl.graph.html#module-gssl.graph.gssl_utils">gssl.graph.gssl_utils</a>
+</li>
+        <li><a href="_modules/input.html#module-input">input</a>
+</li>
+        <li><a href="_modules/input.dataset.html#module-input.dataset">input.dataset</a>
+</li>
+        <li><a href="_modules/input.dataset.html#module-input.dataset.cifar10">input.dataset.cifar10</a>
+</li>
+        <li><a href="_modules/input.dataset.html#module-input.dataset.mnist">input.dataset.mnist</a>
+</li>
+        <li><a href="_modules/input.dataset.html#module-input.dataset.toy_ds">input.dataset.toy_ds</a>
+</li>
+        <li><a href="_modules/input.noise.html#module-input.noise">input.noise</a>
+</li>
+        <li><a href="_modules/input.noise.html#module-input.noise.noise_process">input.noise.noise_process</a>
+</li>
+        <li><a href="_modules/input.noise.html#module-input.noise.noise_utils">input.noise.noise_utils</a>
+</li>
+        <li><a href="_modules/log.html#module-log">log</a>
+</li>
+        <li><a href="_modules/log.html#module-log.logger">log.logger</a>
+</li>
+        <li><a href="_modules/output.html#module-output">output</a>
+</li>
+        <li><a href="_modules/output.html#module-output.aggregate_csv">output.aggregate_csv</a>
+</li>
+        <li><a href="_modules/output.html#module-output.folders">output.folders</a>
+</li>
+        <li><a href="_modules/output.html#module-output.plot_core">output.plot_core</a>
+</li>
+        <li><a href="_modules/output.html#module-output.plots">output.plots</a>
+</li>
+        <li><a href="_modules/settings.html#module-settings">settings</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_modules/gssl.filters.html#gssl.filters.MRremoval.MRRemover">MRRemover (class in gssl.filters.MRremoval)</a>
 </li>
   </ul></td>
@@ -982,20 +1342,45 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_modules/log.html#log.logger.LogLocation.OTHER">OTHER (log.logger.LogLocation attribute)</a>
 </li>
+      <li>
+    output
+
+      <ul>
+        <li><a href="_modules/output.html#module-output">module</a>
+</li>
+      </ul></li>
       <li><a href="_modules/log.html#log.logger.LogLocation.OUTPUT">OUTPUT (log.logger.LogLocation attribute)</a>
 </li>
-      <li><a href="_modules/output.html#module-output">output (module)</a>
+      <li>
+    output.aggregate_csv
+
+      <ul>
+        <li><a href="_modules/output.html#module-output.aggregate_csv">module</a>
 </li>
-      <li><a href="_modules/output.html#module-output.aggregate_csv">output.aggregate_csv (module)</a>
-</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_modules/output.html#module-output.folders">output.folders (module)</a>
+      <li>
+    output.folders
+
+      <ul>
+        <li><a href="_modules/output.html#module-output.folders">module</a>
 </li>
-      <li><a href="_modules/output.html#module-output.plot_core">output.plot_core (module)</a>
+      </ul></li>
+      <li>
+    output.plot_core
+
+      <ul>
+        <li><a href="_modules/output.html#module-output.plot_core">module</a>
 </li>
-      <li><a href="_modules/output.html#module-output.plots">output.plots (module)</a>
+      </ul></li>
+      <li>
+    output.plots
+
+      <ul>
+        <li><a href="_modules/output.html#module-output.plots">module</a>
 </li>
+      </ul></li>
       <li><a href="_modules/experiment.specification.html#experiment.specification.specification_skeleton.EmptySpecification.OVERWRITE">OVERWRITE (experiment.specification.specification_skeleton.EmptySpecification attribute)</a>
 </li>
   </ul></td>
@@ -1104,8 +1489,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_modules/log.html#log.logger.set_allowed_debug_locations">set_allowed_debug_locations() (in module log.logger)</a>
 </li>
-      <li><a href="_modules/settings.html#module-settings">settings (module)</a>
+      <li>
+    settings
+
+      <ul>
+        <li><a href="_modules/settings.html#module-settings">module</a>
 </li>
+      </ul></li>
       <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.NNClassifier.SIGMA">SIGMA (gssl.classifiers.nn.NN.NNClassifier attribute)</a>
 </li>
       <li><a href="_modules/gssl.classifiers.html#gssl.classifiers.SIIS.SIISClassifier">SIISClassifier (class in gssl.classifiers.SIIS)</a>
@@ -1174,6 +1564,8 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/experiment.html#experiment.experiments.Experiment.W">W (experiment.experiments.Experiment attribute)</a>
+</li>
       <li><a href="_modules/experiment.html#experiment.selector.Hook.W_FILTER_AFTER">W_FILTER_AFTER (experiment.selector.Hook attribute)</a>
 </li>
       <li><a href="_modules/gssl.graph.html#gssl.graph.gssl_affmat.AffMatGenerator.W_from_K">W_from_K() (gssl.graph.gssl_affmat.AffMatGenerator method)</a>
@@ -1182,10 +1574,10 @@
 </li>
       <li><a href="_modules/experiment.html#experiment.selector.Hook.W_INIT_LABELED">W_INIT_LABELED (experiment.selector.Hook attribute)</a>
 </li>
-      <li><a href="_modules/experiment.html#experiment.selector.Hook.W_NOISE_AFTER">W_NOISE_AFTER (experiment.selector.Hook attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/experiment.html#experiment.selector.Hook.W_NOISE_AFTER">W_NOISE_AFTER (experiment.selector.Hook attribute)</a>
+</li>
       <li><a href="_modules/log.html#log.logger.warn">warn() (in module log.logger)</a>
 </li>
       <li><a href="_modules/experiment.specification.html#experiment.specification.exp_filter_LDST.FilterLDST.WRITE_FREQ">WRITE_FREQ (experiment.specification.exp_filter_LDST.FilterLDST attribute)</a>
@@ -1204,7 +1596,19 @@
 <h2 id="X">X</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/experiment.html#experiment.experiments.Experiment.X">X (experiment.experiments.Experiment attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_modules/gssl.classifiers.nn.html#gssl.classifiers.nn.NN.xent">xent() (in module gssl.classifiers.nn.NN)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/experiment.html#experiment.experiments.Experiment.Y">Y (experiment.experiments.Experiment attribute)</a>
 </li>
   </ul></td>
 </tr></table>

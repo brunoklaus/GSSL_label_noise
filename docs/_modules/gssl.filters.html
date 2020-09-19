@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -100,7 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
 </ul>
 
             
@@ -178,67 +179,61 @@
 <span id="gssl-filters-ldst-module"></span><h2>gssl.filters.LDST module<a class="headerlink" href="#module-gssl.filters.LDST" title="Permalink to this headline">¶</a></h2>
 <p>Created on 1 de abr de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="gssl.filters.LDST.LDST">
-<em class="property">class </em><code class="descclassname">gssl.filters.LDST.</code><code class="descname">LDST</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useLGCMat=False</em>, <em>useZ=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">gssl.filters.LDST.</code><code class="sig-name descname">LDST</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning_iter</span></em>, <em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useZ</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">weigh_by_degree</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.filters.filter.GSSLFilter" title="gssl.filters.filter.GSSLFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.filters.filter.GSSLFilter</span></code></a></p>
-<dl class="method">
-<dt id="gssl.filters.LDST.LDST.LGCLVO">
-<code class="descname">LGCLVO</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.LGCLVO" title="Permalink to this definition">¶</a></dt>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="gssl.filters.LDST.LDST.LDST">
+<code class="sig-name descname">LDST</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.LDST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.LDST.LDST.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useLGCMat=False</em>, <em>useZ=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning_iter</span></em>, <em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useZ</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">weigh_by_degree</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>” Constructor for the LDST filter.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mu</strong> (<em>float</em>) – a parameter determining the importance of the fitting term. Default is <code class="docutils literal notranslate"><span class="pre">99.0</span></code>.</li>
-<li><strong>tuning_iter</strong> (<em>int</em>) – The number of tuning iterations.</li>
-<li><strong>useEstimatedFreq</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then use estimated class freq. to balance the propagation.
-Otherwise, assume classes are equiprobable. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>float</em>) – a parameter determining the importance of the fitting term. Default is <code class="docutils literal notranslate"><span class="pre">99.0</span></code>.</p></li>
+<li><p><strong>tuning_iter</strong> (<em>int</em>) – The number of tuning iterations.</p></li>
+<li><p><strong>useEstimatedFreq</strong> (<em>Union</em><em>[</em><em>bool</em><em>,</em><em>NDArray</em><em>[</em><em>C</em><em>]</em><em>,</em><em>None</em><em>]</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then use estimated class freq. to balance the propagation.
+If it is a float array, it uses that as the frequency. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, assumes classes are equiprobable. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>constantProp</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, whenever a label of a given class is removed, another label from the same
+class gets added. Default is <cite>False</cite>.</p></li>
+<li><p><strong>useZ</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then at each step update label matrix so that each class has total influence
+equal to the estimated frequency. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>weigh_by_degree</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">useZ`</span></code> also <code class="docutils literal notranslate"><span class="pre">True</span></code>, then vertices with higher degree will
+have more confident labels. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.LDST.LDST.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>W=None</em>, <em>hook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">W</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filters the input data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</li>
-<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</li>
-<li><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</p></li>
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</p></li>
+<li><p><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A corrected version of the belief matrix.
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A corrected version of the belief matrix.
 <cite>NDArray[bool].shape[N]</cite>: Updated labeledIndexes.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
-
-<dl class="method">
-<dt id="gssl.filters.LDST.LDST.get_prop_W">
-<code class="descname">get_prop_W</code><span class="sig-paren">(</span><em>W</em>, <em>Y</em>, <em>mu</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LDST.LDST.get_prop_W" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -247,74 +242,66 @@ Otherwise, assume classes are equiprobable. Default is <code class="docutils lit
 <span id="gssl-filters-lgc-lvo-module"></span><h2>gssl.filters.LGC_LVO module<a class="headerlink" href="#module-gssl.filters.LGC_LVO" title="Permalink to this headline">¶</a></h2>
 <p>Created on 13 de nov de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter">
-<em class="property">class </em><code class="descclassname">gssl.filters.LGC_LVO.</code><code class="descname">LGC_LVO_Filter</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useZ=True</em>, <em>tuning_iter_as_pct=False</em>, <em>normalize_rows=True</em>, <em>early_stop=False</em>, <em>use_baseline=False</em>, <em>relabel=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">gssl.filters.LGC_LVO.</code><code class="sig-name descname">LGC_LVO_Filter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning_iter</span></em>, <em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useZ</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">tuning_iter_as_pct</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">normalize_rows</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">early_stop</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_baseline</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">relabel</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.filters.filter.GSSLFilter" title="gssl.filters.filter.GSSLFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.filters.filter.GSSLFilter</span></code></a></p>
 <p>classdocs</p>
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter.LGCLVO">
-<code class="descname">LGCLVO</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.LGCLVO" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LGCLVO</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.LGCLVO" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useZ=True</em>, <em>tuning_iter_as_pct=False</em>, <em>normalize_rows=True</em>, <em>early_stop=False</em>, <em>use_baseline=False</em>, <em>relabel=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning_iter</span></em>, <em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useZ</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">tuning_iter_as_pct</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">normalize_rows</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">early_stop</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_baseline</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">relabel</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for the LGCLVO filter.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mu</strong> (<em>float</em>) – a parameter determining the importance of the fitting term. Default is <code class="docutils literal notranslate"><span class="pre">99.0</span></code>.</li>
-<li><strong>tuning_iter</strong> (<em>float</em>) – The number of tuning iterations.</li>
-<li><strong>tuning_iter_as_pct</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then  <cite>tuning_iter</cite> is to be interpreted as a percentage of the
-number of labels.</li>
-<li><strong>constantProp</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, the number of labels detected for each class will be
-proportional to the estimated frequency. Default is <cite>False</cite>.</li>
-<li><strong>useEstimatedFreq</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then use estimated class freq. to balance the propagation.
-Otherwise, assume classes are equiprobable. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
-<li><strong>useZ</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then normalize the label matrix at each step. Default is <cite>True</cite>.</li>
-<li><strong>normalize_row</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then each row of the classification matrix  and label matrix will sum up
-to one. Highly recommended. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
-<li><strong>early_stop</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, a label will not be considered for removal if it cannot be reached by other labels. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>use_baseline</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, we will use a baseline which calculates the criteria once instead of updating at each iteration, sacrificing
-precision for performance. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>relabel</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">False</span></code>, the relevant label indices are removed. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the returned label matrix is directly modified to keep indices,
-but changing the label. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>float</em>) – a parameter determining the importance of the fitting term. Default is <code class="docutils literal notranslate"><span class="pre">99.0</span></code>.</p></li>
+<li><p><strong>tuning_iter</strong> (<em>float</em>) – The number of tuning iterations.</p></li>
+<li><p><strong>tuning_iter_as_pct</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then  <cite>tuning_iter</cite> is to be interpreted as a percentage of the
+number of labels.</p></li>
+<li><p><strong>constantProp</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, the number of labels detected for each class will be
+proportional to the estimated frequency. Default is <cite>False</cite>.</p></li>
+<li><p><strong>useEstimatedFreq</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then use estimated class freq. to balance the propagation.
+Otherwise, assume classes are equiprobable. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>useZ</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then normalize the label matrix at each step. Default is <cite>True</cite>.</p></li>
+<li><p><strong>normalize_row</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then each row of the classification matrix  and label matrix will sum up
+to one. Highly recommended. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>early_stop</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, a label will not be considered for removal if it cannot be reached by other labels. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>use_baseline</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, we will use a baseline which calculates the criteria once instead of updating at each iteration, sacrificing
+precision for performance. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>relabel</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">False</span></code>, the relevant label indices are removed. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the returned label matrix is directly modified to keep indices,
+but changing the label. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.LGC_LVO.LGC_LVO_Filter.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>W=None</em>, <em>hook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">W</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.LGC_LVO.LGC_LVO_Filter.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filters the input data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</li>
-<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</li>
-<li><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</p></li>
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</p></li>
+<li><p><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A corrected version of the belief matrix.
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A corrected version of the belief matrix.
 <cite>NDArray[bool].shape[N]</cite>: Updated labeledIndexes.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -324,42 +311,38 @@ but changing the label. Default is <code class="docutils literal notranslate"><s
 <span id="gssl-filters-mrremoval-module"></span><h2>gssl.filters.MRremoval module<a class="headerlink" href="#module-gssl.filters.MRremoval" title="Permalink to this headline">¶</a></h2>
 <p>Created on 1 de abr de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="gssl.filters.MRremoval.MRRemover">
-<em class="property">class </em><code class="descclassname">gssl.filters.MRremoval.</code><code class="descname">MRRemover</code><span class="sig-paren">(</span><em>p=0.2</em>, <em>tuning_iter=0</em>, <em>tuning_iter_as_pct=False</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.MRremoval.MRRemover" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">gssl.filters.MRremoval.</code><code class="sig-name descname">MRRemover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">tuning_iter</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tuning_iter_as_pct</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.MRremoval.MRRemover" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.filters.filter.GSSLFilter" title="gssl.filters.filter.GSSLFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.filters.filter.GSSLFilter</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.MRremoval.MRRemover.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>p=0.2</em>, <em>tuning_iter=0</em>, <em>tuning_iter_as_pct=False</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.MRremoval.MRRemover.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">tuning_iter</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tuning_iter_as_pct</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.MRremoval.MRRemover.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>” Constructor for Manifold Regularization Filter.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.MRremoval.MRRemover.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>W=None</em>, <em>hook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.MRremoval.MRRemover.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">W</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.MRremoval.MRRemover.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filters the input data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</li>
-<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</li>
-<li><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</p></li>
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</p></li>
+<li><p><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A corrected version of the belief matrix.
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A corrected version of the belief matrix.
 <cite>NDArray[bool].shape[N]</cite>: Updated labeledIndexes.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -367,44 +350,40 @@ but changing the label. Default is <code class="docutils literal notranslate"><s
 </div>
 <div class="section" id="module-gssl.filters.filter">
 <span id="gssl-filters-filter-module"></span><h2>gssl.filters.filter module<a class="headerlink" href="#module-gssl.filters.filter" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="gssl.filters.filter.GSSLFilter">
-<em class="property">class </em><code class="descclassname">gssl.filters.filter.</code><code class="descname">GSSLFilter</code><a class="headerlink" href="#gssl.filters.filter.GSSLFilter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">gssl.filters.filter.</code><code class="sig-name descname">GSSLFilter</code><a class="headerlink" href="#gssl.filters.filter.GSSLFilter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Skeleton class for GSSL Filters.</p>
-<dl class="classmethod">
+<dl class="py method">
 <dt id="gssl.filters.filter.GSSLFilter.autohooks">
-<em class="property">classmethod </em><code class="descname">autohooks</code><span class="sig-paren">(</span><em>fun</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter.GSSLFilter.autohooks" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">autohooks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fun</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter.GSSLFilter.autohooks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Automatically calls the begin and end method of the hook. At the end, the filtered labels are passed as ‘Y’,
 and the new labeled indexes as ‘labeledIndexes’.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.filter.GSSLFilter.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>W=None</em>, <em>hook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter.GSSLFilter.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">W</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter.GSSLFilter.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filters the input data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</li>
-<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</li>
-<li><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</p></li>
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</p></li>
+<li><p><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A corrected version of the belief matrix.
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A corrected version of the belief matrix.
 <cite>NDArray[bool].shape[N]</cite>: Updated labeledIndexes.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -415,91 +394,87 @@ and the new labeled indexes as ‘labeledIndexes’.</p>
 <div class="section" id="filter-utils-py">
 <h3>filter_utils.py<a class="headerlink" href="#filter-utils-py" title="Permalink to this headline">¶</a></h3>
 <p>Module containing utilities for GSSL filters.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_FN">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_FN</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_FN" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_FN</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_FN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_FP">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_FP</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_FP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_FP</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_FP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_TN">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_TN</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_TN" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_TN</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_TN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_TP">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_TP</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_TP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_TP</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_TP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_acc">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_acc</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_acc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_acc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_acc" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_dict">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_dict</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_f1_score">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_f1_score</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_f1_score" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_f1_score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_f1_score" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_npv">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_npv</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_npv" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_npv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_npv" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_precision">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_precision</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_precision" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_precision</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_precision" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_recall">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_recall</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_recall" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_recall</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_recall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_confmat_specificity">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_confmat_specificity</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_specificity" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_confmat_specificity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_confmat_specificity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="gssl.filters.filter_utils.get_unlabeling_confmat">
-<code class="descclassname">gssl.filters.filter_utils.</code><code class="descname">get_unlabeling_confmat</code><span class="sig-paren">(</span><em>Y_true</em>, <em>Y_n</em>, <em>Y_f</em>, <em>lb_n</em>, <em>lb_f</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_unlabeling_confmat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.filters.filter_utils.</code><code class="sig-name descname">get_unlabeling_confmat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y_true</span></em>, <em class="sig-param"><span class="n">Y_n</span></em>, <em class="sig-param"><span class="n">Y_f</span></em>, <em class="sig-param"><span class="n">lb_n</span></em>, <em class="sig-param"><span class="n">lb_f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.filter_utils.get_unlabeling_confmat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the confusion matrix related to the labels removed by the filter.</p>
 <p>More specifically, a matrix M is returned:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M</span>  <span class="o">=</span>  <span class="p">[</span><span class="n">TN</span><span class="p">:</span><span class="c1">#(clean labels NOT removed by filter)  FN:#(noisy labels NOT removed by filter)  ]</span>
       <span class="p">[</span><span class="n">FP</span><span class="p">:</span><span class="c1">#(clean labels removed by filter)  TP:#(noisy labels removed by filter) ]</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y_true</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A belief matrix encoding the true labels.</li>
-<li><strong>Y_n</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A belief matrix encoding the noisy labels.</li>
-<li><strong>Y_n</strong> – A belief matrix encoding the filtered labels.</li>
-<li><strong>lb_n</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices of the noisy label matrix to be marked as labeled.</li>
-<li><strong>lb_f</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices of the filtered label matrix to be marked as labeled.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y_true</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A belief matrix encoding the true labels.</p></li>
+<li><p><strong>Y_n</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A belief matrix encoding the noisy labels.</p></li>
+<li><p><strong>Y_n</strong> – A belief matrix encoding the filtered labels.</p></li>
+<li><p><strong>lb_n</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices of the noisy label matrix to be marked as labeled.</p></li>
+<li><p><strong>lb_f</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices of the filtered label matrix to be marked as labeled.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The matrix M.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The matrix M.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -508,62 +483,62 @@ and the new labeled indexes as ‘labeledIndexes’.</p>
 <span id="gssl-filters-ldstremoval-module"></span><h2>gssl.filters.ldstRemoval module<a class="headerlink" href="#module-gssl.filters.ldstRemoval" title="Permalink to this headline">¶</a></h2>
 <p>Created on 1 de abr de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="gssl.filters.ldstRemoval.LDSTRemover">
-<em class="property">class </em><code class="descclassname">gssl.filters.ldstRemoval.</code><code class="descname">LDSTRemover</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useLGCMat=False</em>, <em>useZ=True</em>, <em>tuning_iter_as_pct=False</em>, <em>know_true_freq=False</em>, <em>weigh_by_degree=True</em>, <em>gradient_fix=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">gssl.filters.ldstRemoval.</code><code class="sig-name descname">LDSTRemover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning_iter</span></em>, <em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useLGCMat</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useZ</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">tuning_iter_as_pct</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">know_true_freq</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weigh_by_degree</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">gradient_fix</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.filters.filter.GSSLFilter" title="gssl.filters.filter.GSSLFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.filters.filter.GSSLFilter</span></code></a></p>
 <p>classdocs</p>
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.ldstRemoval.LDSTRemover.LDST">
-<code class="descname">LDST</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover.LDST" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LDST</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover.LDST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.ldstRemoval.LDSTRemover.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>tuning_iter</em>, <em>mu=99.0</em>, <em>useEstimatedFreq=True</em>, <em>constantProp=False</em>, <em>useLGCMat=False</em>, <em>useZ=True</em>, <em>tuning_iter_as_pct=False</em>, <em>know_true_freq=False</em>, <em>weigh_by_degree=True</em>, <em>gradient_fix=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tuning_iter</span></em>, <em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useLGCMat</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">useZ</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">tuning_iter_as_pct</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">know_true_freq</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">weigh_by_degree</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">gradient_fix</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for LDST-Removal Filter.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mu</strong> (<em>float</em>) – a parameter determining the importance of the fitting term. Default is <code class="docutils literal notranslate"><span class="pre">99.0</span></code>.</li>
-<li><strong>tuning_iter</strong> (<em>int</em>) – The number of tuning iterations.</li>
-<li><strong>useEstimatedFreq</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then use estimated class freq. to balance the propagation.
-Otherwise, assume classes are equiprobable. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>float</em>) – a parameter determining the importance of the fitting term. Default is <code class="docutils literal notranslate"><span class="pre">99.0</span></code>.</p></li>
+<li><p><strong>tuning_iter</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>float</em><em>]</em>) – The number of tuning iterations.</p></li>
+<li><p><strong>tuning_iter_as_pct</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, then  <cite>tuning_iter</cite> is to be interpreted as a percentage of the
+number of labels.</p></li>
+<li><p><strong>useEstimatedFreq</strong> (<em>Union</em><em>[</em><em>bool</em><em>,</em><em>NDArray</em><em>[</em><em>C</em><em>]</em><em>,</em><em>None</em><em>]</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then use estimated class freq. to balance the propagation.
+If it is a float array, it uses that as the frequency. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, assumes classes are equiprobable. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>constantProp</strong> (<em>bool</em>) – If  <code class="docutils literal notranslate"><span class="pre">True</span></code>, whenever a label of a given class is removed, another label from the same
+class gets added. Default is <cite>False</cite>.</p></li>
+<li><p><strong>useZ</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then at each step update label matrix so that each class has total influence
+equal to the estimated frequency. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>weigh_by_degree</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> and <cite>useZ</cite> also <code class="docutils literal notranslate"><span class="pre">True</span></code>, then vertice with higher degree will
+have more confident labels. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="gssl.filters.ldstRemoval.LDSTRemover.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>W=None</em>, <em>hook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">W</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.filters.ldstRemoval.LDSTRemover.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filters the input data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</li>
-<li><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</li>
-<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</li>
-<li><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – A (noisy) belief matrix</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Indices to be marked as labeled.</p></li>
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix encoding the weighted edges.</p></li>
+<li><p><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A corrected version of the belief matrix.
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A corrected version of the belief matrix.
 <cite>NDArray[bool].shape[N]</cite>: Updated labeledIndexes.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[float].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

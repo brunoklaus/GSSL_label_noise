@@ -2,6 +2,6 @@ settings module
 ===============
 
 .. automodule:: settings
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

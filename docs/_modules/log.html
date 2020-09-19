@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -96,7 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
 </ul>
 
             
@@ -172,108 +173,105 @@
 <span id="log-logger-module"></span><h2>log.logger module<a class="headerlink" href="#module-log.logger" title="Permalink to this headline">¶</a></h2>
 <p>Created on 19 de mai de 2020</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="log.logger.LogLocation">
-<em class="property">class </em><code class="descclassname">log.logger.</code><code class="descname">LogLocation</code><a class="headerlink" href="#log.logger.LogLocation" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">LogLocation</code><a class="headerlink" href="#log.logger.LogLocation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>A LogLocation is an identifier which locates where a logged message may come from.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.CLASSIFIER">
-<code class="descname">CLASSIFIER</code><em class="property"> = 2</em><a class="headerlink" href="#log.logger.LogLocation.CLASSIFIER" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CLASSIFIER</code><em class="property"> = 2</em><a class="headerlink" href="#log.logger.LogLocation.CLASSIFIER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.EXPERIMENT">
-<code class="descname">EXPERIMENT</code><em class="property"> = 1</em><a class="headerlink" href="#log.logger.LogLocation.EXPERIMENT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">EXPERIMENT</code><em class="property"> = 1</em><a class="headerlink" href="#log.logger.LogLocation.EXPERIMENT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.FILTER">
-<code class="descname">FILTER</code><em class="property"> = 3</em><a class="headerlink" href="#log.logger.LogLocation.FILTER" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">FILTER</code><em class="property"> = 3</em><a class="headerlink" href="#log.logger.LogLocation.FILTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.HOOK">
-<code class="descname">HOOK</code><em class="property"> = 5</em><a class="headerlink" href="#log.logger.LogLocation.HOOK" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">HOOK</code><em class="property"> = 5</em><a class="headerlink" href="#log.logger.LogLocation.HOOK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.MATRIX">
-<code class="descname">MATRIX</code><em class="property"> = 4</em><a class="headerlink" href="#log.logger.LogLocation.MATRIX" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">MATRIX</code><em class="property"> = 4</em><a class="headerlink" href="#log.logger.LogLocation.MATRIX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.NOISE">
-<code class="descname">NOISE</code><em class="property"> = 6</em><a class="headerlink" href="#log.logger.LogLocation.NOISE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NOISE</code><em class="property"> = 6</em><a class="headerlink" href="#log.logger.LogLocation.NOISE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.OTHER">
-<code class="descname">OTHER</code><em class="property"> = 0</em><a class="headerlink" href="#log.logger.LogLocation.OTHER" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">OTHER</code><em class="property"> = 0</em><a class="headerlink" href="#log.logger.LogLocation.OTHER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.OUTPUT">
-<code class="descname">OUTPUT</code><em class="property"> = 8</em><a class="headerlink" href="#log.logger.LogLocation.OUTPUT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">OUTPUT</code><em class="property"> = 8</em><a class="headerlink" href="#log.logger.LogLocation.OUTPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.SPECIFICATION">
-<code class="descname">SPECIFICATION</code><em class="property"> = 6</em><a class="headerlink" href="#log.logger.LogLocation.SPECIFICATION" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SPECIFICATION</code><em class="property"> = 6</em><a class="headerlink" href="#log.logger.LogLocation.SPECIFICATION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.LogLocation.UTILS">
-<code class="descname">UTILS</code><em class="property"> = 7</em><a class="headerlink" href="#log.logger.LogLocation.UTILS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">UTILS</code><em class="property"> = 7</em><a class="headerlink" href="#log.logger.LogLocation.UTILS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="log.logger.debug">
-<code class="descclassname">log.logger.</code><code class="descname">debug</code><span class="sig-paren">(</span><em>msg</em>, <em>log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.debug" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">debug</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.debug" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="log.logger.error">
-<code class="descclassname">log.logger.</code><code class="descname">error</code><span class="sig-paren">(</span><em>msg</em>, <em>log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.error" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">error</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.error" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="log.logger.info">
-<code class="descclassname">log.logger.</code><code class="descname">info</code><span class="sig-paren">(</span><em>msg</em>, <em>log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="log.logger.ll">
-<code class="descclassname">log.logger.</code><code class="descname">ll</code><a class="headerlink" href="#log.logger.ll" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">ll</code><a class="headerlink" href="#log.logger.ll" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <a class="reference internal" href="#log.logger.LogLocation" title="log.logger.LogLocation"><code class="xref py py-class docutils literal notranslate"><span class="pre">log.logger.LogLocation</span></code></a></p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="log.logger.log">
-<code class="descclassname">log.logger.</code><code class="descname">log</code><span class="sig-paren">(</span><em>msg</em>, <em>log_type</em>, <em>log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">log_type</em>, <em class="sig-param">log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.log" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logs data to this module’s logger.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="log.logger.set_allowed_debug_locations">
-<code class="descclassname">log.logger.</code><code class="descname">set_allowed_debug_locations</code><span class="sig-paren">(</span><em>locs</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.set_allowed_debug_locations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">set_allowed_debug_locations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">locs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.set_allowed_debug_locations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets which of the identifiers (<a class="reference internal" href="#log.logger.LogLocation" title="log.logger.LogLocation"><code class="xref py py-class docutils literal notranslate"><span class="pre">log.logger.LogLocation</span></code></a>) should NOT have
 their debug messages suppressed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locs</strong> (List[<a class="reference internal" href="#log.logger.LogLocation" title="log.logger.LogLocation"><code class="xref py py-class docutils literal notranslate"><span class="pre">log.logger.LogLocation</span></code></a>]) – </td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>locs</strong> (List[<a class="reference internal" href="#log.logger.LogLocation" title="log.logger.LogLocation"><code class="xref py py-class docutils literal notranslate"><span class="pre">log.logger.LogLocation</span></code></a>]) – </p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="log.logger.warn">
-<code class="descclassname">log.logger.</code><code class="descname">warn</code><span class="sig-paren">(</span><em>msg</em>, <em>log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.warn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">log.logger.</code><code class="sig-name descname">warn</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">log_loc=&lt;LogLocation.OTHER: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#log.logger.warn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -99,7 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
 </ul>
 
             
@@ -177,68 +178,60 @@
 <span id="input-noise-noise-process-module"></span><h2>input.noise.noise_process module<a class="headerlink" href="#module-input.noise.noise_process" title="Permalink to this headline">¶</a></h2>
 <p>Created on 28 de mar de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="class">
+<dl class="py class">
 <dt id="input.noise.noise_process.LabelNoiseProcess">
-<em class="property">class </em><code class="descclassname">input.noise.noise_process.</code><code class="descname">LabelNoiseProcess</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_process.LabelNoiseProcess" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">input.noise.noise_process.</code><code class="sig-name descname">LabelNoiseProcess</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_process.LabelNoiseProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A noise process, which is used to corrupt the original, clean labels.</p>
 <p>Currently, the following parameters are expected:</p>
 <ul>
-<li><p class="first">type : Specifies the type of noise. Currently, this may be</p>
+<li><p>type : Specifies the type of noise. Currently, this may be</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><code class="docutils literal notranslate"><span class="pre">&quot;NCAR&quot;</span></code>: Noisy Completely at Random. The occurrence of error is independent of other random variables,
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;NCAR&quot;</span></code>: Noisy Completely at Random. The occurrence of error is independent of other random variables,
 including the true labels. The chance of a label being flipped to a given, different class is :math:<code class="docutils literal notranslate"><span class="pre">\frac{p}{C-1}</span></code>.
-Requires specification of parameter <code class="docutils literal notranslate"><span class="pre">noise_corruption</span></code>, which determines <span class="math notranslate nohighlight">\(p\)</span>.</li>
+Requires specification of parameter <code class="docutils literal notranslate"><span class="pre">noise_corruption</span></code>, which determines <span class="math notranslate nohighlight">\(p\)</span>.</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">seed : Specifies the seed for reproducibility purposes.</p>
-</li>
-<li><p class="first">deterministic : If <cite>True</cite>, the distribution of actual flips tries to reflect the scaled matrix of transition probabilities.
+<li><p>seed : Specifies the seed for reproducibility purposes.</p></li>
+<li><p>deterministic : If <cite>True</cite>, the distribution of actual flips tries to reflect the scaled matrix of transition probabilities.
 This means that, while the chosen labels might differ from run to run, the number of flips is essentially fixed,
-we have a fixed quantity of ‘corrupted labels’.</p>
-</li>
+we have a fixed quantity of ‘corrupted labels’.</p></li>
 </ul>
-<dl class="method">
+<dl class="py method">
 <dt id="input.noise.noise_process.LabelNoiseProcess.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_process.LabelNoiseProcess.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_process.LabelNoiseProcess.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for LabelNoiseProcess.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> – Key-value pairs with the configuration options.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code> – If one of the required keys is not found.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> – Key-value pairs with the configuration options.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>KeyError</strong> – If one of the required keys is not found.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="input.noise.noise_process.LabelNoiseProcess.corrupt">
-<code class="descname">corrupt</code><span class="sig-paren">(</span><em>Y</em>, <em>labeledIndexes</em>, <em>hook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_process.LabelNoiseProcess.corrupt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">corrupt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_process.LabelNoiseProcess.corrupt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Corrupts a set of clean labels, obtaining the corrupted labels.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – Target belief matrix, whose rows are one-hot selecting the correct label.</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – A boolean array, indicating which instances are to be interpreted as labeled.</li>
-<li><strong>hook</strong> (<cite>GSSLHook</cite>) – Optional. A hook to be called before/during/after the noise process</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – Target belief matrix, whose rows are one-hot selecting the correct label.</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – A boolean array, indicating which instances are to be interpreted as labeled.</p></li>
+<li><p><strong>hook</strong> (<cite>GSSLHook</cite>) – Optional. A hook to be called before/during/after the noise process</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Corrupted version of the target belief matrix</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(<cite>NDArray[float].shape[N,C]</cite>)</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Corrupted version of the target belief matrix</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(<cite>NDArray[float].shape[N,C]</cite>)</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -249,87 +242,75 @@ we have a fixed quantity of ‘corrupted labels’.</p>
 <div class="section" id="noise-utils-py">
 <h3>noise_utils.py<a class="headerlink" href="#noise-utils-py" title="Permalink to this headline">¶</a></h3>
 <p>Module containing utilities related to noise.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="input.noise.noise_utils.apply_noise">
-<code class="descclassname">input.noise.noise_utils.</code><code class="descname">apply_noise</code><span class="sig-paren">(</span><em>Y</em>, <em>labeledIndexes</em>, <em>A</em>, <em>seed=None</em>, <em>deterministic=True</em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_utils.apply_noise" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">input.noise.noise_utils.</code><code class="sig-name descname">apply_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">deterministic</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_utils.apply_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Corrupts a set percentage of initial labels with noise.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – Matrix encoding initial beliefs.</li>
-<li><strong>A</strong> (<cite>[NDArray[int].shape[C,C]</cite>) – Transition probabilities between each class.</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – determines which indices are to be considered as labeled.</li>
-<li><strong>seed</strong> (<em>float</em>) – Optional. Used to reproduce results.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – Matrix encoding initial beliefs.</p></li>
+<li><p><strong>A</strong> (<cite>[NDArray[int].shape[C,C]</cite>) – Transition probabilities between each class.</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – determines which indices are to be considered as labeled.</p></li>
+<li><p><strong>seed</strong> (<em>float</em>) – Optional. Used to reproduce results.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Belief matrix after corruption.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><cite>NDArray[int].shape[N,C]</cite></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Belief matrix after corruption.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[int].shape[N,C]</cite></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="input.noise.noise_utils.transition_count_mat">
-<code class="descclassname">input.noise.noise_utils.</code><code class="descname">transition_count_mat</code><span class="sig-paren">(</span><em>Y</em>, <em>A</em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_utils.transition_count_mat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">input.noise.noise_utils.</code><code class="sig-name descname">transition_count_mat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">A</span></em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_utils.transition_count_mat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Obtains a transition count matrix for uniform noise,
 indicating how many instances should have their label flipped and to which class.</p>
 <p>Specifically, this returns a matrix M such that <span class="math notranslate nohighlight">\(M[i,j]\)</span> is the number of instances of i-th class to be swapped
 to the j-th class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – Matrix encoding initial beliefs.</li>
-<li><strong>A</strong> (<cite>[NDArray[int].shape[C,C]</cite>) – Transition probabilities between each class.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – Matrix encoding initial beliefs.</p></li>
+<li><p><strong>A</strong> (<cite>[NDArray[int].shape[C,C]</cite>) – Transition probabilities between each class.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the transition count matrix.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><cite>[NDArray[int].shape[C,C]</cite></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – if <cite>p</cite> is an invalid percentage.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the transition count matrix.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>[NDArray[int].shape[C,C]</cite></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if <cite>p</cite> is an invalid percentage.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="input.noise.noise_utils.uniform_noise_transition_prob_mat">
-<code class="descclassname">input.noise.noise_utils.</code><code class="descname">uniform_noise_transition_prob_mat</code><span class="sig-paren">(</span><em>Y</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_utils.uniform_noise_transition_prob_mat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">input.noise.noise_utils.</code><code class="sig-name descname">uniform_noise_transition_prob_mat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#input.noise.noise_utils.uniform_noise_transition_prob_mat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Obtains the transition probabilities between each class for uniform label noise.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – Matrix encoding initial beliefs.</li>
-<li><strong>p</strong> (<em>float</em>) – The percentage of labels to be flipped</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>[NDArray[int].shape[N,C]</cite>) – Matrix encoding initial beliefs.</p></li>
+<li><p><strong>p</strong> (<em>float</em>) – The percentage of labels to be flipped</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the transition probability matrix.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><cite>[NDArray[int].shape[C,C]</cite></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – if <cite>p</cite> is an invalid percentage.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the transition probability matrix.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>[NDArray[int].shape[C,C]</cite></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if <cite>p</cite> is an invalid percentage.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

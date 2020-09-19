@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -105,7 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
 </ul>
 
             
@@ -182,68 +183,62 @@
 <div class="section" id="aggregate-csv-py">
 <h3>aggregate_csv.py<a class="headerlink" href="#aggregate-csv-py" title="Permalink to this headline">¶</a></h3>
 <p>Module encapsulating the functionality of merging runs that differ only in id.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="output.aggregate_csv.aggregate_csv">
-<code class="descclassname">output.aggregate_csv.</code><code class="descname">aggregate_csv</code><span class="sig-paren">(</span><em>files_to_join</em>, <em>output_path</em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.aggregate_csv" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.aggregate_csv.</code><code class="sig-name descname">aggregate_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">files_to_join</span></em>, <em class="sig-param"><span class="n">output_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.aggregate_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Joins multiple CSVs and produces the aggregate dataframe according to <a class="reference internal" href="#output.aggregate_csv.calculate_statistics" title="output.aggregate_csv.calculate_statistics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calculate_statistics()</span></code></a>.
 It is assumed that each csv corresponds to a set of runs. Each CSV must have the same column structure.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>files_to_join</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The list of files to join.</li>
-<li><strong>output_path</strong> (<em>str</em>) – path to the produced aggregate dataframe, including filename and ‘.csv’ extension.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files_to_join</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The list of files to join.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – path to the produced aggregate dataframe, including filename and ‘.csv’ extension.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.aggregate_csv.calculate_statistics">
-<code class="descclassname">output.aggregate_csv.</code><code class="descname">calculate_statistics</code><span class="sig-paren">(</span><em>df</em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.calculate_statistics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Obtains a dataframe which ‘merges’ runs that share the same configuration but different <code class="docutils literal notranslate"><span class="pre">'id'</span></code>.</dt>
-<dd><p class="first">For each output variable (as in, one that uses the prefix <code class="xref py py-const docutils literal notranslate"><span class="pre">experiment.prefixes.OUTPUT_PREFIX</span></code>), a few summary statistics are calculated:</p>
-<blockquote class="last">
+<code class="sig-prename descclassname">output.aggregate_csv.</code><code class="sig-name descname">calculate_statistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.calculate_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Obtains a dataframe which ‘merges’ runs that share the same configuration but different <code class="docutils literal notranslate"><span class="pre">'id'</span></code>.</dt><dd><p>For each output variable (as in, one that uses the prefix <code class="xref py py-const docutils literal notranslate"><span class="pre">experiment.prefixes.OUTPUT_PREFIX</span></code>), a few summary statistics are calculated:</p>
+<blockquote>
 <div><ul class="simple">
-<li>A string with the comma-separated values.</li>
-<li>The mean of the attribute.</li>
-<li>The standard deviation of the attribute.</li>
-<li>The median of the attribute.</li>
-<li>The minimum value of the attribute.</li>
-<li>The maximum value of the attribute.</li>
+<li><p>A string with the comma-separated values.</p></li>
+<li><p>The mean of the attribute.</p></li>
+<li><p>The standard deviation of the attribute.</p></li>
+<li><p>The median of the attribute.</p></li>
+<li><p>The minimum value of the attribute.</p></li>
+<li><p>The maximum value of the attribute.</p></li>
 </ul>
 </div></blockquote>
 </dd>
 </dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>df</strong> (<em>pd.Dataframe</em>) – The original dataframe</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dataframe with statistics about runs that share same configuration.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">pd.Dataframe</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pd.Dataframe</em>) – The original dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dataframe with statistics about runs that share same configuration.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Dataframe</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.aggregate_csv.debug">
-<code class="descclassname">output.aggregate_csv.</code><code class="descname">debug</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.debug" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.aggregate_csv.</code><code class="sig-name descname">debug</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.debug" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.aggregate_csv.info">
-<code class="descclassname">output.aggregate_csv.</code><code class="descname">info</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.aggregate_csv.</code><code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.aggregate_csv.info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -252,27 +247,27 @@ It is assumed that each csv corresponds to a set of runs. Each CSV must have the
 <span id="output-folders-module"></span><h2>output.folders module<a class="headerlink" href="#module-output.folders" title="Permalink to this headline">¶</a></h2>
 <p>Created on 25 de mar de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="data">
+<dl class="py data">
 <dt id="output.folders.CSV_FOLDER">
-<code class="descclassname">output.folders.</code><code class="descname">CSV_FOLDER</code><em class="property"> = '/home/klaus/eclipse-workspace/NoisyGSSL/results/csvs'</em><a class="headerlink" href="#output.folders.CSV_FOLDER" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.folders.</code><code class="sig-name descname">CSV_FOLDER</code><em class="property"> = '/home/klaus/eclipse-workspace/NoisyGSSL/results/csvs'</em><a class="headerlink" href="#output.folders.CSV_FOLDER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Path to the general results folder.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="output.folders.PLOT_FOLDER">
-<code class="descclassname">output.folders.</code><code class="descname">PLOT_FOLDER</code><em class="property"> = '/home/klaus/eclipse-workspace/NoisyGSSL/results/python_plotly'</em><a class="headerlink" href="#output.folders.PLOT_FOLDER" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.folders.</code><code class="sig-name descname">PLOT_FOLDER</code><em class="property"> = '/home/klaus/eclipse-workspace/NoisyGSSL/results/python_plotly'</em><a class="headerlink" href="#output.folders.PLOT_FOLDER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Path to the folder destined for plot output.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="output.folders.RESULTS_FOLDER">
-<code class="descclassname">output.folders.</code><code class="descname">RESULTS_FOLDER</code><em class="property"> = '/home/klaus/eclipse-workspace/NoisyGSSL/results'</em><a class="headerlink" href="#output.folders.RESULTS_FOLDER" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.folders.</code><code class="sig-name descname">RESULTS_FOLDER</code><em class="property"> = '/home/klaus/eclipse-workspace/NoisyGSSL/results'</em><a class="headerlink" href="#output.folders.RESULTS_FOLDER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Path to the general results folder.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.folders.get_top_dir">
-<code class="descclassname">output.folders.</code><code class="descname">get_top_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#output.folders.get_top_dir" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.folders.</code><code class="sig-name descname">get_top_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#output.folders.get_top_dir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -281,94 +276,86 @@ It is assumed that each csv corresponds to a set of runs. Each CSV must have the
 <div class="section" id="plot-core-py">
 <h3>plot_core.py<a class="headerlink" href="#plot-core-py" title="Permalink to this headline">¶</a></h3>
 <p>Module related to output and plotting procedures.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="output.plot_core.authenticate_plotly">
-<code class="descclassname">output.plot_core.</code><code class="descname">authenticate_plotly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.authenticate_plotly" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.plot_core.</code><code class="sig-name descname">authenticate_plotly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.authenticate_plotly" title="Permalink to this definition">¶</a></dt>
 <dd><p>Authenticates plotly for online usage, if possible (Executed when this module is loaded).</p>
 <p>The username and api_key are expected to be respectively, the 1st and 2nd lines of the <code class="docutils literal notranslate"><span class="pre">auth.txt</span></code> file located
 on the same directory as this module.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.plot_core.color_scale_continuous">
-<code class="descclassname">output.plot_core.</code><code class="descname">color_scale_continuous</code><span class="sig-paren">(</span><em>Y</em>, <em>palette='coolwarm'</em>, <em>num_palette=70</em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.color_scale_continuous" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.plot_core.</code><code class="sig-name descname">color_scale_continuous</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">'coolwarm'</span></em>, <em class="sig-param"><span class="n">num_palette</span><span class="o">=</span><span class="default_value">70</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.color_scale_continuous" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the color values for a continuous palette.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.plot_core.color_scale_discrete">
-<code class="descclassname">output.plot_core.</code><code class="descname">color_scale_discrete</code><span class="sig-paren">(</span><em>Y</em>, <em>palette='bright'</em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.color_scale_discrete" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.plot_core.</code><code class="sig-name descname">color_scale_discrete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">'bright'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.color_scale_discrete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the color values for a discrete palette.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.plot_core.plotGraph">
-<code class="descclassname">output.plot_core.</code><code class="descname">plotGraph</code><span class="sig-paren">(</span><em>X, W, labeledIndexes, vertex_opt, plot_filepath=None, online=False, interactive=False, title='', plot_size=[1000, 1000], edge_width=0.5, labeled_only=False</em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.plotGraph" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.plot_core.</code><code class="sig-name descname">plotGraph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">vertex_opt</span></em>, <em class="sig-param"><span class="n">plot_filepath</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">online</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">interactive</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">plot_size</span><span class="o">=</span><span class="default_value">[1000, 1000]</span></em>, <em class="sig-param"><span class="n">edge_width</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">labeled_only</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.plotGraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a GSSL graph.</p>
 <p>Creates a plot showing vertices connected by edges from the affinity matrix in 2D/3D.
 A number of different configurations is possible by the use of a vertexplotOpt object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – A 2D or 3D matrix containing the vertex positions.</li>
-<li><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix defining the graph.</li>
-<li><strong>vertex_opt</strong> (<em>vertexOptObject</em>) – The size/color/group vertex configuration object.</li>
-<li><strong>title</strong> (string, default = <code class="docutils literal notranslate"><span class="pre">''</span></code>) – The title to be printed above the image.</li>
-<li><strong>online</strong> (bool, default = <code class="docutils literal notranslate"><span class="pre">False</span></code>) – whether to create an online plot</li>
-<li><strong>interactive</strong> (bool, default = <code class="docutils literal notranslate"><span class="pre">False</span></code>) – whether to open an interactive plot on the browser</li>
-<li><strong>plot_size</strong> (<cite>List[int].shape[2]</cite>, default = <code class="docutils literal notranslate"><span class="pre">[1000,1000]</span></code>) – size of the canvas for the plotting operation.</li>
-<li><strong>edge_width</strong> (float, default = <code class="docutils literal notranslate"><span class="pre">0.5</span></code>) – thickness of the edges.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – A 2D or 3D matrix containing the vertex positions.</p></li>
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – Optional. The affinity matrix defining the graph.</p></li>
+<li><p><strong>vertex_opt</strong> (<em>vertexOptObject</em>) – The size/color/group vertex configuration object.</p></li>
+<li><p><strong>title</strong> (string, default = <code class="docutils literal notranslate"><span class="pre">''</span></code>) – The title to be printed above the image.</p></li>
+<li><p><strong>online</strong> (bool, default = <code class="docutils literal notranslate"><span class="pre">False</span></code>) – whether to create an online plot</p></li>
+<li><p><strong>interactive</strong> (bool, default = <code class="docutils literal notranslate"><span class="pre">False</span></code>) – whether to open an interactive plot on the browser</p></li>
+<li><p><strong>plot_size</strong> (<cite>List[int].shape[2]</cite>, default = <code class="docutils literal notranslate"><span class="pre">[1000,1000]</span></code>) – size of the canvas for the plotting operation.</p></li>
+<li><p><strong>edge_width</strong> (float, default = <code class="docutils literal notranslate"><span class="pre">0.5</span></code>) – thickness of the edges.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">X.shape[1]</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">[2,</span> <span class="pre">3]</span></code></p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">X.shape[1]</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">[2,</span> <span class="pre">3]</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="output.plot_core.vertexplotOpt">
-<em class="property">class </em><code class="descclassname">output.plot_core.</code><code class="descname">vertexplotOpt</code><span class="sig-paren">(</span><em>Y</em>, <em>mode='discrete'</em>, <em>palette=None</em>, <em>size=1.5</em>, <em>labeledIndexes=None</em>, <em>change_unlabeled_color=True</em>, <em>UNLABELED_SIZE_MULTIPLIER=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.vertexplotOpt" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">output.plot_core.</code><code class="sig-name descname">vertexplotOpt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">1.5</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">change_unlabeled_color</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">UNLABELED_SIZE_MULTIPLIER</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.vertexplotOpt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class specifying properties of vertices when plotting graphs with labeled and unlabeled data.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="output.plot_core.vertexplotOpt.DEFAULT_CONSTANT_COLOR">
-<code class="descname">DEFAULT_CONSTANT_COLOR</code><em class="property"> = array([0, 0, 0])</em><a class="headerlink" href="#output.plot_core.vertexplotOpt.DEFAULT_CONSTANT_COLOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DEFAULT_CONSTANT_COLOR</code><em class="property"> = array([0, 0, 0])</em><a class="headerlink" href="#output.plot_core.vertexplotOpt.DEFAULT_CONSTANT_COLOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="output.plot_core.vertexplotOpt.DEFAULT_UNLABELED_COLOR">
-<code class="descname">DEFAULT_UNLABELED_COLOR</code><em class="property"> = array([  0, 127,   0])</em><a class="headerlink" href="#output.plot_core.vertexplotOpt.DEFAULT_UNLABELED_COLOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DEFAULT_UNLABELED_COLOR</code><em class="property"> = array([  0, 127,   0])</em><a class="headerlink" href="#output.plot_core.vertexplotOpt.DEFAULT_UNLABELED_COLOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="output.plot_core.vertexplotOpt.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>Y</em>, <em>mode='discrete'</em>, <em>palette=None</em>, <em>size=1.5</em>, <em>labeledIndexes=None</em>, <em>change_unlabeled_color=True</em>, <em>UNLABELED_SIZE_MULTIPLIER=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.vertexplotOpt.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">1.5</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">change_unlabeled_color</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">UNLABELED_SIZE_MULTIPLIER</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.plot_core.vertexplotOpt.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes the vertex options.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>Y</strong> (<cite>NDArray[float].shape[N]</cite>) – array from which the color information is extracted.</li>
-<li><strong>mode</strong> (<em>str</em>) – either ‘discrete’,’continuous’ or ‘constant’.Determines the number of colors and the kind of plot to be created.</li>
-<li><strong>palette</strong> (<em>str</em>) – Optional. A string specifying a color pallete.</li>
-<li><strong>size</strong> (Union[float, <cite>NDArray[float].shape[N]</cite>)) – Either a float specifying the size of all points, or an float array specifying the individual sizes.
-specifying the size of each point individually. Default is 1.5</li>
-<li><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Optional. Indices to be marked as labeled. Unlabeled points are set to a default unlabeled color,
-and are given a smaller size.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N]</cite>) – array from which the color information is extracted.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – either ‘discrete’,’continuous’ or ‘constant’.Determines the number of colors and the kind of plot to be created.</p></li>
+<li><p><strong>palette</strong> (<em>str</em>) – Optional. A string specifying a color pallete.</p></li>
+<li><p><strong>size</strong> (Union[float, <cite>NDArray[float].shape[N]</cite>)) – Either a float specifying the size of all points, or an float array specifying the individual sizes.
+specifying the size of each point individually. Default is 1.5</p></li>
+<li><p><strong>labeledIndexes</strong> (<cite>NDArray[bool].shape[N]</cite>) – Optional. Indices to be marked as labeled. Unlabeled points are set to a default unlabeled color,
+and are given a smaller size.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -379,14 +366,14 @@ and are given a smaller size.</li>
 <span id="output-plots-module"></span><h2>output.plots module<a class="headerlink" href="#module-output.plots" title="Permalink to this headline">¶</a></h2>
 <p>Created on 28 de mar de 2019</p>
 <p>&#64;author: klaus</p>
-<dl class="function">
+<dl class="py function">
 <dt id="output.plots.plot_all_indexes">
-<code class="descclassname">output.plots.</code><code class="descname">plot_all_indexes</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>W=None</em>, <em>plot_filepath=None</em>, <em>title='True classes'</em>, <em>mode='discrete'</em>, <em>palette=None</em><span class="sig-paren">)</span><a class="headerlink" href="#output.plots.plot_all_indexes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.plots.</code><code class="sig-name descname">plot_all_indexes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">W</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">plot_filepath</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">'True classes'</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.plots.plot_all_indexes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="output.plots.plot_labeled_indexes">
-<code class="descclassname">output.plots.</code><code class="descname">plot_labeled_indexes</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>labeledIndexes</em>, <em>W=None</em>, <em>title='labeled indexes'</em>, <em>plot_filepath=None</em>, <em>mode='discrete'</em>, <em>palette=None</em><span class="sig-paren">)</span><a class="headerlink" href="#output.plots.plot_labeled_indexes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">output.plots.</code><code class="sig-name descname">plot_labeled_indexes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">W</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">'labeled indexes'</span></em>, <em class="sig-param"><span class="n">plot_filepath</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'discrete'</span></em>, <em class="sig-param"><span class="n">palette</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#output.plots.plot_labeled_indexes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
