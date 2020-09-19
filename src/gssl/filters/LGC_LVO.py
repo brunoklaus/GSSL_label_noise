@@ -224,7 +224,8 @@ class LGC_LVO_Filter(GSSLFilter):
         '''
         MATPLOTLIB stuff 
         '''
-        
+                
+        """
         import cv2 as cv
         
         
@@ -242,7 +243,7 @@ class LGC_LVO_Filter(GSSLFilter):
             if not th[i] == i:
                 break
 
-        """
+        
         import matplotlib
         matplotlib.use("TkAgg")
         import matplotlib.pyplot as plt
