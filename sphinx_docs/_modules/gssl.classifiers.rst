@@ -12,6 +12,14 @@ Subpackages
 Submodules
 ----------
 
+gssl.classifiers.CLGC module
+----------------------------
+
+.. automodule:: gssl.classifiers.CLGC
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gssl.classifiers.GFHF module
 ----------------------------
 

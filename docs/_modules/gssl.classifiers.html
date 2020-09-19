@@ -101,7 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
 </ul>
 
             
@@ -189,6 +189,61 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-gssl.classifiers.CLGC">
+<span id="gssl-classifiers-clgc-module"></span><h2>gssl.classifiers.CLGC module<a class="headerlink" href="#module-gssl.classifiers.CLGC" title="Permalink to this headline">¶</a></h2>
+<p>Created on 23 de jun de 2020</p>
+<p>&#64;author: klaus</p>
+<dl class="py class">
+<dt id="gssl.classifiers.CLGC.CLGCClassifier">
+<em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.CLGC.</code><code class="sig-name descname">CLGCClassifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.CLGC.CLGCClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gssl.classifiers.classifier.GSSLClassifier" title="gssl.classifiers.classifier.GSSLClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.classifiers.classifier.GSSLClassifier</span></code></a></p>
+<p>Constrained Local and Global Consistency Classifier. See <span class="bibtex" id="id1">[sousaconstrained]</span>.</p>
+<dl class="py method">
+<dt id="gssl.classifiers.CLGC.CLGCClassifier.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.CLGC.CLGCClassifier.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for the LGC classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<em>float</em>) – A value between 0 and 1 (not inclusive) for alpha.</p></li>
+<li><p><strong>num_iter</strong> (<em>float</em>) – Optional. If not <code class="docutils literal notranslate"><span class="pre">Ǹone</span></code>, the number of iteration updates to perform</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gssl.classifiers.CLGC.CLGCClassifier.alpha">
+<em class="property">property </em><code class="sig-name descname">alpha</code><a class="headerlink" href="#gssl.classifiers.CLGC.CLGCClassifier.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><span class="math notranslate nohighlight">\(\alpha\)</span> such that <span class="math notranslate nohighlight">\(\mu = \frac{1-\alpha}{\alpha}\)</span> is the regularization factor multiplying
+the label fitting criterion. It is required that <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 1\)</span>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gssl.classifiers.CLGC.CLGCClassifier.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.CLGC.CLGCClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classifies the input data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
+<li><p><strong>W</strong> (<cite>NDArray[float].shape[N,N]</cite>) – The affinity matrix encoding the weighted edges.</p></li>
+<li><p><strong>Y</strong> (<cite>NDArray[float].shape[N,C]</cite>) – The initial belief matrix</p></li>
+<li><p><strong>hook</strong> (<a class="reference internal" href="experiment.hooks.html#experiment.hooks.hook_skeleton.GSSLHook" title="experiment.hooks.hook_skeleton.GSSLHook"><em>GSSLHook</em></a>) – Optional. A hook to execute extra operations (e.g. plots) during the algorithm</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An updated belief matrix.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>NDArray[float].shape[N,C]</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-gssl.classifiers.GFHF">
 <span id="gssl-classifiers-gfhf-module"></span><h2>gssl.classifiers.GFHF module<a class="headerlink" href="#module-gssl.classifiers.GFHF" title="Permalink to this headline">¶</a></h2>
 <p>Created on 27 de mar de 2019</p>
@@ -197,7 +252,7 @@
 <dt id="gssl.classifiers.GFHF.GFHF">
 <em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.GFHF.</code><code class="sig-name descname">GFHF</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.GFHF.GFHF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.classifiers.classifier.GSSLClassifier" title="gssl.classifiers.classifier.GSSLClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.classifiers.classifier.GSSLClassifier</span></code></a></p>
-<p>Label Propagation based on Gaussian Fields and Harmonic Functions. See <a class="bibtex reference internal" href="../zreferences.html#zhu-2003" id="id1">[ZGL03]</a>.</p>
+<p>Label Propagation based on Gaussian Fields and Harmonic Functions. See <a class="bibtex reference internal" href="../zreferences.html#zhu-2003" id="id2">[ZGL03]</a>.</p>
 <dl class="py method">
 <dt id="gssl.classifiers.GFHF.GFHF.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.GFHF.GFHF.__init__" title="Permalink to this definition">¶</a></dt>
@@ -242,7 +297,7 @@
 <dt id="gssl.classifiers.GTAM.GTAMClassifier">
 <em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.GTAM.</code><code class="sig-name descname">GTAMClassifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">know_true_freq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">weigh_by_degree</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.GTAM.GTAMClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.classifiers.classifier.GSSLClassifier" title="gssl.classifiers.classifier.GSSLClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.classifiers.classifier.GSSLClassifier</span></code></a></p>
-<p>Classifier using Graph Transduction Through Alternating Minimization (GTAM - see <a class="bibtex reference internal" href="../zreferences.html#wang2008" id="id2">[WJC08]</a>).</p>
+<p>Classifier using Graph Transduction Through Alternating Minimization (GTAM - see <a class="bibtex reference internal" href="../zreferences.html#wang2008" id="id3">[WJC08]</a>).</p>
 <dl class="py method">
 <dt id="gssl.classifiers.GTAM.GTAMClassifier.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mu</span><span class="o">=</span><span class="default_value">99.0</span></em>, <em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">useEstimatedFreq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">constantProp</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">know_true_freq</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">weigh_by_degree</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.GTAM.GTAMClassifier.__init__" title="Permalink to this definition">¶</a></dt>
@@ -293,7 +348,7 @@ in all iterations.</p></li>
 <dt id="gssl.classifiers.LGC.LGCClassifier">
 <em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.LGC.</code><code class="sig-name descname">LGCClassifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.LGC.LGCClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.classifiers.classifier.GSSLClassifier" title="gssl.classifiers.classifier.GSSLClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.classifiers.classifier.GSSLClassifier</span></code></a></p>
-<p>Local and Global Consistency Classifier. See <a class="bibtex reference internal" href="../zreferences.html#zhou-etall-2004" id="id3">[ZBL+04]</a>.</p>
+<p>Local and Global Consistency Classifier. See <a class="bibtex reference internal" href="../zreferences.html#zhou-etall-2004" id="id4">[ZBL+04]</a>.</p>
 <dl class="py method">
 <dt id="gssl.classifiers.LGC.LGCClassifier.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">num_iter</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.LGC.LGCClassifier.__init__" title="Permalink to this definition">¶</a></dt>
@@ -311,8 +366,8 @@ in all iterations.</p></li>
 <dl class="py method">
 <dt id="gssl.classifiers.LGC.LGCClassifier.alpha">
 <em class="property">property </em><code class="sig-name descname">alpha</code><a class="headerlink" href="#gssl.classifiers.LGC.LGCClassifier.alpha" title="Permalink to this definition">¶</a></dt>
-<dd><p><span class="math notranslate nohighlight">\(\alpha\)</span> such that <span class="math notranslate nohighlight">\(\mu = \frac{1}{1-\alpha}\)</span> is the regularization factor multiplying
-the smoothness criterion. It is required that <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 1\)</span>.</p>
+<dd><p><span class="math notranslate nohighlight">\(\alpha\)</span> such that <span class="math notranslate nohighlight">\(\mu = \frac{1-\alpha}{\alpha}\)</span> is the regularization factor multiplying
+the label fitting criterion. It is required that <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 1\)</span>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -390,24 +445,25 @@ the smoothness criterion. It is required that <span class="math notranslate nohi
 <p>Created on 27 de mar de 2019</p>
 <p>&#64;author: klaus</p>
 <dl class="py class">
-<dt id="gssl.classifiers.ManifoldReg.ManifoldReg">
-<em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.ManifoldReg.</code><code class="sig-name descname">ManifoldReg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.ManifoldReg" title="Permalink to this definition">¶</a></dt>
+<dt id="gssl.classifiers.ManifoldReg.LapEigLS">
+<em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.ManifoldReg.</code><code class="sig-name descname">LapEigLS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.LapEigLS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.classifiers.classifier.GSSLClassifier" title="gssl.classifiers.classifier.GSSLClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.classifiers.classifier.GSSLClassifier</span></code></a></p>
-<p>Label Propagation based on Gaussian Fields and Harmonic Functions. See <a class="bibtex reference internal" href="../zreferences.html#zhu-2003" id="id4">[ZGL03]</a>.</p>
+<p>Manifold Regularization with Laplacian Eigenmaps.
+Minimizes the Least Squares in a semi-supervised way by using a linear combination of the first <span class="math notranslate nohighlight">\(p\)</span> eigenfunctions. See <a class="bibtex reference internal" href="../zreferences.html#belkin2003" id="id5">[BN03]</a>.</p>
 <dl class="py method">
-<dt id="gssl.classifiers.ManifoldReg.ManifoldReg.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.ManifoldReg.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructor for ManifoldReg classifier.</p>
+<dt id="gssl.classifiers.ManifoldReg.LapEigLS.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.LapEigLS.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for LapEigLS classifier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>p</strong> (<em>Union</em><em>[</em><em>float</em><em>,</em><em>int</em><em>]</em><em>)</em><em> The number of eigenvectors. It is given as either the absolute value</em><em> (</em><em>int</em>) – the labeled data (float). Default is <code class="docutils literal notranslate"><span class="pre">0.2</span></code></p>
+<dd class="field-odd"><p><strong>p</strong> (<em>Union</em><em>[</em><em>float</em><em>,</em><em>int</em><em>]</em>) – the labeled data. if float. Default is <code class="docutils literal notranslate"><span class="pre">0.2</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="gssl.classifiers.ManifoldReg.ManifoldReg.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.ManifoldReg.fit" title="Permalink to this definition">¶</a></dt>
+<dt id="gssl.classifiers.ManifoldReg.LapEigLS.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.LapEigLS.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Classifies the input data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

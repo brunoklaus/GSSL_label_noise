@@ -101,7 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">Bibliography</a></li>
 </ul>
 
             
@@ -321,14 +321,24 @@
 
 <dl class="py function">
 <dt id="gssl.graph.gssl_affmat.knnMask">
-<code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">knnMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">k</span></em>, <em class="sig-param"><span class="n">symm</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">metric</span><span class="o">=</span><span class="default_value">'euclidean'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.knnMask" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">gssl.graph.gssl_affmat.</code><code class="sig-name descname">knnMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">k</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'sym'</span></em>, <em class="sig-param"><span class="n">metric</span><span class="o">=</span><span class="default_value">'euclidean'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.graph.gssl_affmat.knnMask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the distances only in the knn-neighborhood.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<cite>NDArray[float].shape[N,D]</cite>) – Input matrix of N instances of dimension D.</p></li>
 <li><p><strong>k</strong> (<em>int</em>) – A parameter such that ´K[i,j] = 1´ iff X_i is one of the k-nearest neighbors of X_j</p></li>
-<li><p><strong>symm</strong> (<em>bool</em>) – if True, then <code class="docutils literal notranslate"><span class="pre">K[i,j]</span> <span class="pre">=</span> <span class="pre">max(K[i,j],K[j,i])</span></code>. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – <p>type of KNN. Supported values:
+{</p>
+<blockquote>
+<div><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mut</span></code>.``K[i,j] = min(K[i,j],K[j,i])``.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sym</span></code>. <code class="docutils literal notranslate"><span class="pre">K[i,j]</span> <span class="pre">=</span> <span class="pre">max(K[i,j],K[j,i])</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>. No symmetrization. WARNING: Many GSSL algorithms depend on a symmetric affinity matrix.</p></li>
+</ul>
+</div></blockquote>
+<p>}</p>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
