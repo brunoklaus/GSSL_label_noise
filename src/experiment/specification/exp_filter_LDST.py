@@ -28,14 +28,16 @@ class FilterLDST(EmptySpecification):
     WRITE_FREQ = 100
 
     def get_spec_name(self):
-        return "31Dez_LDST3_mod_chap"
+        return "artigo_LDST_Zdeg_f1_chap"
     
     def generalConfig(self):
-        return P(spec.GENERAL_DEFAULT)
+        s = spec.GENERAL_DEFAULT
+        s['id'] = [4]
+        return P(s)
     
     def inputConfig(self):
-        s = spec.INPUT_CHAPELLE_A
-        s["labeled_percent"] = [0.1,0.01]
+        s = spec.INPUT_MNIST
+        s["labeled_percent"] = [0.3]
         #s = spec.INPUT_SPIRALS_DYNAMIC
         #s["dataset"] = ["COIL2"]
         #s["labeled_percent"] = [0.1]
@@ -46,16 +48,15 @@ class FilterLDST(EmptySpecification):
 
 
     def filterConfig(self):
-        return  P(spec.FILTER_LDST) + P(spec.FILTER_LGC_LVO)
-        
+        return  P(spec.FILTER_LGC_LVO) #+ P(spec.FILTER_LGC_LVO) 
     
     def noiseConfig(self):
         s = spec.NOISE_UNIFORM_DET_MODERATE
-        s["corruption_level"]=[0.35]
+        s["corruption_level"]=[0.0]
         return P(s)
     
     def affmatConfig(self):
-        return P(spec.AFFMAT_DEFAULT)
+        return P(spec.AFFMAT_CONSTANT)
     def algConfig(self):
         s = spec.ALGORITHM_NONE
         #s["num_iter"] = [10000]

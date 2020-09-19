@@ -197,7 +197,8 @@ class EmptySpecification(object):
             x = output_dicts[i]
             for k in x.keys():
                 df[k].iloc[i] = x[k]
-
+        if not os.path.isdir(os.path.dirname(result_path)):
+            os.mkdir(os.path.dirname(result_path))
         with open(result_path, f_mode) as f:            
                 is_header = (f_mode == "w")
                 df.to_csv(f, header = is_header)

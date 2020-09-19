@@ -45,146 +45,19 @@ dfRead <- function(fPath) {
   return(df)
 }
 
-df_debug  <- dfRead(file.path(DF_FOLDER,"exp_debug_joined.csv"))
-df_ldst_filterstats <- dfRead(file.path(DF_FOLDER,"filter_LDST_stats_joined.csv"))
 
-df_digit1 <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v1_digit1_joined.csv"))
-df_g241c <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v1_g241c_joined.csv"))
-df_chap_v1_lgc <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v1_lgc_alpha=0.99_joined.csv"))
-
-df_chap_g241n_coil <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v1_g241n_joined.csv"))
-
-
-df_chap_v3 <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v3_joined.csv"))
-df_chap_v3_p2 <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v3_p2_joined.csv"))
-
-df_chap_v2 <- dfRead(file.path(DF_FOLDER,"exp_chapelle_v2_joined.csv"))
-
-df_ldst_filterstats <- dfRead(file.path(DF_FOLDER,"filter_LDST_stats_joined.csv"))
-
-df_ldst_chapelle <- dfRead(file.path(DF_FOLDER,"filter_LDST_chapelle_updated_joined.csv"))
-df_ldst_spiral  <- dfRead(file.path(DF_FOLDER,"filter_LDST_spiral_updated_joined_backup.csv"))
-
-
-df_gtam_constantprop <- dfCombine(list(
-  dfRead(file.path(DF_FOLDER,"exp_chapelle_v4_gtamConstantProp_joined.csv")),
-  dfRead(file.path(DF_FOLDER,"exp_chapelle_v4_gtamConstantProp_g241c_joined.csv"))
-))
-df_gtam_constantprop$alg_algorithm <- "GTAMc"
-df_gtam_constantprop <- df_gtam_constantprop[,!grepl("constantP",colnames(df_gtam_constantprop))]
-df_gtam_constantprop$spec_name <- "Experiment 1"
-
-
-df_exp1_chapelle <- dfCombine(
-  lapply(list("exp_chapelle_v1_digit1_joined.csv",
-              "exp_chapelle_v1_g241c_joined.csv",
-              "exp_chapelle_v1_g241n_joined.csv",
-              "exp_chapelle_v1_lgc_alpha=0.99_joined.csv",
-              "exp1_RF_joined.csv",
-              "exp1_USPS_part2_joined.csv",
-              "21Ag_exp1_p1_joined.csv",
-              "27Ag_exp1_MR_p1_joined.csv",
-              "27Ag_exp1_MR_p2_joined.csv",
-              "27Ag_exp1_MR_p3_joined.csv"
-              ), function(x)dfRead(file.path(DF_FOLDER,"experiment1",x)))
-  )
-
-df_exp1_chapelle <- dplyr::filter(df_exp1_chapelle,is.na(alg_p) | alg_p >= 1) 
-df_exp1_chapelle$alg_constantProp = F
-df_exp1_chapelle$alg_n_estimators = 100
-df_exp1_chapelle$spec_name = "Experiment 1"
-
-df_exp2_chapelle <- dfCombine(
-  lapply(list("exp_chapelle_v3_joined.csv",
-              "exp_chapelle_v3_p2_joined.csv",
-              "exp2_USPS_part1_joined.csv",
-              "exp2_USPS_part2_joined.csv",
-              "exp2_RF_joined.csv",
-              "27Ag_exp2_MR_p1_joined.csv",
-              "27Ag_exp2_MR_p2_joined.csv"
-  ), function(x)dfRead(file.path(DF_FOLDER,"experiment2",x)))
-)
-df_exp2_chapelle$spec_name = "Experiment 2"
-df_exp2_chapelle <- df_exp2_chapelle[,!colnames(df_exp2_chapelle)%in%c("alg_constantProp","alg_n_estimators")]
-df_exp2_chapelle <- dplyr::filter(df_exp2_chapelle,is.na(alg_p) | alg_p >= 1) 
-
-
-
-df_chap_filtered <-  dfRead(file.path(DF_FOLDER,"exp_chapelle_with_filter_USPS_joined.csv"))
-df_chap_filtered$alg_algorithm <- as.character(df_chap_filtered$alg_algorithm)
-df_chap_filtered$flt_filter <- as.character(df_chap_filtered$flt_filter)
-
-df_chap_filtered[df_chap_filtered$flt_filter=="LDST","alg_algorithm"] <- 
-  sapply(df_chap_filtered[df_chap_filtered$flt_filter=="LDST","alg_algorithm"],
-         function(x){paste0("LDST+",x)})
-#df_chap_filtered <- df_chap_filtered[,!grepl("flt",colnames(df_chap_filtered))]
-
-
-df_USPS_filterstats <- dfRead(file.path(DF_FOLDER,"filter_LDST_USPS_joined.csv"))
-
-df_USPS_filtered <- dfRead(file.path(DF_FOLDER,"exp_chapelle_with_filter_USPS_joined.csv"))
-
-df_Aug21_filtered <- dfCombine(
-  lapply(list("exp_chapelle_with_filter_digit1_joined.csv",
-              "exp_chapelle_with_filter_USPS_joined.csv"
-  ), function(x)dfRead(file.path(DF_FOLDER,"Aug21_exp4",x))))
-
-
-
-df_USPS_exp1 <- dfRead(file.path(DF_FOLDER,"experiment1",
-                "exp1_USPS_part1_joined.csv"))
-
-df_digit1_exp4 <- dfRead(file.path(DF_FOLDER,"Aug21_exp4",
-                                   "exp_chapelle_with_filter_digit1.csv"))
-
-
-df_Ag24_exp4 <- dfRead(file.path(DF_FOLDER,"Ag24_exp4",
-                                 "24Ag_exp4_joined.csv"))
-
-df_Aug29_exp4 <- dfCombine(
-  lapply(list("29Ag_exp4_MRF_g241c_lgc_joined.csv",
-              "29Ag_exp4_MRF_COIL2_gfhf_joined.csv",
-              "29Ag_exp4_MRF_USPS_gfhf_joined.csv",
-              "29Ag_exp4_MRF_Digit1_gfhf_joined.csv",
-              "29Ag_exp4_MRF_g241n_gfhf_joined.csv"
-  ), function(x)dfRead(file.path(DF_FOLDER,"Aug29_exp4",x))))
-df_Aug29_exp4$spec_name = "Experiment 4"
-
-
-
-df_Aug29_exp4_MRF_MR <- dfCombine(
-  lapply(list("29Ag_exp4_MRF_COIL2_MR_joined.csv",
-              "29Ag_exp4_MRF_Digit1_MR_joined.csv",
-              "29Ag_exp4_MRF_g241c_MR_joined.csv",
-              "29Ag_exp4_MRF_g241n_MR_joined.csv",
-              "29Ag_exp4_MRF_USPS_MR_joined.csv"
-  ), function(x)dfRead(file.path(DF_FOLDER,"Aug29_exp4_MRF_MR",x))))
-df_Aug29_exp4$spec_name = "Experiment 4"
-
-
-
-df_Nov13_LGCLVO <- dfCombine(
-  lapply(list("9Dez_chap_Digit1_joined.csv",
-              "9Dez_chap_COIL2_joined.csv",
-              "9Dez_chap_USPS_joined.csv",
-              "9Dez_chap_g241c_joined.csv",
-              "9Dez_chap_g241n_joined.csv",
-              "9Dez_chap_Z_Digit1_joined.csv",
-              "9Dez_chap_Z_COIL2_joined.csv",
-              "9Dez_chap_Z_USPS_joined.csv",
-              "9Dez_chap_Z_g241c_joined.csv",
-              "9Dez_chap_Z_g241n_joined.csv"
+df_artigo <- dfCombine(
+  lapply(list("artigo_LDST_f1_chap_joined.csv",
+              "artigo_LGCLVO_noZ_f1_chap_joined.csv",
+              "artigo_LGCLVO_f1_chap_joined.csv"
               
-              
-              
-  ), function(x)dfRead(file.path(DF_FOLDER,"9Dez",x))))
+  ), function(x)dfRead(file.path(DF_FOLDER,"artigo_PR",x))))
 
 
-df_Nov13_LGCLVO$spec_name = "Experiment 3"
-df_Nov13_LGCLVO <- dplyr::filter(df_Nov13_LGCLVO)
+df_artigo$spec_name = "artigo_f1_score"
 
   df_list = list(
-    df_Nov13_LGCLVO)
+    df_artigo)
   df = dfCombine(df_list)
   if (nrow(df) == 0){stop("DF has 0 rows")}
   
@@ -226,6 +99,15 @@ df_Nov13_LGCLVO <- dplyr::filter(df_Nov13_LGCLVO)
                                           function(x){grepl("aff_",x)})]
   hyperparams <- !(colnames(df) %in% c(affmat_variables,output_variables))
   hyperparams <- colnames(df)[hyperparams]
+
+###################################################3
+df$flt_filter <- as.character(df$flt_filter)
+df[df$flt_normalize_rows%in%"False",'flt_filter'] = sapply(df[df$flt_normalize_rows%in%"True",'flt_filter'],
+                                                        function(x){paste0(x,'_no_rn')})
+df[df$flt_useZ%in%"False",'flt_filter'] = sapply(df[df$flt_useZ%in%"False",'flt_filter'],
+                                                           function(x){paste0(x,'_no_Z')})
+df[df$flt_gradient_fix%in%"True",'flt_filter'] = sapply(df[df$flt_gradient_fix%in%"True",'flt_filter'],
+                                                 function(x){paste0('Modified_',x)})
 
 ############################################################################
 ####################################################
@@ -488,12 +370,15 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
   }
   compareNA <- function(v1,v2) {
     same <- (v1 == v2) | (is.na(v1) & is.na(v2))
+    same <- (v1 == v2) | is.na(v2)
+    
     same[is.na(same)] <- FALSE
     return(same)
   }
   #b1: filters out columns that have only one value (that value could be NA)
   b1 <- !apply(df,2,function(x){
-    all(sapply(x,function(y)compareNA(x[1],y)))}
+    return(length(table(x)) <= 1)
+    }
   )
   #b2: filters out columns in 'ignore_var' 
   b2 <- !colnames(df) %in% c(x_var,out_var,type_var,ignore_var)
@@ -532,10 +417,12 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
   } else {
     new_df$Type =  as.factor(sapply(df[type_var],function(x){paste0(translate_var(type_var),"=",x)}))
     new_df$Type = factor(new_df$Type,levels = levels(new_df$Type)[c(2,1)] )
-    
+    lines= c("solid","dashed","dotted","dotdash","longdash","twodash")[1:length(unique(new_df$Type))]
+    print(lines)
     g <- ggplot(data = new_df,aes(x,y,
                                 ymin =y_min, ymax = y_max,linetype=Type,
-                                colour=Color,fill=Color)) 
+                                colour=Color,fill=Color)) +
+     scale_linetype_manual(values=lines)
   }
   g <- g + geom_line(size=1.5)
   
@@ -545,13 +432,15 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
   }
   g <- g +
     theme_light()  + 
-    theme(axis.text.y = element_text(colour = 'black', size = 12), 
+    theme(axis.text.y = element_text(colour = 'black', size = 20), 
+          axis.text.x = element_text(colour = 'black', size = 20), 
+          
           axis.title.y = element_text(size = 20, 
                                       hjust = 0.5, vjust = 0.2),
           axis.title.x = element_text(size = 20, 
                                       hjust = 0.5, vjust = 0.2),
           
-          legend.position=c(.9,.75),
+          legend.position=c(.9,.5),
           legend.title = element_text(color = "black", size = 16),
           legend.text = element_text(color = "black", size = 12)) + 
     theme(strip.text.y = element_text(size = 11, hjust = 0.5,
@@ -567,9 +456,9 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
 
 #######################################################################
 #Experiment Config
-EXP_NAME = file.path("10_Dezembro_LGCLVO")
+EXP_NAME = file.path("artigo_f1_score")
 cond <- T
-EXP_TYPE = 1
+EXP_TYPE = 4
 
 if (EXP_TYPE %in% c(1,2)){
   x_var = "noise_corruption_level"
@@ -662,30 +551,30 @@ for (ds in unique(df$input_dataset)) {
 #
 #
 out_var_list = c("filter_f1_score","filter_precision","filter_specificity","filter_recall")
-#out_var_list = c("CMN_acc")
+out_var_list = c("filter_f1_score","filter_precision",'filter_recall')
 
 for (ds in unique(df$input_dataset)) {
 for (lp in unique(df$input_labeled_percent)){
-  
+for (mu in unique(df$flt_mu)){
+    
 #Filter df and create joined table
 filtered_df <- dplyr::filter(df,cond)
 if (nrow(filtered_df)==0){stop("ERROR: zero rows satisfy criteria")}
 
 for (out_var in out_var_list){
 
-filtered_df <- dplyr::filter(df,cond  & flt_tuning_iter > 0 &
+filtered_df <- dplyr::filter(df,cond  & (flt_filter%in%c("LGC_LVO") ) &
+                               (input_dataset != "isolet"),
                                input_labeled_percent == lp)
 
-if(lp == 0.01){
-  filtered_df <- dplyr::filter(filtered_df,flt_tuning_iter <= 15)
-  
-}
+
 if (nrow(filtered_df)==0){next}
 
 ### Determine export Folder
 export_folder = file.path(getwd(),"results","plots_R",EXP_NAME,
                          paste0('dataset=',as.character(ds)),
-                         paste0('labeledPercent=',as.character(lp))
+                         paste0('labeledPercent=',as.character(lp)),
+                         paste0('mu=',as.character(mu))
                          ) 
 if (!dir.exists(export_folder)){
   dir.create(export_folder,recursive = T)
@@ -700,11 +589,11 @@ fPath_table = file.path(export_folder,paste0(out_var,"~",x_var,"_",out_var_stati
                                        ".txt"))
 
 
-l <- texDf(filtered_df,x_var = x_var,type_var=type_var, 
-                out_var = out_var, out_var_statistic = out_var_statistic,
-                use_sd = use_sd)
-new_df = l[[1]]
-setting = l[[2]]
+#l <- texDf(filtered_df,x_var = x_var,type_var=type_var, 
+#                out_var = out_var, out_var_statistic = out_var_statistic,
+#                use_sd = use_sd)
+#new_df = l[[1]]
+#setting = l[[2]]
 #createTexTable(fPath_table,new_df,setting,x_var=x_var)
 #print(fPath_table)
 
@@ -712,8 +601,9 @@ setting = l[[2]]
 g <- linePlot(df = filtered_df,x_var = x_var,type_var=type_var, 
               out_var = out_var, out_var_statistic = out_var_statistic,
               use_sd = use_sd)
-ggsave(fPath, width = 12, height = 8,dpi=150)
+ggsave(fPath, width = 15, height = 7,dpi=150)
 plot(g)
+}
 }
 }
 }

@@ -45,7 +45,7 @@ class vertexplotOpt(object):
     """ A class specifying properties of vertices when plotting graphs with labeled and unlabeled data."""
     
     DEFAULT_CONSTANT_COLOR = (255*np.array([0,0,0])).astype(np.int64)
-    DEFAULT_UNLABELED_COLOR = (255*np.array([0,0.5,0])).astype(np.int64)
+    DEFAULT_UNLABELED_COLOR = (0.75*np.array([173/2,216/2,230])).astype(np.int64)
     
 
     def __init__(self,Y, mode = "discrete", palette = None, size = 1.5,labeledIndexes = None, change_unlabeled_color=True,
@@ -62,7 +62,7 @@ class vertexplotOpt(object):
                 and are given a smaller size.
         
         """
-        
+        UNLABELED_SIZE_MULTIPLIER = 0.0
         self.mode = mode
         self.color_values = np.array(Y)
         
@@ -433,7 +433,8 @@ def color_scale_discrete(Y,palette="bright"):
     if Y.shape[0] == -1:
         raise ""
     Y = Y - np.min(Y) 
-    pal = sns.color_palette(palette,np.max(Y)+1)
+    pal = sns.color_palette(palette,np.max(Y)+1+8)
+    pal = [pal[2],pal[6]]
     res = 255*np.array(list(map(lambda k: (pal[int(k)]),Y)))
     return(res)
 

@@ -29,7 +29,7 @@ class ExpDebug(EmptySpecification):
 
 
     def filterConfig(self):
-        return  P(spec.FILTER_LDST)
+        return  P(spec.FILTER_LGC_LVO)
         
     
     def noiseConfig(self):

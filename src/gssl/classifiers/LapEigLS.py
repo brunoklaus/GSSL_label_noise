@@ -10,8 +10,10 @@ import scipy.linalg as sp
 import scipy.sparse
 import log.logger as LOG
 
-class ManifoldReg(GSSLClassifier):
-    """ Label Propagation based on Gaussian Fields and Harmonic Functions. See :cite:`Zhu_2003`. """
+class LapEigLS(GSSLClassifier):
+    """ Manifold Regularization with Laplacian Eigenmaps. 
+        Minimizes the Least Squares in a semi-supervised way by using a linear combination of the first :math:`p` eigenfunctions. See :cite:`belkin2003`.
+    """
 
     @GSSLClassifier.autohooks
     def __MR(self,X,W,Y,labeledIndexes,p,hook=None):
@@ -57,8 +59,7 @@ class ManifoldReg(GSSLClassifier):
         
         
         
-        #for j in range(p):
-        #    E[:,j] = (E[:,j]-np.mean(E[:,j]))/np.std(E[:,j])
+        
         
         e_lab = E[labeledIndexes,:]
         #TIK = np.ones(shape=e_lab.shape)
@@ -84,8 +85,7 @@ class ManifoldReg(GSSLClassifier):
             for j in np.arange(F.shape[0]):
                 F[j,i] = np.dot(a,E[j,:])
                 F[j,i] = max(F[j,i],0)
-        
-        #raise "E"
+
         return (F)
         
         
@@ -95,10 +95,10 @@ class ManifoldReg(GSSLClassifier):
 
 
     def __init__(self,p=0.2):
-        """ Constructor for ManifoldReg classifier.
+        """ Constructor for LapEigLS classifier.
             
         Args:
-            p (Union[float,int]). The number of eigenvectors. It is given as either the absolute value (int), or a percentage of
-                the labeled data (float). Default is ``0.2``
+            p (Union[float,int]). The number of eigenfunctions. It is given as either the absolute value if integer, or a percentage of
+                the labeled data. if float. Default is ``0.2``
         """
         self.p = p

@@ -13,19 +13,22 @@ class ExpChapelle(EmptySpecification):
     '''
     classdocs
     '''
-    ds = "Digit1"
+    ds = "g241c"
     def get_spec_name(self):
         return "31Dez_LDST_mod_" + self.ds
     
     def generalConfig(self):
         s = spec.GENERAL_DEFAULT
-        s["id"] = np.arange(20)
+        s["id"] = [0]
         return P(s)
     
     def inputConfig(self):
-        s = spec.INPUT_CHAPELLE_A
         
-        s["dataset"] = [self.ds]
+        s = spec.INPUT_MNIST
+        s['labeled_percent'] = [100/70000]
+        #s['dataset'] = ['Digit1']
+        #s['labeled_percent'] = [0.1]
+        
         return P(s)
 
     def filterConfig(self):
@@ -35,16 +38,21 @@ class ExpChapelle(EmptySpecification):
     
     def noiseConfig(self):
         s = spec.NOISE_UNIFORM_DET_SOME
-        s["corruption_level"] = [0.2]
+        s["corruption_level"] = [0.0]
         return P(s)
     
     def affmatConfig(self):
-        s = spec.AFFMAT_CONSTANT
+        s = spec.AFFMAT_DEFAULT
+        s['k'] = [15]
         return P(s)
     def algConfig(self):
-        #s = spec.ALGORITHM_LGC_DEFAULT
-        s = spec.ALGORITHM_GFHF_DEFAULT
-        s["num_iter"] = [1000]
+        s = spec.ALGORITHM_LGC_DEFAULT
+        s["alpha"] = [0.9]
+        s["num_iter"] = [7000]
+        #s = spec.ALGORITHM_CLGC_DEFAULT
+        #s["useEstimatedFreq"] = [None]
+        #s["num_iter"] = [1500]
+        #s["alpha"] = [0.5]
         return P(s)
 
     def __init__(self,ds):
@@ -75,7 +83,7 @@ class ExpChapelle_2(EmptySpecification):
         return P(spec.NOISE_UNIFORM_DET_SOME)
     
     def affmatConfig(self):
-        return P(spec.AFFMAT_CONSTANT)
+        return P(spec.AFFMAT_DEFAULT)
     def algConfig(self):
         s = spec.ALGORITHM_MANIFOLDREG_DEFAULT
         s["p"] = [4]

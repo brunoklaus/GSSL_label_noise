@@ -210,12 +210,18 @@ class SIISClassifier(GSSLClassifier):
                            beta=self.beta,rho=self.rho,max_iter=self.max_iter,hook=hook))
 
 
-    def __init__(self,m=100,beta=10,alpha=100,rho=1.2,max_iter=100):
+    def __init__(self,m=100,beta=10,alpha=100,rho=1.2,max_iter=1000):
         """ Constructor for SIIS classifier.
             
         Args:
             m (Union[float,int]): The number of eigenvectors. It is given as either the absolute value (int), or a percentage of
-                the labeled data (float). Default is ``0.2``
+                the labeled data (float).
+            alpha (float): Value of parameter :math:`\\alpha` controlling the importance of the :math:`l_{2,1}` norm smoothness term.
+            beta (float): Value of parameter :math:`\\beta`  controlling the importance of using smooth eigenfunctions 
+                within the already restricted eigenbasis.
+            max_iter (float): Number of iterations.
+            rho (float): Parameter for the convergence process. Default is ``1.2``. Should not be changed unless there is a good reason.
+             
         """
         self.m = m
         self.beta = beta

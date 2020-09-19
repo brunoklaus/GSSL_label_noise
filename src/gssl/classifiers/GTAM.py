@@ -34,7 +34,7 @@ class GTAMClassifier(GSSLClassifier):
         num_classes = Y.shape[1]
         
         
-        """ If we know true freq, estimate it from (untouched unlabeled examples"""
+        """ Estimate frequency of classes"""
         if not useEstimatedFreq is None:
                 if isinstance(useEstimatedFreq,bool):
                     estimatedFreq = np.sum(Y[labeledIndexes],axis=0) / num_labeled
@@ -157,8 +157,8 @@ class GTAMClassifier(GSSLClassifier):
             mu (float) :  a parameter determining the importance of the fitting term. Default is ``99.0``.
             num_iter (int) : Optional. The number of iterations to run. The default behaviour makes it N iterations given
                 a NDArray[float].shape[N,D] input matrix.
-            useEstimatedFreq (bool) : If ``True``, then use estimated class freq. to balance the propagation.
-                    Otherwise, assume classes are equiprobable. Default is ``True``.
+            useEstimatedFreq (Union[bool,NDArray[C],None]) : If ``True``, then use estimated class freq. to balance the propagation.
+                If it is a float array, it uses that as the frequency. If ``None``, assumes classes are equiprobable. Default is ``True``.
             useConstantProp (bool) : If ``True``, then use try to maintain a constant proportion of labels
                 in all iterations.
                     

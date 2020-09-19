@@ -9,8 +9,8 @@ class LGCClassifier(GSSLClassifier):
 
     @property
     def alpha(self):
-        """ :math:`\\alpha` such that :math:`\\mu = \\frac{1}{1-\\alpha}` is the regularization factor multiplying
-            the smoothness criterion. It is required that :math:`0 < \\alpha < 1`.
+        """ :math:`\\alpha` such that :math:`\\mu = \\frac{1-\\alpha}{\\alpha}` is the regularization factor multiplying
+            the label fitting criterion. It is required that :math:`0 < \\alpha < 1`.
         """
         return self._alpha
 

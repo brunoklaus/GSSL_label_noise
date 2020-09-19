@@ -124,21 +124,23 @@ INPUT_CIFAR_10 = {
 
 FILTER_LDST = {
         "filter": ["LDST"],
-        "mu": [0.1111,99.0,9.0],
+        "mu": [0.1111,99.0,9.0,0.1111],
         "useZ": [True],
-         "tuning_iter": [2.00],
+         "tuning_iter": [1.00],
          "tuning_iter_as_pct":[True],
          "constantProp":[False],
          "gradient_fix":[True],
-         "weigh_by_degree":[False]
+         "weigh_by_degree":[True]
         }
 
 FILTER_LGC_LVO = {
         "filter": ["LGC_LVO"],
-        "mu": [0.1111,99.0,9.0],
-         "tuning_iter": [2.00],
-         "tuning_iter_as_pct":[True],
-         "constantProp":[False]
+        "mu": [0.1111,99.0,9.0,0.1111],
+         "tuning_iter": [1049],
+         "tuning_iter_as_pct":[False],
+         "constantProp":[False],
+         "useZ":[False],
+        "normalize_rows":[True,False]
         }
 
 FILTER_LDST_CONSTPROP = {
@@ -232,6 +234,7 @@ Algorithm (that is, Classifier) configs
 """
 ALGORITHM_GTAM_DEFAULT = {
    "algorithm" : ["GTAM"],
+   "weigh_by_degree":[True],
    "mu":[0.001,0.0101,0.1111,9,99.0]  
 }
 
@@ -248,6 +251,12 @@ ALGORITHM_GFHF_DEFAULT = {
 
 ALGORITHM_LGC_DEFAULT = {
    "algorithm" : ["LGC"],
+   "alpha" : [0.9,0.99,0.1,0.999]  
+}
+
+ALGORITHM_CLGC_DEFAULT = {
+   "algorithm" : ["CLGC"],
+   "useEstimatedFreq" : [True],
    "alpha" : [0.9,0.99,0.1,0.999]  
 }
 

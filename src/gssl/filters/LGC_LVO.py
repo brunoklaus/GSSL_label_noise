@@ -12,9 +12,12 @@ import log.logger as LOG
 import scipy.sparse
 import itertools
 
+    
+
+
 class LGC_LVO_Filter(GSSLFilter):
-    
-    
+    """"" LGCLVO_F is (leave-one-out filter based on local and global consistency). See :cite:`afonsothesis2020`. """
+        
     
     '''
     classdocs
@@ -22,7 +25,6 @@ class LGC_LVO_Filter(GSSLFilter):
     @GSSLFilter.autohooks
     def LGCLVO(self,X,W,Y,labeledIndexes,mu = 99.0,useEstimatedFreq=True,tuning_iter = 0,hook=None,
              constant_prop = False,useZ=True,normalize_rows=True):
-        '''BEGIN initialization'''
         
         
         
@@ -58,7 +60,6 @@ class LGC_LVO_Filter(GSSLFilter):
         else:
             estimatedFreq = np.repeat(1/num_classes,num_classes)
         
-        import scipy.stats
         if scipy.sparse.issparse(W):
             l = np.sum(labeledIndexes)
             
@@ -70,7 +71,7 @@ class LGC_LVO_Filter(GSSLFilter):
             data = np.asarray([1.0]*l)
             temp_Y = _to_np(scipy.sparse.coo_matrix( (data,(row,col)),shape=(W.shape[0],l) ))
             
-            PL = LGC_iter_TF(X,W,Y=temp_Y,labeledIndexes=labeledIndexes,alpha = 1/(1+mu),num_iter=1000)
+            PL = LGC_iter_TF(X,W,Y=temp_Y,labeledIndexes=labeledIndexes,alpha = 1/(1+mu),num_iter=10000)
             
             PL = PL[labeledIndexes,:]
             PL[range(PL.shape[0]),range(PL.shape[0])] = 0   #Set diagonal to 0
@@ -97,14 +98,14 @@ class LGC_LVO_Filter(GSSLFilter):
             P[labeledIndexes,labeledIndexes] = 0
             P[np.ix_(labeledIndexes,labeledIndexes)] = P[np.ix_(labeledIndexes,labeledIndexes)]/np.sum(P[np.ix_(labeledIndexes,labeledIndexes)],axis=0,keepdims=False)
             
-        
         W = scipy.sparse.csr_matrix(W)
         
         Z = []
         
         detected_noisylabels = []
         suggested_labels = []
-        
+        where_noisylabels = []
+        Q_values = []
         
         Y_flat = np.argmax(Y,axis=1)
         
@@ -128,7 +129,7 @@ class LGC_LVO_Filter(GSSLFilter):
         Q = None
         cleanIndexes = np.copy(labeledIndexes)
         for i_iter in range(tuning_iter):
-             
+           
             found_noisy = True
             if np.sum(labeledIndexes) > 0 and found_noisy:
                 
@@ -180,17 +181,20 @@ class LGC_LVO_Filter(GSSLFilter):
                     id_min_line = id_min // num_classes
                     id_min_col = id_min % num_classes   #The class previously assigned to instance X_{id_min_line}
                     found_noisy = Q[id_min_line,id_min_col] < 0
-
+                    
+                    
                 if found_noisy:
                         
                     id_max_col = np.argmax(Q[id_min_line,:]) #The new, suggested class
                     
                     
                     detected_noisylabels.append(id_min_col)
+                    where_noisylabels.append(id_min_line)
+                    
                     suggested_labels.append(id_max_col)
-                    
+                    Q_values.append(Q[id_min_line,id_min_col])
     
-                    
+                   
                     
                     
                     #Unlabel OP
@@ -201,6 +205,9 @@ class LGC_LVO_Filter(GSSLFilter):
                     
                     labeledIndexes[id_min_line] = False
                     cleanIndexes[id_min_line] = False
+                    
+                    if not Y[id_min_line,id_min_col] == 1:
+                        raise Exception("Tried to remove label from unlabeled instance")
                     
                     Y[id_min_line,id_min_col] = 0
                     if self.relabel:
@@ -214,47 +221,48 @@ class LGC_LVO_Filter(GSSLFilter):
                 hook._step(step=(i_iter+1),X=X,W=W,Y=Y,labeledIndexes=labeledIndexes)
             
             
-            '''
-            MATPLOTLIB stuff 
-            '''
-            """
-                
-            import matplotlib
-            matplotlib.use("TkAgg")
-            import matplotlib.pyplot as plt
-            lids = np.where(labeledIndexes)[0]
+        '''
+        MATPLOTLIB stuff 
+        '''
+        
+        import cv2 as cv
+        
+        
+        #ret2,th2 = cv.threshold(255*np.asarray(Q_values).astype(np.uint8),0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+        
+        from skimage.filters import threshold_multiotsu
+        Q_values = np.asarray(Q_values)
+        th = threshold_multiotsu(Q_values)
+        th = np.where(Q_values < th[0])[0]
+    
+        
+        
+        for i in range(th.shape[0]):
+            th2 = max(0,i - 1)
+            if not th[i] == i:
+                break
+
+        """
+        import matplotlib
+        matplotlib.use("TkAgg")
+        import matplotlib.pyplot as plt
+        fig = plt.figure(figsize=(5,2))
+        ax = fig.add_subplot()
+        ax.plot(np.arange(len(Q_values)),Q_values)
+        ax.axvline(10,color='red')
+        #plt.axvline(th2,color='purple')
+        
+        #plt.axhline(-0.5,color='green')
+        print(th2)
+        plt.show()
+        """
             
-            PL = _to_np(P)[np.ix_(labeledIndexes,labeledIndexes)]
-            PL = divide_row_by_sum(PL)
             
-            Y_flat_l = Y_flat[labeledIndexes]
-            
-            from sklearn.preprocessing import scale
-            QL = (Q[lids,:] - np.mean(Q[lids,:]))/(np.std(Q[lids,:])+1e-10)
-            
-            
-            fig, ax = plt.subplots(1,2)
-            
-            ax[0].matshow(PL)
-            ax[1].matshow(QL)
-            
-            for (i, j), z in np.ndenumerate(PL):
-                if Y_flat_l[i] != Y_flat_l[j]:
-                    z = -z
-                ax[0].text(j, i, '{:0.1f}'.format(z), ha='center', va='center')
-            for (i, j), z in np.ndenumerate(QL):
-                ax[1].text(j, i, '{:0.1f}'.format(z), ha='center', va='center')
-                
-            
-            plt.show()
-            """    
             
         '''END iterations'''
         LOG.info("NUMBER OF DETECTED NOISY INSTANCES:{}".format(len(detected_noisylabels)),LOG.ll.FILTER)    
 
-        
-        
-        
+       
         return Y, labeledIndexes
 
             
@@ -263,7 +271,8 @@ class LGC_LVO_Filter(GSSLFilter):
 
     def fit (self,X,Y,labeledIndexes,W = None,hook=None):
         if self.tuning_iter_as_pct:
-            tuning_iter = int(round(self.tuning_iter * X.shape[0]))
+            l = np.sum(labeledIndexes)
+            tuning_iter = int(round(self.tuning_iter * l))
         else:
             tuning_iter = self.tuning_iter
         
@@ -273,7 +282,7 @@ class LGC_LVO_Filter(GSSLFilter):
     
     def __init__(self, tuning_iter,mu = 99.0, useEstimatedFreq=True,constantProp=False,useZ=True,
                  tuning_iter_as_pct=False, normalize_rows = True, early_stop=False, use_baseline=False,
-                 relabel=True):
+                 relabel=False):
         """ Constructor for the LGCLVO filter.
         
         Args:

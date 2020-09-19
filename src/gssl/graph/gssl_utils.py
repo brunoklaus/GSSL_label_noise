@@ -10,7 +10,6 @@ import sklearn.manifold as skmf
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
-from plotly.api.v2.users import current
 import warnings
 import scipy.sparse
 import scipy.sparse.linalg
@@ -212,7 +211,8 @@ def calc_Z(Y, labeledIndexes,D,estimatedFreq=None,weigh_by_degree=False):
         estimatedFreq = np.repeat(1,Y.shape[0])
     if Y.ndim == 1:
         Y = init_matrix(Y,labeledIndexes)
-        
+    np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
+    assert D.shape[0] == Y.shape[0]
     Z = np.array(Y)
     for i in np.where(labeledIndexes == True)[0]:
         Z[i,:] = 0

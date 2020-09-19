@@ -3,7 +3,7 @@ Created on 28 de mar de 2019
 
 @author: klaus
 '''
-from gssl.classifiers import LGC,GFHF,GTAM,RF,classifier,  SIIS
+from gssl.classifiers import CLGC,LGC,GFHF,GTAM,RF,classifier,  SIIS
 from gssl.filters import LDST,filter,ldstRemoval,MRremoval, LGC_LVO
 from gssl.classifiers.classifier import GSSLClassifier
 from gssl.graph.gssl_affmat import AffMatGenerator
@@ -24,8 +24,8 @@ import os.path as path
 from output.folders import PLOT_FOLDER
 from inspect import signature 
 from experiment.prefixes import OUTPUT_PREFIX
-from gssl.classifiers import ManifoldReg
-from gssl.classifiers import ManifoldReg
+from gssl.classifiers import LapEigLS
+from gssl.classifiers import LapEigLS
 from input.dataset.cifar10 import get_cifar10
 import numpy as np
 from _tkinter import create
@@ -142,9 +142,10 @@ def select_classifier(**kwargs):
     alg = kwargs.pop("algorithm")
     switcher = {
             "LGC": lambda : LGC.LGCClassifier(**kwargs),
+            "CLGC": lambda : CLGC.CLGCClassifier(**kwargs),
             "GTAM":lambda: GTAM.GTAMClassifier(**kwargs),            
             "GFHF": lambda: GFHF.GFHF(**kwargs),  
-            "MREG": lambda: ManifoldReg.ManifoldReg(**kwargs),
+            "MREG": lambda: LapEigLS.LapEigLS(**kwargs),
             "SIIS": lambda: SIIS.SIISClassifier(**kwargs),
             
             "RF": lambda: RF.RFClassifier(**kwargs),

@@ -36,7 +36,7 @@ class LDSTRemover(GSSLFilter):
         num_classes = Y.shape[1]
         
         D = gutils.deg_matrix(W,flat=True)
-        """ If we know true freq, estimate it from (untouched unlabeled examples"""
+        """ Estimate frequency of classes"""
         if not useEstimatedFreq is None:
                 if isinstance(useEstimatedFreq,bool):
                     estimatedFreq = np.sum(Y[labeledIndexes],axis=0) / num_labeled
@@ -65,7 +65,7 @@ class LDSTRemover(GSSLFilter):
         #######################################################################################
         '''BEGIN iterations'''
         for i_iter in np.arange(tuning_iter):
-             
+            
             
             if np.sum(labeledIndexes) > 0:
                 
@@ -81,19 +81,17 @@ class LDSTRemover(GSSLFilter):
                 else:
                     Q = np.matmul(A,Y)
                     
-                if self.gradient_fix:
-                    for i_labeled in np.where(labeledIndexes)[0]:
-                        assigned_class  = np.argmax(Y[i_labeled,:])
-                        other_classes = list(range(Y.shape[1]))
-                        other_classes.remove(assigned_class)
-                        
-                        best_other = min([Q[i_labeled,j] for j in other_classes])
-                        
-                        for j in range(Y.shape[1]):
+                for i_labeled in np.where(labeledIndexes)[0]:
+                    assigned_class  = np.argmax(Y[i_labeled,:])
+                    other_classes = list(range(Y.shape[1]))
+                    other_classes.remove(assigned_class)
+                    
+                    best_other = min([Q[i_labeled,j] for j in other_classes])
+                    
+                    for j in range(Y.shape[1]):
+                        if self.gradient_fix:
                             Q[i_labeled,assigned_class] = -best_other
-                            Q[i_labeled,other_classes] = -np.inf
-                else:
-                    Q = Q - np.abs(np.max(Q))*(1 - Y)
+                        Q[i_labeled,other_classes] = -np.inf
                 #During label tuning, we'll also 'unlabel' the argmax
                 unlabeledIndexes = np.logical_not(labeledIndexes)
                 Q[unlabeledIndexes,:] = -np.inf
@@ -115,7 +113,9 @@ class LDSTRemover(GSSLFilter):
                     id_max_col = id_max % num_classes
                     
                 
-                assert Y[id_max_line,id_max_col] == 1
+                if not Y[id_max_line,id_max_col] == 1:
+                    print(Y[id_max_line,:])
+                    raise Exception("Tried to remove label from unlabeled instance")
                 
                 #Unlabel OP
                 labeledIndexes[id_max_line] = False
@@ -124,7 +124,7 @@ class LDSTRemover(GSSLFilter):
             if not hook is None:
                 hook._step(step=i_iter+1,X=X,W=W,Y=Y,labeledIndexes=labeledIndexes)
             
-
+        
         '''END iterations'''    
         return Y, labeledIndexes
 
@@ -134,22 +134,38 @@ class LDSTRemover(GSSLFilter):
 
     def fit (self,X,Y,labeledIndexes,W = None,hook=None):
         if self.tuning_iter_as_pct:
-            tuning_iter = round(self.tuning_iter * X.shape[0])
+            l = np.sum(labeledIndexes)
+            tuning_iter = int(round(self.tuning_iter *l))            
         else:
             tuning_iter = self.tuning_iter
             
         return self.LDST(X, W, Y, labeledIndexes, self.mu, self.useEstimatedFreq, tuning_iter,\
                           hook, self.constantProp,self.useZ)
     
-    def __init__(self, tuning_iter,mu = 99.0, useEstimatedFreq=True,constantProp=False,useLGCMat=False,useZ=True,
+    def __init__(self, tuning_iter,mu = 99.0, useEstimatedFreq=True,constantProp=False,useZ=True,
                  tuning_iter_as_pct=False,know_true_freq=False,weigh_by_degree=True,gradient_fix=True):
         """ Constructor for LDST-Removal Filter.
         
         Args:
             mu (float) :  a parameter determining the importance of the fitting term. Default is ``99.0``.
-            tuning_iter (int) : The number of tuning iterations. 
-            useEstimatedFreq (bool) : If ``True``, then use estimated class freq. to balance the propagation.
-                    Otherwise, assume classes are equiprobable. Default is ``True``.
+            tuning_iter (Union[int,float]) : The number of tuning iterations. 
+            tuning_iter_as_pct (bool) :  If  ``True``, then  `tuning_iter` is to be interpreted as a percentage of the 
+                number of labels.
+            
+            useEstimatedFreq (Union[bool,NDArray[C],None]) : If ``True``, then use estimated class freq. to balance the propagation.
+                If it is a float array, it uses that as the frequency. If ``None``, assumes classes are equiprobable. Default is ``True``.
+            constantProp (bool) : If  ``True``, whenever a label of a given class is removed, another label from the same
+                class gets added. Default is `False`.
+            
+            useZ (bool) : If ``True``, then at each step update label matrix so that each class has total influence
+                equal to the estimated frequency. Default is ``True``.
+            weigh_by_degree (bool) : If ``True`` and `useZ` also ``True``, then vertice with higher degree will 
+                have more confident labels. Default is ``False``.
+            gradient_fix (bool) : If ``True``, changes the criteria when selecting the Q matrix to discourage picking the same 
+            class. Default is ``True``, and should be kept that way for better performance.
+                
+            
+              
             
         """
         self.mu = mu

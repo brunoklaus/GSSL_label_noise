@@ -8,27 +8,13 @@ import numpy as np
 import gssl.graph.gssl_utils as gutils
 from docutils.nodes import Labeled
 class LDST(GSSLFilter):
-    
-    def get_prop_W(self,W,Y,mu):
-        alpha = 1/(1+mu)
-        #Get D^{-1/2}
-        d_sqrt = np.reciprocal(np.sqrt(np.sum(W,axis=0)))
-        d_sqrt[np.logical_not(np.isfinite(d_sqrt))] = 1
-        d_sqrt = np.diag(d_sqrt)
-        
-        
-        S = np.matmul(d_sqrt,np.matmul(W,d_sqrt))
-        I = np.identity(Y.shape[0])
-        
-        return np.linalg.inv(I - alpha*S)
-    
 
     '''
     classdocs
     '''
     @GSSLFilter.autohooks
-    def LGCLVO(self,X,W,Y,labeledIndexes,mu = 99.0,useEstimatedFreq=True,tuning_iter = 0,hook=None,
-             constant_prop = False,useLGCMat=False,useZ=False):
+    def LDST(self,X,W,Y,labeledIndexes,mu = 99.0,useEstimatedFreq=True,tuning_iter = 0,hook=None,
+             constant_prop = False,useZ=False,weigh_by_degree=False):
         '''BEGIN initialization'''
         
         Y = np.copy(Y)
@@ -53,10 +39,6 @@ class LDST(GSSLFilter):
             estimatedFreq = np.repeat(1/num_classes,num_classes)
             
             
-        if useLGCMat:
-            W = self.get_prop_W(W, Y, mu)
-            W = 0.5*(W + W.transpose())
-        
         #Identity matrix
         I = np.identity(W.shape[0])
         #Get graph laplacian
@@ -79,7 +61,7 @@ class LDST(GSSLFilter):
                 Then, we normalize each row so that row sums to its estimated influence
             '''
             if useZ:    
-                Z = gutils.calc_Z(Y, labeledIndexes, D, estimatedFreq,reciprocal=False)
+                Z = gutils.calc_Z(Y, labeledIndexes, D, estimatedFreq,weigh_by_degree=weigh_by_degree,reciprocal=False)
                 Q = np.matmul(A,Z)
             else:
                 Q = np.matmul(A,Y)
@@ -133,23 +115,39 @@ class LDST(GSSLFilter):
         
 
     def fit (self,X,Y,labeledIndexes,W = None,hook=None):
-        return self.LGCLVO(X, W, Y, labeledIndexes, self.mu, self.useEstimatedFreq, self.tuning_iter, hook, \
-                         self.constantProp,self.useLGCMat,self.useZ)
+        if self.tuning_iter_as_pct:
+            l = np.sum(labeledIndexes)
+            tuning_iter = int(round(self.tuning_iter *l))            
+        else:
+            tuning_iter = self.tuning_iter
+        
+        return self.LDST(X, W, Y, labeledIndexes, self.mu, self.useEstimatedFreq, tuning_iter, hook, \
+                         self.constantProp,self.useZ,self.weigh_by_degree)
     
-    def __init__(self, tuning_iter,mu = 99.0, useEstimatedFreq=True,constantProp=False,useLGCMat=False,useZ=True):
+    def __init__(self, tuning_iter,mu = 99.0, useEstimatedFreq=True,constantProp=False,useZ=True,
+                 weigh_by_degree=False):
         """" Constructor for the LDST filter.
         
         Args:
             mu (float) :  a parameter determining the importance of the fitting term. Default is ``99.0``.
             tuning_iter (int) : The number of tuning iterations. 
-            useEstimatedFreq (bool) : If ``True``, then use estimated class freq. to balance the propagation.
-                    Otherwise, assume classes are equiprobable. Default is ``True``.
+            useEstimatedFreq (Union[bool,NDArray[C],None]) : If ``True``, then use estimated class freq. to balance the propagation.
+                If it is a float array, it uses that as the frequency. If ``None``, assumes classes are equiprobable. Default is ``True``.
+            constantProp (bool) : If  ``True``, whenever a label of a given class is removed, another label from the same
+                class gets added. Default is `False`.
+            useZ (bool) : If ``True``, then at each step update label matrix so that each class has total influence
+               equal to the estimated frequency. Default is ``True``.
+            weigh_by_degree (bool) : If ``True`` and ``useZ``` also ``True``, then vertices with higher degree will 
+                have more confident labels. Default is ``False``.
+            
+               
+            
             
             """
         self.mu = mu
         self.tuning_iter = tuning_iter
         self.useEstimatedFreq = useEstimatedFreq
         self.constantProp = constantProp
-        self.useLGCMat= useLGCMat
         self.useZ = useZ
+        self.weigh_by_degree = weigh_by_degree
         

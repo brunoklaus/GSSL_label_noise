@@ -8,7 +8,6 @@ import numpy as np
 import scipy.spatial.distance as scipydist
 from sklearn.neighbors import NearestNeighbors
 from functools import partial
-import quadprog
 import sys
 import progressbar
 from settings import load_sparse_csr,CIFAR_MAT_FOLDER
@@ -53,7 +52,6 @@ class AffMatGenerator(object):
             LOG.info("Adaptive sigma is {}".format(self.sigma),LOG.ll.MATRIX)
         else:
             self.sigma = np.mean([np.sort(K.getrow(i).data)[9]/3 for i in range(K.shape[0])])
-            LOG.info(("Adaptive sigma is {}".format(self.sigma)),LOG.ll.MATRIX)
         return partial(lambda d: np.exp(-(d*d)/(2*self.sigma*self.sigma)))
     
     def W_from_K(self,X,K):
@@ -205,15 +203,35 @@ def epsilonMask(X,eps,metric="euclidean"):
     rows,cols = np.where(K > eps)
     K[rows,cols] = 0
     return(K)
-   
-def knnMask(X,k,symm = True,metric="euclidean"):
+
+
+
+def __symmetrize_KNN(W,mode):
+    
+    if not mode in ['mut','sym','fsym']:
+        raise ValueError("Unrecognized KNN mode {}".format(mode))
+    
+    if mode == 'mut':
+        W = W.minimum(W.T)
+    elif mode == 'sym':
+        W = W.maximum(W.T)
+    elif mode == 'fsym':
+        W = 0.5*(W + W.T)
+    return W
+
+def knnMask(X,k,mode='sym',metric="euclidean"):
     """
     Calculates the distances only in the knn-neighborhood.
     
     Args:
         X (`NDArray[float].shape[N,D]`) : Input matrix of N instances of dimension D.
         k (int) :  A parameter such that ´K[i,j] = 1´ iff X_i is one of the k-nearest neighbors of X_j
-        symm (bool) : if True, then ``K[i,j] = max(K[i,j],K[j,i])``. Default is ``True``
+        mode (str) : type of KNN. Supported values:
+                {
+                    * ``mut``.``K[i,j] = min(K[i,j],K[j,i])``.
+                    * ``sym``. ``K[i,j] = max(K[i,j],K[j,i])``.
+                    * ``none``. No symmetrization. WARNING: Many GSSL algorithms depend on a symmetric affinity matrix.
+                }
     Returns:
         `NDArray[int].shape[N,N]` : a dense matrix ´K´ of shape `[N,N]` whose nonzero 
         **[i,j]** entries correspond to distances between neighbors **X[i,:],X[j,:]** .
@@ -221,7 +239,7 @@ def knnMask(X,k,symm = True,metric="euclidean"):
     """
 
     if X.shape[0] > 2000:
-        K =  _faiss_knn(X, k, symm=symm)
+        K =  _faiss_knn(X, k, mode=mode)
         return K
         
     nbrs = NearestNeighbors(n_neighbors=k+1, algorithm='ball_tree',metric=metric).fit(X)
@@ -231,11 +249,14 @@ def knnMask(X,k,symm = True,metric="euclidean"):
         
         for dist, index in zip(distances,indices):
             K[i,index] = np.array(dist)
-            if symm:
-                K[index,i] = np.array(dist)
-    return scipy.sparse.csr_matrix(K)
+    
 
-def _faiss_knn(X,k, symm= True, inner_prod = False):
+    K = scipy.sparse.csr_matrix(K)
+    K = __symmetrize_KNN(K,mode=mode)
+    
+    return K
+
+def _faiss_knn(X,k, mode='mut', inner_prod = False):
     # kNN search for the graph
     X  = np.ascontiguousarray(X)
     
@@ -271,11 +292,11 @@ def _faiss_knn(X,k, symm= True, inner_prod = False):
     W = scipy.sparse.csr_matrix((D.flatten('F'), (row_idx_rep.flatten('F'), I.flatten('F'))), shape=(N, N))
     
     
-    
-    if symm:
-        W = W.minimum(W.T)
+    W =  __symmetrize_KNN(W,mode=mode)
+
     return W
 
+from quadprog import solve_qp    
 def __quadprog_solve_qp(P, q, G=None, h=None, A=None, b=None):
     qp_G = .5 * (P + P.T)   # make sure P is symmetric
     qp_a = -q
@@ -287,7 +308,8 @@ def __quadprog_solve_qp(P, q, G=None, h=None, A=None, b=None):
         qp_C = -G.T
         qp_b = -h
         meq = 0
-    return quadprog.solve_qp(qp_G, qp_a, qp_C, qp_b, meq)[0]   
+    
+    return solve_qp(qp_G, qp_a, qp_C, qp_b, meq)[0]   
 
 def LNP(X,K, symm = True):
     """ Computes the edge weights through Linear Neighborhood Propagation.
@@ -372,4 +394,4 @@ def NLNP(X,K, symm = True):
     return(W)
 
 
- 
+

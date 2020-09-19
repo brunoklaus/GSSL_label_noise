@@ -1,0 +1,7 @@
+conda install -c conda-forge sphinxcontrib-bibtex 
+conda install -c conda-forge 
+conda install sphinx_rtd_theme
+conda install -c omnia quadprog
+conda install -c conda-forge python-igraph 
+
+conda install faiss-gpu cudatoolkit=10.0 -c pytorch # For CUDA10 

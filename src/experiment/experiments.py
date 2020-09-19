@@ -13,14 +13,16 @@ import log.logger as LOG
 
 ## The hooks being utilized
 PLOT_HOOKS = [Hook.INIT_LABELED,Hook.INIT_ALL,Hook.NOISE_AFTER,Hook.ALG_RESULT,Hook.ALG_ITER] \
-                + [Hook.GTAM_Q,Hook.GTAM_F,Hook.GTAM_Y]
+                #+ [Hook.GTAM_Q,Hook.GTAM_F,Hook.GTAM_Y]
 W_PLOT_HOOKS = [Hook.W_INIT_LABELED,Hook.W_INIT_ALL,Hook.W_NOISE_AFTER,Hook.FILTER_ITER,Hook.W_FILTER_AFTER,Hook.ALG_RESULT,Hook.ALG_ITER] \
-                + [Hook.GTAM_Q,Hook.GTAM_F,Hook.GTAM_Y]
+                #+ [Hook.GTAM_Q,Hook.GTAM_F,Hook.GTAM_Y]
 
 W_PLOT_HOOKS_NOITER = list(W_PLOT_HOOKS)
 W_PLOT_HOOKS_NOITER.remove(Hook.ALG_ITER)
 W_PLOT_HOOKS_NOITER.remove(Hook.FILTER_ITER)
 
+PLOT_HOOKS_NOITER = list(PLOT_HOOKS)
+PLOT_HOOKS_NOITER.remove(Hook.ALG_ITER)
 
 
 TIME_HOOKS = [Hook.T_ALG,Hook.T_FILTER,Hook.T_NOISE,Hook.T_AFFMAT]                
@@ -84,13 +86,11 @@ def postprocess(mplex):
             mplex["AFFMAT"]["sigma"]  =  423.5704955059233
         
         
-        
     if "tuning_iter_as_pct" in mplex["FILTER"].keys() and mplex["FILTER"]["tuning_iter_as_pct"]:
-        mplex["FILTER"]["tuning_iter"] = mplex["INPUT"]["labeled_percent"] *\
-                                         mplex["NOISE"]["corruption_level"] *\
+        mplex["FILTER"]["tuning_iter"] = mplex["NOISE"]["corruption_level"] *\
                                          mplex["FILTER"]["tuning_iter"]
         
-            
+    
     return mplex
 
 class Experiment():
@@ -104,10 +104,10 @@ class Experiment():
          6. Get performance measures from the classification and filtered labels.
          
          
-         Attr:
-            X (NDArray[float].shape[N,D]) : the calculated input matrix
-            W (NDArray[float].shape[N,N]) : the affinity matrix encoding the graph.
-            Y (NDArray[float].shape[N,C]) : matrix encoding initial belief
+     Attributes:
+        X (NDArray[float].shape[N,D]): The calculated input matrix
+        W (NDArray[float].shape[N,N]): The affinity matrix encoding the graph.
+        Y (NDArray[float].shape[N,C]): Initial label matrix
     """
     
     
@@ -127,6 +127,10 @@ class Experiment():
         self.out_dict = {}
 
     def run(self,hook_list=PLOT_HOOKS):
+        for k,v in self.args.items():
+            LOG.debug("{}:{}".format(k,v),LOG.ll.EXPERIMENT)
+        
+        
         #Multiplex the arguments, allocating each to the correct step
         mplex = postprocess(keys_multiplex(self.args))
         
@@ -218,12 +222,13 @@ class Experiment():
         """
         def _log(msg):
             LOG.info(msg,LOG.ll.EXPERIMENT)
-        _log("Accuracy: {} / {}".format(acc,1-acc))
-        _log("Accuracy (unlabeled): {} / {}".format(acc_unlabeled,1-acc_unlabeled))
-        _log("Accuracy (labeled): {} / {}".format(acc_labeled,1-acc_labeled))    
-        _log("Accuracy w/ CMN: {} / {}".format(CMN_acc,1-CMN_acc))
-        _log("Accuracy w/ rownorm CMN: {} / {}".format(CMN_rownorm_acc, 1-CMN_rownorm_acc))
-        _log("Accuracy w/ rownorm CMN(unlabeled): {} / {}".format(CMN_rownorm_acc_unl, 1-CMN_rownorm_acc_unl))
+            
+        _log("Accuracy: {:.3%} | {:.3%}".format(acc,1-acc))
+        _log("Accuracy (unlabeled): {:.3%} |{:.3%}".format(acc_unlabeled,1-acc_unlabeled))
+        _log("Accuracy (labeled): {:.3%} | {:.3%}".format(acc_labeled,1-acc_labeled))    
+        _log("Accuracy w/ CMN: {:.3%} | {:.3%}".format(CMN_acc,1-CMN_acc))
+        _log("Accuracy w/ rownorm CMN: {:.3%} | {:.3%}".format(CMN_rownorm_acc, 1-CMN_rownorm_acc))
+        _log("Accuracy w/ rownorm CMN(unlabeled): {:.3%} | {:.3%}".format(CMN_rownorm_acc_unl, 1-CMN_rownorm_acc_unl))
         
         self.out_dict.update({OUTPUT_PREFIX + "acc" :acc})
         self.out_dict.update({OUTPUT_PREFIX + "acc_unlabeled" :acc_unlabeled})
@@ -241,17 +246,15 @@ def run_debug_example_one(hook_list=[]):
     
     opt = exp.ExpChapelle("Digit1").get_all_configs()[0]
     
-    for k,v in keys_multiplex(opt).items():
-        LOG.debug("{}:{}".format(k,v),LOG.ll.EXPERIMENT)
     Experiment(opt).run(hook_list=hook_list)
     
     
 def run_debug_example_all():
-    import experiment.specification.exp_debug as exp
-    exp.ExpDebug().run_all()
+    import experiment.specification.exp_filter_LDST as exp
+    exp.FilterLDST().run_all()
     
 def main():
-    run_debug_example_one(W_PLOT_HOOKS_NOITER)
+    run_debug_example_one(hook_list=[])
 
     
 if __name__ == "__main__":
