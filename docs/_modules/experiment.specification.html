@@ -91,9 +91,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="experiment.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="experiment.html#experiment-experiments-module">experiment.experiments module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="experiment.html#module-experiment.experiments">experiment.experiments module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="experiment.html#module-experiment.prefixes">experiment.prefixes module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="experiment.html#experiment-selector-module">experiment.selector module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="experiment.html#module-experiment.selector">experiment.selector module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="experiment.html#module-experiment">Module contents</a></li>
 </ul>
 </li>
@@ -178,17 +178,856 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="experiment-specification-exp-chapelle-module">
-<h2>experiment.specification.exp_chapelle module<a class="headerlink" href="#experiment-specification-exp-chapelle-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-experiment.specification.exp_chapelle">
+<span id="experiment-specification-exp-chapelle-module"></span><h2>experiment.specification.exp_chapelle module<a class="headerlink" href="#module-experiment.specification.exp_chapelle" title="Permalink to this headline">¶</a></h2>
+<p>Created on 27 de mar de 2019</p>
+<p>&#64;author: klaus</p>
+<dl class="py class">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_chapelle.</code><code class="sig-name descname">ExpChapelle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ds</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ds</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.ds">
+<code class="sig-name descname">ds</code><em class="property"> = 'g241c'</em><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.ds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_chapelle.</code><code class="sig-name descname">ExpChapelle_2</code><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_2.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_2.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_chapelle.</code><code class="sig-name descname">ExpChapelle_3</code><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_3.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_3.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_chapelle.</code><code class="sig-name descname">ExpChapelle_4</code><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_4.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_4.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_chapelle.</code><code class="sig-name descname">ExpChapelle_5</code><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_chapelle.ExpChapelle_5.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_chapelle.ExpChapelle_5.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="experiment-specification-exp-cifar-module">
-<h2>experiment.specification.exp_cifar module<a class="headerlink" href="#experiment-specification-exp-cifar-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-experiment.specification.exp_cifar">
+<span id="experiment-specification-exp-cifar-module"></span><h2>experiment.specification.exp_cifar module<a class="headerlink" href="#module-experiment.specification.exp_cifar" title="Permalink to this headline">¶</a></h2>
+<p>Created on 22 de out de 2019</p>
+<p>&#64;author: klaus</p>
+<dl class="py class">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_cifar.</code><code class="sig-name descname">ExpCIFAR</code><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_cifar.ExpCIFAR.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_cifar.ExpCIFAR.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="experiment-specification-exp-debug-module">
-<h2>experiment.specification.exp_debug module<a class="headerlink" href="#experiment-specification-exp-debug-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-experiment.specification.exp_debug">
+<span id="experiment-specification-exp-debug-module"></span><h2>experiment.specification.exp_debug module<a class="headerlink" href="#module-experiment.specification.exp_debug" title="Permalink to this headline">¶</a></h2>
+<p>Created on 27 de mar de 2019</p>
+<p>&#64;author: klaus</p>
+<dl class="py class">
+<dt id="experiment.specification.exp_debug.ExpDebug">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_debug.</code><code class="sig-name descname">ExpDebug</code><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py method">
+<dt id="experiment.specification.exp_debug.ExpDebug.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_debug.ExpDebug.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_debug.ExpDebug.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_debug.ExpDebug.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_debug.ExpDebug.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_debug.ExpDebug.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_debug.ExpDebug.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_debug.ExpDebug.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="experiment-specification-exp-filter-ldst-module">
-<h2>experiment.specification.exp_filter_LDST module<a class="headerlink" href="#experiment-specification-exp-filter-ldst-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-experiment.specification.exp_filter_LDST">
+<span id="experiment-specification-exp-filter-ldst-module"></span><h2>experiment.specification.exp_filter_LDST module<a class="headerlink" href="#module-experiment.specification.exp_filter_LDST" title="Permalink to this headline">¶</a></h2>
+<p>Created on 3 de abr de 2019</p>
+<p>&#64;author: klaus</p>
+<dl class="py class">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_filter_LDST.</code><code class="sig-name descname">FilterLDST</code><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py attribute">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.WRITE_FREQ">
+<code class="sig-name descname">WRITE_FREQ</code><em class="property"> = 100</em><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.WRITE_FREQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.FilterLDST.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.FilterLDST.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_filter_LDST.</code><code class="sig-name descname">ISOLET</code><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py attribute">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.WRITE_FREQ">
+<code class="sig-name descname">WRITE_FREQ</code><em class="property"> = 100</em><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.WRITE_FREQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.ISOLET.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.ISOLET.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="experiment.specification.exp_filter_LDST.MNIST">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.exp_filter_LDST.</code><code class="sig-name descname">MNIST</code><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#experiment.specification.specification_skeleton.EmptySpecification" title="experiment.specification.specification_skeleton.EmptySpecification"><code class="xref py py-class docutils literal notranslate"><span class="pre">experiment.specification.specification_skeleton.EmptySpecification</span></code></a></p>
+<p>classdocs</p>
+<dl class="py attribute">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.WRITE_FREQ">
+<code class="sig-name descname">WRITE_FREQ</code><em class="property"> = 100</em><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.WRITE_FREQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.exp_filter_LDST.MNIST.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.exp_filter_LDST.MNIST.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-experiment.specification.specification_bits">
 <span id="experiment-specification-specification-bits-module"></span><h2>experiment.specification.specification_bits module<a class="headerlink" href="#module-experiment.specification.specification_bits" title="Permalink to this headline">¶</a></h2>
@@ -265,8 +1104,155 @@ from each list.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="experiment-specification-specification-skeleton-module">
-<h2>experiment.specification.specification_skeleton module<a class="headerlink" href="#experiment-specification-specification-skeleton-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-experiment.specification.specification_skeleton">
+<span id="experiment-specification-specification-skeleton-module"></span><h2>experiment.specification.specification_skeleton module<a class="headerlink" href="#module-experiment.specification.specification_skeleton" title="Permalink to this headline">¶</a></h2>
+<p>Created on 27 de mar de 2019</p>
+<p>&#64;author: klaus</p>
+<dl class="py class">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification">
+<em class="property">class </em><code class="sig-prename descclassname">experiment.specification.specification_skeleton.</code><code class="sig-name descname">EmptySpecification</code><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>EmptySpecification defines the methods expected from any class representing a
+specification of experiments. By itself, it also specifies an empty set of experiments.</p>
+<dl class="py attribute">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.DEBUG_MODE">
+<code class="sig-name descname">DEBUG_MODE</code><em class="property"> = True</em><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.DEBUG_MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.FORCE_GTAM_LDST_SAME_MU">
+<code class="sig-name descname">FORCE_GTAM_LDST_SAME_MU</code><em class="property"> = True</em><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.FORCE_GTAM_LDST_SAME_MU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.OVERWRITE">
+<code class="sig-name descname">OVERWRITE</code><em class="property"> = True</em><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.OVERWRITE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.TUNING_ITER_AS_NOISE_PCT">
+<code class="sig-name descname">TUNING_ITER_AS_NOISE_PCT</code><em class="property"> = False</em><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.TUNING_ITER_AS_NOISE_PCT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.WRITE_FREQ">
+<code class="sig-name descname">WRITE_FREQ</code><em class="property"> = 10000</em><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.WRITE_FREQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.affmatConfig">
+<code class="sig-name descname">affmatConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.affmatConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.aggregate_csv">
+<code class="sig-name descname">aggregate_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.aggregate_csv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.algConfig">
+<code class="sig-name descname">algConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.algConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>dict</cite> A dictionary, such that each key maps to a list containing each possible value
+that the attribute might take.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.filterConfig">
+<code class="sig-name descname">filterConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.filterConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.generalConfig">
+<code class="sig-name descname">generalConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.generalConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>General configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.get_all_configs">
+<code class="sig-name descname">get_all_configs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.get_all_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the configuration for every  experiment. The corresponding prefix is added for each stage.
+Returns:
+<cite>List[dict]</cite> A list of all possible configs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.get_spec_name">
+<code class="sig-name descname">get_spec_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.get_spec_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name identifying the set of experiments that come out of this specification.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.inputConfig">
+<code class="sig-name descname">inputConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.inputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.noiseConfig">
+<code class="sig-name descname">noiseConfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.noiseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noise process configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>List[dict]</cite> A list of dictionaries, one for each possible configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="experiment.specification.specification_skeleton.EmptySpecification.run_all">
+<code class="sig-name descname">run_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.EmptySpecification.run_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="experiment.specification.specification_skeleton.processify">
+<code class="sig-prename descclassname">experiment.specification.specification_skeleton.</code><code class="sig-name descname">processify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.processify" title="Permalink to this definition">¶</a></dt>
+<dd><p>From <a class="reference external" href="https://gist.github.com/schlamar/2311116">https://gist.github.com/schlamar/2311116</a>
+Decorator to run a function as a process.
+Be sure that every argument and the return value
+is <em>pickable</em>.
+The created process is joined, so the code does not
+run in parallel.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="experiment.specification.specification_skeleton.runprocessify_func">
+<code class="sig-prename descclassname">experiment.specification.specification_skeleton.</code><code class="sig-name descname">runprocessify_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#experiment.specification.specification_skeleton.runprocessify_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-experiment.specification">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-experiment.specification" title="Permalink to this headline">¶</a></h2>

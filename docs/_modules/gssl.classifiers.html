@@ -440,19 +440,19 @@ the label fitting criterion. It is required that <span class="math notranslate n
 <dd></dd></dl>
 
 </div>
-<div class="section" id="module-gssl.classifiers.ManifoldReg">
-<span id="gssl-classifiers-manifoldreg-module"></span><h2>gssl.classifiers.ManifoldReg module<a class="headerlink" href="#module-gssl.classifiers.ManifoldReg" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-gssl.classifiers.LapEigLS">
+<span id="gssl-classifiers-lapeigls-module"></span><h2>gssl.classifiers.LapEigLS module<a class="headerlink" href="#module-gssl.classifiers.LapEigLS" title="Permalink to this headline">¶</a></h2>
 <p>Created on 27 de mar de 2019</p>
 <p>&#64;author: klaus</p>
 <dl class="py class">
-<dt id="gssl.classifiers.ManifoldReg.LapEigLS">
-<em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.ManifoldReg.</code><code class="sig-name descname">LapEigLS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.LapEigLS" title="Permalink to this definition">¶</a></dt>
+<dt id="gssl.classifiers.LapEigLS.LapEigLS">
+<em class="property">class </em><code class="sig-prename descclassname">gssl.classifiers.LapEigLS.</code><code class="sig-name descname">LapEigLS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.LapEigLS.LapEigLS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gssl.classifiers.classifier.GSSLClassifier" title="gssl.classifiers.classifier.GSSLClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">gssl.classifiers.classifier.GSSLClassifier</span></code></a></p>
 <p>Manifold Regularization with Laplacian Eigenmaps.
 Minimizes the Least Squares in a semi-supervised way by using a linear combination of the first <span class="math notranslate nohighlight">\(p\)</span> eigenfunctions. See <a class="bibtex reference internal" href="../zreferences.html#belkin2003" id="id5">[BN03]</a>.</p>
 <dl class="py method">
-<dt id="gssl.classifiers.ManifoldReg.LapEigLS.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.LapEigLS.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="gssl.classifiers.LapEigLS.LapEigLS.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">0.2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.LapEigLS.LapEigLS.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor for LapEigLS classifier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -462,8 +462,8 @@ Minimizes the Least Squares in a semi-supervised way by using a linear combinati
 </dd></dl>
 
 <dl class="py method">
-<dt id="gssl.classifiers.ManifoldReg.LapEigLS.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.ManifoldReg.LapEigLS.fit" title="Permalink to this definition">¶</a></dt>
+<dt id="gssl.classifiers.LapEigLS.LapEigLS.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">W</span></em>, <em class="sig-param"><span class="n">Y</span></em>, <em class="sig-param"><span class="n">labeledIndexes</span></em>, <em class="sig-param"><span class="n">hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gssl.classifiers.LapEigLS.LapEigLS.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Classifies the input data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

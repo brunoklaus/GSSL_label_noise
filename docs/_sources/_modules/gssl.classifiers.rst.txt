@@ -52,10 +52,10 @@ gssl.classifiers.LGC\_tf module
    :undoc-members:
    :show-inheritance:
 
-gssl.classifiers.ManifoldReg module
------------------------------------
+gssl.classifiers.LapEigLS module
+--------------------------------
 
-.. automodule:: gssl.classifiers.ManifoldReg
+.. automodule:: gssl.classifiers.LapEigLS
    :members:
    :undoc-members:
    :show-inheritance:
