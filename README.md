@@ -1,15 +1,14 @@
-# GSSL_label_noise
-Repository of Analysis of Label Noise in Graph-Based Semi-Supervised Learning.
-Currently being worked on.
-
-ACM SAC paper available at:
-https://dl.acm.org/doi/pdf/10.1145/3341105.3374013
-
-Master thesis available at:
-https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/trabalhoConclusao/viewTrabalhoConclusao.jsf?popup=true&id_trabalho=9233384 (click on the link next to "Anexo" to open the PDF)
-
-Documentation of every method (work in progress) available at:
-https://brunoklaus.github.io/GSSL_label_noise/
+# Minimization of Leave-One-Out Loss in a Graph-based Semi-supervised Classifier
+## Trabalho da disciplina de Inteligência Computacional
 
 
-TODO: Write an overview of the project, going over each module
+--- Fazer pip install -r requirements.txt para instalar todos os requerimentos. <br>
+
+---Adicionar src/ ao $PYTHONPATH, para que os imports sejam feitos corretamente <br>
+
+---16 GB de RAM necessários para rodar tudo com garantia de não precisar de mais memória. <br>
+
+--- O programa principal (interativo, para testar o LGCLVO_AUTO_L e LGCLVO_AUTO_D ) se encontra em src/experiment/experiments.py <br>
+
+--- LGC_LVO_AUTO_D -> src/gssl/classifiers/LGC_LVO_AUTO_D <br>
+--- LGC_LVO_AUTO_L -> src/gssl/filters/LGC_LVO_AUTO_L <br>
