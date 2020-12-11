@@ -72,7 +72,6 @@ class LGC_LVO_Filter(GSSLFilter):
             data = np.asarray([1.0]*l)
             temp_Y = _to_np(scipy.sparse.coo_matrix( (data,(row,col)),shape=(W.shape[0],l) ))
             
-            print(temp_Y)
             
             PL = LGC_iter_TF(X,W,Y=temp_Y,labeledIndexes=labeledIndexes,alpha = 1/(1+mu),num_iter=1000)
             

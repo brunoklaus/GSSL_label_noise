@@ -129,7 +129,7 @@ class Experiment():
 
     def run(self,hook_list=PLOT_HOOKS):
         for k,v in self.args.items():
-            LOG.debug("{}:{}".format(k,v),LOG.ll.EXPERIMENT)
+            LOG.info("{}:{}".format(k,v),LOG.ll.EXPERIMENT)
         
         
         #Multiplex the arguments, allocating each to the correct step
@@ -261,9 +261,87 @@ def run_debug_example_all():
     exp.ExpChapelle("").run_all()
     
 def main():
-    run_debug_example_one()
+    LOG.info("Demonstração para Inteligência Computacional")
+    ds, alg = "", ""
+    
+    while not ds in ['mnist','isolet']: 
+        LOG.info("Qual DATASET? (MNIST ou ISOLET)")
+        ds = input().lower()
+    while not alg in ['L','D','N']: 
+        LOG.info("Qual LGCLVO? (L ou D ou N[enhum])")
+        alg = input().upper()
+    
+    import experiment.specification.specification_bits as spec
+    from experiment.specification.specification_bits import allPermutations as P
+    
+    from experiment.specification.specification_skeleton import EmptySpecification
+    class ExpIntComp(EmptySpecification):
+        
+        def __init__(self,ds,alg):
+            self.ds = ds
+            self.alg = alg
+
+        def get_spec_name(self):
+            return "INTCOMP"
+        
+        def generalConfig(self):
+            s = spec.GENERAL_DEFAULT
+            return P(s)
+        
+        def inputConfig(self):
+            if self.ds == 'mnist':
+                s = spec.INPUT_MNIST
+            else:
+                s = spec.INPUT_ISOLET
+            return P(s)
+    
+        def filterConfig(self):
+            def alpha_to_mu(alpha):
+                return (1-alpha)/alpha
+            if self.alg in ["L"]:
+                s = spec.FILTER_LGC_LVO_AUTO
+                s['LGC_iter'] = [1000]
+            else:
+                s = spec.FILTER_NOFILTER
+            
+            return  P(s)
+        
+        
+        def noiseConfig(self):
+            s = spec.NOISE_UNIFORM_DET_SOME
+            if self.alg in ["L","N"]:
+                s["corruption_level"] = [0.15 if self.ds == "mnist" else 0.2]
+            else:
+                s["corruption_level"] = [0.0]
+            return P(s)
+        
+        def affmatConfig(self):
+            if self.ds == "mnist":
+                s = spec.AFFMAT_DEFAULT
+                s['k'] = [15]
+            else:
+                s = spec.AFFMAT_ISOLET
+            return P(s)
+        def algConfig(self):
+            if self.alg=="D":
+                s =spec.ALGORITHM_MANIFOLDREG_DEFAULT
+                s['p'] = [300 if self.ds == 'isolet' else 100]
+                return P(s)
+            s = spec.ALGORITHM_LGC_DEFAULT
+            
+            def alpha_to_mu(alpha):
+                return (1-alpha)/alpha
+            s["num_iter"] = [10000]
+            return P(s)
+    
 
     
+    
+    
+
+    opt = ExpIntComp(ds=ds,alg=alg).get_all_configs()[0]
+    
+    Experiment(opt).run(hook_list=[])
     
     
     

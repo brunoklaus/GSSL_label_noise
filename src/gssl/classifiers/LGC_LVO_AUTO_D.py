@@ -12,7 +12,7 @@ import log.logger as LOG
 from caffe2.python.operator_test.square_root_divide_op_test import grad
 from output.folders import RESULTS_FOLDER
 
-class LapEigLS(GSSLClassifier):
+class LGC_LVO_AUTO_D(GSSLClassifier):
     """ Manifold Regularization with Laplacian Eigenmaps. 
         Minimizes the Least Squares in a semi-supervised way by using a linear combination of the first :math:`p` eigenfunctions. See :cite:`belkin2003`.
     """
@@ -66,28 +66,20 @@ class LapEigLS(GSSLClassifier):
         cache_eigvec = osp.join(INPUT_FOLDER,'eigenVectors.npy')
         cache_eigval = osp.join(INPUT_FOLDER,'eigenValues.npy')
         
-        if osp.isfile(cache_eigval) and osp.isfile(cache_eigvec):
-            print("Loading eigenvectors/eigenvalues...")
-            eigenValues, eigenVectors = np.load(cache_eigval), np.load(cache_eigvec)
-        else:
-            print("Creating  eigenvectors/eigenvalues...")            
-            eigenValues, eigenVectors = ssp.eigsh(L, k=p, M=ssp.aslinearoperator(scipy.sparse.eye(L.shape[0])),sigma=-0.75, which='LM',mode='cayley',tol=1e-05)
-            time_elapsed = time.time() - start_time
-            LOG.info("Took {} seconds to calculate eigenvectors".format(int(time_elapsed)))
-            idx = eigenValues.argsort() 
-            eigenValues = eigenValues[idx]
-            LOG.debug(eigenValues)
-            assert eigenValues[0] <= eigenValues[eigenValues.shape[0]-1]
-            eigenVectors = eigenVectors[:,idx]
-            np.save(cache_eigval,arr=eigenValues)
-            np.save(cache_eigvec,arr=eigenVectors)
+    
+        print("Creating  eigenvectors/eigenvalues...")            
+        eigenValues, eigenVectors = ssp.eigsh(L, k=p, M=ssp.aslinearoperator(scipy.sparse.eye(L.shape[0])),sigma=-0.75, which='LM',mode='cayley',tol=1e-05)
+        time_elapsed = time.time() - start_time
+        LOG.info("Took {} seconds to calculate eigenvectors".format(int(time_elapsed)))
+        idx = eigenValues.argsort() 
+        eigenValues = eigenValues[idx]
+        LOG.debug(eigenValues)
+        assert eigenValues[0] <= eigenValues[eigenValues.shape[0]-1]
+        eigenVectors = eigenVectors[:,idx]
         
         import tensorflow as tf
         
         U = eigenVectors
-        #Y =  U @ (U.T @ Y)
-        
-        Y# = Y - (np.min(Y,axis=-1)[:,None])
         
         U, X, Y = [tf.constant(x.astype(np.float32)) for x in [U,X,Y]]
         
@@ -194,7 +186,7 @@ class LapEigLS(GSSLClassifier):
         sq_loss = lambda y_, y: tf.reduce_mean(tf.reduce_sum(tf.square(y_-y),axis=[1]))
         abs_loss = lambda y_, y: tf.reduce_mean(tf.reduce_sum(tf.abs(y_-y),axis=[1]))
             
-        NUM_ITER = 3000
+        NUM_ITER = 500
         opt = tf.keras.optimizers.RMSprop(learning_rate=1e-01)
         
         Y_l = tf.gather(Y,indices=np.where(labeledIndexes)[0],axis=0)
@@ -207,8 +199,8 @@ class LapEigLS(GSSLClassifier):
         
         L = []
         df = pd.DataFrame()
-        
-        for i in range(-20,NUM_ITER):
+        max_acc, BEST_MU = [0,0]
+        for i in range(NUM_ITER):
             MU.assign(i)
             with tf.GradientTape() as t:
                 # no need to watch a variable:
@@ -220,11 +212,15 @@ class LapEigLS(GSSLClassifier):
                 
                 mx = tf.reduce_min(F_l)
             acc = accuracy(Y_l,F_l)
+            
+            if acc > max_acc:
+                max_acc, BEST_MU = acc, MU.numpy()
+            
             acc_true = accuracy(ORACLE_Y,forward(Y,U,PI,mode='eval'))
             
             L.append(np.array([i,loss_sq,loss,loss_xent,acc,acc_true])[None,:])
             
-            if i > 50:
+            if i in [50,500]:
                 df = pd.DataFrame(np.concatenate(L,axis=0),
                                   columns=["iter",'l2_loss','l1_loss','xent_loss','acc','acc_true'],
                                   index=range(len(L)))
@@ -233,10 +229,7 @@ class LapEigLS(GSSLClassifier):
                 plt.grid(which='both')
                 plt.legend(df.columns[1:], loc='upper right')
                 plt.ylim((0,1))
-                import os.path as osp
-                plt.savefig(osp.join(RESULTS_FOLDER,"with_diag_extraction.png"))
                 plt.show()
-                raise ""
             #### Option 1
             
             # Is the tape that computes the gradients!
@@ -254,6 +247,8 @@ class LapEigLS(GSSLClassifier):
                 print(f"Acc: {acc.numpy():.3f} Loss: {loss.numpy():.3f}; alpha = {alpha.numpy():.3f}; PI min = {tf.reduce_min(PI).numpy():.3f} ")
             
         
+        MU.assign(BEST_MU)
+        print("Best alpha: {}".format(tf.pow(2.0,-tf.math.reciprocal(tf.abs(MU)))))
         return tf.clip_by_value(forward(Y,U,PI,mode='eval'),0,999999).numpy()
         """
             
@@ -305,7 +300,7 @@ class LapEigLS(GSSLClassifier):
 
 
     def __init__(self,p=0.2):
-        """ Constructor for LapEigLS classifier.
+        """ Constructor for LGC_LVO_AUTO_D classifier.
             
         Args:
             p (Union[float,int]). The number of eigenfunctions. It is given as either the absolute value if integer, or a percentage of

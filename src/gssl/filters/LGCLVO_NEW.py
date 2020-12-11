@@ -123,7 +123,7 @@ class LGC_LVO_AUTO_Filter(GSSLFilter):
         
 
         if which_loss ==  "xent":
-            loss = lambda: xent(to_prob(A@SIGMA()@B),B)   + 10*tf.reduce_sum(tf.square( tf.reduce_mean(to_prob(A@SIGMA()@B),axis=0) - tf.reduce_mean(B,axis=0)))
+            loss = lambda: xent(to_prob(A@SIGMA()@B),B)
         elif which_loss == "mse":
             loss = lambda: sq_loss(to_prob(A@SIGMA()@B),B)  #+ 1*tf.reduce_sum(tf.square( tf.reduce_mean(to_prob(A@SIGMA()@B),axis=0) - tf.reduce_mean(B,axis=0)))
             
@@ -151,10 +151,10 @@ class LGC_LVO_AUTO_Filter(GSSLFilter):
         #0.99 - 0.06267
         #0.9 - 0.06164
 
-        for i in range(1000):
+        for i in range(5000):
             opt.minimize(loss, [_SIGMA])
             #_SIGMA.assign(norm_s())
-            print(loss().numpy())
+            print("LOO loss: {}".format(loss().numpy()))
 
         self.Fl = (lambda: to_prob(A@SIGMA()@B))().numpy()
 
