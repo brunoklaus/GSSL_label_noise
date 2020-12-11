@@ -22,6 +22,7 @@ def __calculate_root_path():
 #: The path to the root of this python project
 ROOT_FOLDER = __calculate_root_path()
 INPUT_FOLDER = path.join(ROOT_FOLDER,"input")
+
 CIFAR_MAT_FOLDER = path.join(INPUT_FOLDER,"dataset","cifar10_matrices")
 CIFAR_FOLDER = path.join(INPUT_FOLDER,"dataset","cifar10_data")
 

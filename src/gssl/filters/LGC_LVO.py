@@ -27,7 +27,8 @@ class LGC_LVO_Filter(GSSLFilter):
              constant_prop = False,useZ=True,normalize_rows=True):
         
         
-        
+        labeledIndexes, noisyIndexes = labeledIndexes
+
         
         Y = np.copy(Y)
         #We make a deep copy of labeledindexes
@@ -71,7 +72,9 @@ class LGC_LVO_Filter(GSSLFilter):
             data = np.asarray([1.0]*l)
             temp_Y = _to_np(scipy.sparse.coo_matrix( (data,(row,col)),shape=(W.shape[0],l) ))
             
-            PL = LGC_iter_TF(X,W,Y=temp_Y,labeledIndexes=labeledIndexes,alpha = 1/(1+mu),num_iter=10000)
+            print(temp_Y)
+            
+            PL = LGC_iter_TF(X,W,Y=temp_Y,labeledIndexes=labeledIndexes,alpha = 1/(1+mu),num_iter=1000)
             
             PL = PL[labeledIndexes,:]
             PL[range(PL.shape[0]),range(PL.shape[0])] = 0   #Set diagonal to 0
@@ -125,32 +128,34 @@ class LGC_LVO_Filter(GSSLFilter):
         #######################################################################################
         '''BEGIN iterations'''
             
-        
         Q = None
         cleanIndexes = np.copy(labeledIndexes)
         for i_iter in range(tuning_iter):
            
             found_noisy = True
+            
             if np.sum(labeledIndexes) > 0 and found_noisy:
                 
                 '''Z matrix - The binary values of current Y are replaced with their corresponding D entries.
                     Then, we normalize each row so that row sums to its estimated influence
                 '''
-                if (not self.use_baseline) or Q is None:
-                    if useZ:
-                        Z = gutils.calc_Z(Y, labeledIndexes, D, estimatedFreq, weigh_by_degree=False)
-                        F = P@Z
-                        if scipy.sparse.issparse(F):
-                            F = np.asarray(F.toarray())
-                
-                        
-                        #Compute graph gradient
-                        Q = (divide_row_by_sum(F) - divide_row_by_sum(Z))
-                    else:
-                        F = P@Y
-                        if scipy.sparse.issparse(F):
-                            F = np.asarray(F.toarray())
-                        Q = (divide_row_by_sum(F) - divide_row_by_sum(Y))
+                useZ = False
+                if i_iter >= 0:
+                    if (not self.use_baseline) or Q is None:
+                        if useZ:
+                            Z = gutils.calc_Z(Y, labeledIndexes, D, estimatedFreq, weigh_by_degree=False)
+                            F = P@Z
+                            if scipy.sparse.issparse(F):
+                                F = np.asarray(F.toarray())
+                    
+                            
+                            #Compute graph gradient
+                            Q = (divide_row_by_sum(F) - divide_row_by_sum(Z))
+                        else:
+                            F = P@Y
+                            if scipy.sparse.issparse(F):
+                                F = np.asarray(F.toarray())
+                            Q = (divide_row_by_sum(F) - divide_row_by_sum(Y))
                 #import scipy.stats
                 
                 #During label tuning, we'll also 'unlabel' the argmax
@@ -192,7 +197,8 @@ class LGC_LVO_Filter(GSSLFilter):
                     where_noisylabels.append(id_min_line)
                     
                     suggested_labels.append(id_max_col)
-                    Q_values.append(Q[id_min_line,id_min_col])
+                    Q_values.append(1+Q[id_min_line,id_min_col])
+
     
                    
                     
@@ -225,40 +231,47 @@ class LGC_LVO_Filter(GSSLFilter):
         MATPLOTLIB stuff 
         '''
                 
-        """
+        
         import cv2 as cv
         
         
         #ret2,th2 = cv.threshold(255*np.asarray(Q_values).astype(np.uint8),0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
         
-        from skimage.filters import threshold_multiotsu
-        Q_values = np.asarray(Q_values)
-        th = threshold_multiotsu(Q_values)
-        th = np.where(Q_values < th[0])[0]
-    
-        
-        
-        for i in range(th.shape[0]):
-            th2 = max(0,i - 1)
-            if not th[i] == i:
-                break
 
-        
         import matplotlib
         matplotlib.use("TkAgg")
         import matplotlib.pyplot as plt
-        fig = plt.figure(figsize=(5,2))
+
+        fig = plt.figure(figsize=(5*3,2*3))
         ax = fig.add_subplot()
-        ax.plot(np.arange(len(Q_values)),Q_values)
-        ax.axvline(10,color='red')
-        #plt.axvline(th2,color='purple')
+        #ax.plot(np.arange(len(Q_values)),Q_values)
+        ax.scatter(np.arange(len(Q_values)),Q_values,c=noisyIndexes[where_noisylabels])
+        ax.set_xlabel("#Labels Removed", fontsize=22)
+        ax.set_ylabel("Consistency with LGC", fontsize=22)
         
-        #plt.axhline(-0.5,color='green')
-        print(th2)
+        
+        
+        ax.axvline(np.sum(noisyIndexes),color='red')
+        
+        # We change the fontsize of minor ticks label 
+        ax.tick_params(axis='both', which='major', labelsize=18)
+        ax.tick_params(axis='both', which='minor', labelsize=18)
+        
+        # For the minor ticks, use no labels; default NullFormatter.
+        ax.yaxis.set_minor_locator(matplotlib.ticker.MultipleLocator(0.1))
+        fig.tight_layout()
+        plt.axhline(np.max(Q_values[0:(1+np.sum(noisyIndexes))]),color='green')
+        plt.grid(True,axis='y', linestyle='-',alpha=0.5, which='major')
+        plt.grid(True,axis='y', linestyle='--',alpha=0.5, which='minor')
+
+        #plt.axvline(th2,color='purple')
+        plt.savefig('/home/klaus/eclipse-workspace/NoisyGSSL/results/python_plotly/'+'mnist_alpha=0.99_noise=0.3_thresh_static.png')
+        
+        #print(th2)
         plt.show()
-        """
+        
             
-            
+        
             
         '''END iterations'''
         LOG.info("NUMBER OF DETECTED NOISY INSTANCES:{}".format(len(detected_noisylabels)),LOG.ll.FILTER)    

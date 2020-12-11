@@ -62,7 +62,6 @@ class vertexplotOpt(object):
                 and are given a smaller size.
         
         """
-        UNLABELED_SIZE_MULTIPLIER = 0.0
         self.mode = mode
         self.color_values = np.array(Y)
         
@@ -277,7 +276,7 @@ def _traceVertex(X,labeledIndexes,plot_dim, v_opt):
             return [dict(target = x, value = dict(marker = dict(color = y))) \
                     for x,y in styles.items()]
             
-        opacity = 0.5*np.ones(X.shape[0])
+        opacity = 0.75*np.ones(X.shape[0])
         opacity[np.logical_not(labeledIndexes) ] = 1.0
         if v_opt.mode == "discrete":
             #One plot for each group
@@ -425,17 +424,19 @@ def _traceEdges(X,W,plot_dim,edge_width):
         return(trace)
         
 def _vertex_name(Y):
+    print(["Class #" + str(x) if x != -1 else "unlabeled" for x in Y])
     return(["Class #" + str(x) if x != -1 else "unlabeled" for x in Y])
            
 def color_scale_discrete(Y,palette="bright"):
     """ Gets the color values for a discrete palette. """
-    
+    #palette = "husl"
     if Y.shape[0] == -1:
         raise ""
     Y = Y - np.min(Y) 
-    pal = sns.color_palette(palette,np.max(Y)+1+8)
-    pal = [pal[2],pal[6]]
+    pal = sns.color_palette(palette,np.max(Y)+10)
+    #pal = [pal[2],pal[6]]
     res = 255*np.array(list(map(lambda k: (pal[int(k)]),Y)))
+    print(res)
     return(res)
 
 def color_scale_continuous(Y,palette="coolwarm",num_palette=70):    

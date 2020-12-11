@@ -6,6 +6,7 @@ Created on 27 de mar de 2019
 from gssl.classifiers.classifier import GSSLClassifier
 import numpy as np
 import gssl.graph.gssl_utils as gutils
+import scipy.sparse
 
 class GFHF(GSSLClassifier):
     """ Label Propagation based on Gaussian Fields and Harmonic Functions. See :cite:`Zhu_2003`. """
@@ -23,6 +24,7 @@ class GFHF(GSSLClassifier):
         
         
         P  = gutils.deg_matrix(W,-1.0) @ W
+        P = scipy.sparse.csr_matrix(P)
         Yl = Y[labeledIndexes,:]
         for i in range(num_iter):
             Y = P@Y

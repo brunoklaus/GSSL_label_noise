@@ -55,7 +55,7 @@ class GTAMClassifier(GSSLClassifier):
         #Get graph laplacian
         L = gutils.lap_matrix(W, is_normalized=True)
         #Propagation matrix
-        P = np.linalg.inv( I + L/mu )
+        P = np.linalg.inv( I- 1/(1+mu) *(I-L) )*mu/(1+mu)
         
         P_t = P.transpose()
         #Matrix A
@@ -90,7 +90,7 @@ class GTAMClassifier(GSSLClassifier):
                 Then, we normalize each row so that row sums to its estimated influence
             '''
             ul = np.logical_not(labeledIndexes)
-            
+
             Z = gutils.calc_Z(Y, labeledIndexes, D, estimatedFreq,weigh_by_degree=self.weigh_by_degree)
             if Q is None:
                 #Compute graph gradient

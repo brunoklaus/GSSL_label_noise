@@ -121,42 +121,6 @@ INPUT_CIFAR_10 = {
         }
 
 
-
-FILTER_LDST = {
-        "filter": ["LDST"],
-        "mu": [0.1111,99.0,9.0,0.1111],
-        "useZ": [True],
-         "tuning_iter": [1.00],
-         "tuning_iter_as_pct":[True],
-         "constantProp":[False],
-         "gradient_fix":[True],
-         "weigh_by_degree":[True]
-        }
-
-FILTER_LGC_LVO = {
-        "filter": ["LGC_LVO"],
-        "mu": [0.1111,99.0,9.0,0.1111],
-         "tuning_iter": [1049],
-         "tuning_iter_as_pct":[False],
-         "constantProp":[False],
-         "useZ":[False],
-        "normalize_rows":[True,False]
-        }
-
-FILTER_LDST_CONSTPROP = {
-        "filter": ["LDST"],
-        "mu": [0.0101,99.0,9.0,0.1111],
-         "tuning_iter": [1.00,0.75,0.5,0.25,0],
-         "tuning_iter_as_pct":[True],
-         "constantProp":[True]
-        }
-
-FILTER_MR = {
-        "filter": ["MRF"],
-        "p": [1,4,15],
-         "tuning_iter": [1.00,0.75,0.5,0.25,0],
-         "tuning_iter_as_pct":[True],
-        }
 """
 Affinity matrix configs
 ----------------------------------
@@ -227,6 +191,53 @@ Filter configs
 FILTER_NOFILTER = {
         "filter": [None], 
         }
+
+
+
+FILTER_LDST = {
+        "filter": ["LDST"],
+        "mu": [0.1111,99.0,9.0,0.1111],
+        "useZ": [True],
+         "tuning_iter": [1.00],
+         "tuning_iter_as_pct":[True],
+         "constantProp":[False],
+         "gradient_fix":[True],
+         "weigh_by_degree":[True]
+        }
+
+FILTER_LGC_LVO = {
+        "filter": ["LGC_LVO"],
+        "mu": [0.1111,99.0,9.0,0.1111],
+         "tuning_iter": [1000],
+         "tuning_iter_as_pct":[False],
+         "constantProp":[False],
+         "useZ":[False],
+        "normalize_rows":[True,False]
+        }
+
+
+
+FILTER_LGC_LVO_AUTO = {
+        "filter": ["LGC_LVO_AUTO"],
+        "mu": [0.1111,99.0,9.0,0.1111],
+        "loss": ["xent","mse"]
+        }
+
+FILTER_LDST_CONSTPROP = {
+        "filter": ["LDST"],
+        "mu": [0.0101,99.0,9.0,0.1111],
+         "tuning_iter": [1.00,0.75,0.5,0.25,0],
+         "tuning_iter_as_pct":[True],
+         "constantProp":[True]
+        }
+
+FILTER_MR = {
+        "filter": ["MRF"],
+        "p": [1,4,15],
+         "tuning_iter": [1.00,0.75,0.5,0.25,0],
+         "tuning_iter_as_pct":[True],
+        }
+
 
 """
 Algorithm (that is, Classifier) configs

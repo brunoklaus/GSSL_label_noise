@@ -63,7 +63,11 @@ class plotHook(hk.GSSLHook):
             
             if X.shape[1] > 3 or X.shape[1] < 2:
                 from sklearn.manifold import LocallyLinearEmbedding, TSNE
-                #self.X_transf = LocallyLinearEmbedding(n_neighbors=30,n_components=2,random_state=1308,method="modified").fit_transform(X)
+                from sklearn.preprocessing import StandardScaler
+                #self.X_transf = LocallyLinearEmbedding(n_neighbors=20,n_components=2,random_state=1018,method="modified").fit_transform(X)
+                #scaler = StandardScaler()
+                #scaler.fit(self.X_transf)
+                #self.X_transf = scaler.transform(self.X_transf)
                 self.X_transf = TSNE(random_state=19308).fit_transform(X)
                 
             else:

@@ -47,14 +47,16 @@ dfRead <- function(fPath) {
 
 
 df_artigo <- dfCombine(
-  lapply(list("artigo_LDST_f1_chap_joined.csv",
-              "artigo_LGCLVO_noZ_f1_chap_joined.csv",
-              "artigo_LGCLVO_f1_chap_joined.csv"
+  lapply(list("LGCLVOAUTO_Digit1_v3_joined.csv"
               
-  ), function(x)dfRead(file.path(DF_FOLDER,"artigo_PR",x))))
+              
+              
+              
+              
+  ), function(x)dfRead(file.path(DF_FOLDER,"TCC2",x))))
 
 
-df_artigo$spec_name = "artigo_f1_score"
+df_artigo$spec_name = "lgclvoauto_acc"
 
   df_list = list(
     df_artigo)
@@ -109,6 +111,8 @@ df[df$flt_useZ%in%"False",'flt_filter'] = sapply(df[df$flt_useZ%in%"False",'flt_
 df[df$flt_gradient_fix%in%"True",'flt_filter'] = sapply(df[df$flt_gradient_fix%in%"True",'flt_filter'],
                                                  function(x){paste0('Modified_',x)})
 
+df[,grepl("acc",colnames(df))] <- round(100*df[,grepl("acc",colnames(df))],digits = 2)
+
 ############################################################################
 ####################################################
 #' Creates a dataframe corresponding to an experiment
@@ -119,7 +123,7 @@ texDf <- function(df,x_var,use_sd=T, out_var="acc",
   
     df <- as.data.frame(df)
     for(c in colnames(df)){
-      df[,c][df[,c] == ""] <- NA
+      df[,c][df[,c] == ""] <- " "
     }
   
     out_var = paste0(OUTPUT_PREFIX,out_var)
@@ -156,13 +160,8 @@ texDf <- function(df,x_var,use_sd=T, out_var="acc",
     #b2: filters out columns in 'ignore_var' 
     b2 <- !colnames(df) %in% c(x_var,out_var,type_var,ignore_var)
     
+
     
-    #g: string describing the setting
-    g <- sapply(1:nrow(df[,b1 & b2]),
-                function(i){
-                  return(toStrExceptNA(df[i,b1 & b2]))
-                }
-    )
     b3 <- (startsWith(colnames(df),OUTPUT_PREFIX))
     
     #g_compl: string describing the non-output variables that appear
@@ -172,18 +171,30 @@ texDf <- function(df,x_var,use_sd=T, out_var="acc",
                         return(toStrExceptNA(df[i,!b1 & !b3],sep=";\n"))
                       }
     )
-    
+   
     
     df_fixed = df[,!b1 & !b3]
     df_vars = df[,b1 & b2]
     
+    colnames(df_vars) = colnames(df[,b1 & b2])
+    
+    print(df_vars)
+    print("!!!")
     n <- nrow(df)
     new_df <- as.tibble(data.frame(sd=numeric(n)))
     new_df[x_var] <- sapply(df[,x_var],as.numeric)
+    
+    
+    
+    
     new_df[out_var] <- sapply(df[,paste0(out_var,"_",out_var_statistic)],as.numeric)
+    
     new_df$sd <- unlist(df[,paste0(out_var,"_sd")])
     
-    new_df <- cbind(df_vars,new_df[x_var],new_df[out_var],new_df["sd"])
+    new_df <- cbind(df_vars,new_df[x_var] ,new_df[out_var],new_df["sd"])
+    
+    print(new_df)
+    
     return(list(new_df, paste0(g_compl[1]) ))
     
     
@@ -220,6 +231,7 @@ createTexTable <- function(fPath,tex_df,setting,x_var){
                                    c("alg_alpha","$\\alpha$"),
                                    c("alg_mu","$\\mu$"),
                                    c("alg_p","p"),
+                                   c("flt_loss","loss function"),
                                    c("alg_algorithm","Algorithm"),
                                    c("CMN_acc","Accuracy (w/ class mass normalization)"),
                                    c("acc","Accuracy"))))
@@ -416,8 +428,8 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
                                   colour=Color,fill=Color)) 
   } else {
     new_df$Type =  as.factor(sapply(df[type_var],function(x){paste0(translate_var(type_var),"=",x)}))
-    new_df$Type = factor(new_df$Type,levels = levels(new_df$Type)[c(2,1)] )
-    lines= c("solid","dashed","dotted","dotdash","longdash","twodash")[1:length(unique(new_df$Type))]
+    new_df$Type = factor(new_df$Type,levels = levels(new_df$Type) )
+    lines= c("solid","dotted","dashed","twodash")[1:length(unique(new_df$Type))]
     print(lines)
     g <- ggplot(data = new_df,aes(x,y,
                                 ymin =y_min, ymax = y_max,linetype=Type,
@@ -456,9 +468,9 @@ linePlot <- function(df,x_var,use_sd=T, out_var="acc",
 
 #######################################################################
 #Experiment Config
-EXP_NAME = file.path("artigo_f1_score")
+EXP_NAME = file.path("LGCLVOAuto")
 cond <- T
-EXP_TYPE = 4
+EXP_TYPE = 1
 
 if (EXP_TYPE %in% c(1,2)){
   x_var = "noise_corruption_level"
@@ -472,11 +484,11 @@ if (EXP_TYPE %in% c(1,2)){
 #######################################################################
 #  Create table for whole dataset
 for (ds in unique(df$input_dataset)) {
-  for (out_var in c("CMN_rownorm_acc_unl","acc_labeled","CMN_acc","acc_unlabeled")){
+  for (out_var in c("acc_labeled","acc_unlabeled")){
     out_var_statistic = "mean"
     
     #Filter df and create joined table
-    filtered_df <- dplyr::filter(df,cond & input_dataset == ds)
+    filtered_df <- dplyr::filter(df,input_dataset == ds)
     if (nrow(filtered_df)==0){stop("ERROR: zero rows satisfy criteria")}
     
     #Set export folder
@@ -489,7 +501,7 @@ for (ds in unique(df$input_dataset)) {
                                                  "_JOINEDTABLE",".txt"))
     
     
-    l <- texDf(filtered_df,x_var = x_var,type_var="", 
+    l <- texDf(filtered_df,x_var = x_var,type_var=type_var, 
                out_var = out_var, out_var_statistic = out_var_statistic,
                use_sd = use_sd)
     joined_df = l[[1]]
@@ -563,7 +575,7 @@ if (nrow(filtered_df)==0){stop("ERROR: zero rows satisfy criteria")}
 
 for (out_var in out_var_list){
 
-filtered_df <- dplyr::filter(df,cond  & (flt_filter%in%c("LGC_LVO") ) &
+filtered_df <- dplyr::filter(df,cond  & flt_mu == mu& (flt_filter%in%c("Modified_LDST","LGC_LVO") ) &
                                (input_dataset != "isolet"),
                                input_labeled_percent == lp)
 
@@ -600,7 +612,7 @@ fPath_table = file.path(export_folder,paste0(out_var,"~",x_var,"_",out_var_stati
 
 g <- linePlot(df = filtered_df,x_var = x_var,type_var=type_var, 
               out_var = out_var, out_var_statistic = out_var_statistic,
-              use_sd = use_sd)
+              use_sd = F)
 ggsave(fPath, width = 15, height = 7,dpi=150)
 plot(g)
 }

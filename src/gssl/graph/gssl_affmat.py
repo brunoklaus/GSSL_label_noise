@@ -238,7 +238,7 @@ def knnMask(X,k,mode='sym',metric="euclidean"):
     
     """
 
-    if X.shape[0] > 2000:
+    if X.shape[0] > 1000:
         K =  _faiss_knn(X, k, mode=mode)
         return K
         

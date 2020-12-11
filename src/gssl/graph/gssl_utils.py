@@ -53,7 +53,7 @@ def lap_matrix(W,is_normalized):
     
     Args:
         W (`NDArray[float].shape[N,N]`) : The given matrix.
-        is_normalized (bool) : If ``True``, returns :math:`L = I - D^{-1/2} W D^{-1/2}`. Otherwise, returns :math:`L = D^{-1}W`.
+        is_normalized (bool) : If ``True``, returns :math:`L = I - D^{-1/2} W D^{-1/2}`. Otherwise, returns :math:`L = D-W`.
     Returns:
         `NDArray[float].shape[N,N]` : The normalized or unnormalized graph Laplacian
     """

@@ -11,6 +11,11 @@ import time
 from scipy import sparse
 import log.logger as LOG 
 
+
+
+from gssl.graph.gssl_utils import scipy_to_np as _to_np
+import scipy.sparse
+
 def get_S_fromtensor(W):
     wsum = tf.sparse.reduce_sum(W,axis=1)
     wsum = tf.reshape(wsum,(-1,))
@@ -27,10 +32,22 @@ def get_S_fromtensor(W):
     
     return S
 
-def update_F(TOTAL_ITER,ALPHA,S,F_0):
+def update_F_2(TOTAL_ITER,SIGMA,LAP,F_0):
+    MINUS_SIGMA_INV = -1.0*tf.reciprocal(SIGMA)[:,tf.newaxis]
+    #SIGMA_INV = SIGMA_INV[:,tf.newaxis]
+    LAP = LAP* MINUS_SIGMA_INV
     i = tf.constant(0)
     c = lambda i,F: tf.less(i, TOTAL_ITER)
-    b = lambda i,F: (tf.add(i, 1),(1 - ALPHA)*F_0 + ALPHA*tf.sparse.matmul(S,F))
+    b = lambda i,F: (tf.add(i, 1), tf.sparse.matmul(LAP ,F) + F_0)
+    r = tf.while_loop(c, b, [i,F_0])
+    return r 
+
+
+def update_F(TOTAL_ITER,SIGMA,S,F_0):
+    ALPHA =  tf.reciprocal(1+SIGMA)
+    i = tf.constant(0)
+    c = lambda i,F: tf.less(i, TOTAL_ITER)
+    b = lambda i,F: (tf.add(i, 1),F_0*((1 - ALPHA)[:,np.newaxis]) + tf.sparse.matmul(S,F)*(ALPHA[:,np.newaxis]) )
     r = tf.while_loop(c, b, [i,F_0])
     return r
             
@@ -71,7 +88,6 @@ def convert_sparse_matrix_to_sparse_tensor(X,var_values=False):
     
     return tf.SparseTensor(indices, np.reshape(np.asarray(coo.data).astype(np.float32),(-1,)), coo.shape)
     
-
 def LGC_iter_TF(X,W,Y,labeledIndexes, alpha = 0.1,num_iter = 1000, hook=None):
     config = tf.ConfigProto()
     config.gpu_options.per_process_gpu_memory_fraction = 0.5
@@ -81,6 +97,21 @@ def LGC_iter_TF(X,W,Y,labeledIndexes, alpha = 0.1,num_iter = 1000, hook=None):
         """ Set W to sparse if necessary, make copy of Y """
         W = sparse.csr_matrix(W)        
         Y = np.copy(Y)
+        """ Zero OUT unlabeled """
+        l = np.sum(labeledIndexes)
+        
+        
+        """ Create Indicator Y """
+        lids = np.where(labeledIndexes)[0]
+        itertool_prod = [[i,j] for i in range(l) for j in range(l)]
+        row = np.asarray([lids[i] for i in range(l)])
+        col = np.asarray([i for i in range(l)])
+        data = np.asarray([1.0]*l)
+        temp_Y = _to_np(scipy.sparse.coo_matrix( (data,(row,col)),shape=(W.shape[0],l) ))
+    
+        
+        from gssl.graph.gssl_utils import lap_matrix
+        LAP = convert_sparse_matrix_to_sparse_tensor(lap_matrix(W, is_normalized=True))
         
         """ Convert W to tensor """
         W = convert_sparse_matrix_to_sparse_tensor(W)
@@ -96,12 +127,28 @@ def LGC_iter_TF(X,W,Y,labeledIndexes, alpha = 0.1,num_iter = 1000, hook=None):
         
         
         
+        SIGMA = tf.Variable(tf.cast(np.asarray([(1-alpha)/alpha]*Y.shape[0]),tf.float32 ))
+        SIGMA_INV = tf.reciprocal(SIGMA)
+        SIGMA_INV = SIGMA_INV[:,tf.newaxis]
+        """
+            Run variable initializers 
+        """
+        global_var_init=tf.global_variables_initializer()
+        local_var_init = tf.local_variables_initializer()
+        sess.run([global_var_init,local_var_init])    
+        
+        
+        
         """
             CREATE S - Needed for LGC propagation
         """
         S =  get_S_fromtensor(W)
         
+        MINUS_S = tf.sparse.SparseTensor(S.indices,-1*S.values,S._dense_shape)
+        I = tf.sparse.eye(tf.shape(S)[0]) * 1.01 * np.ones((Y.shape[0],))
+        #LAP = tf.sparse.add(I,MINUS_S)
         
+
         """
         CREATE F variable
         """
@@ -111,8 +158,12 @@ def LGC_iter_TF(X,W,Y,labeledIndexes, alpha = 0.1,num_iter = 1000, hook=None):
         
         def _to_dense(sparse_tensor):
             return tf.sparse_add(tf.zeros(sparse_tensor._dense_shape), sparse_tensor)
-        calc_F = update_F(TOTAL_ITER, alpha, S, F_0)
-        assign_to_F = tf.assign(F,calc_F[1])
+        calc_F = update_F_2(TOTAL_ITER, SIGMA,LAP, F_0)
+        #calc_F = update_F(TOTAL_ITER, SIGMA,S, F_0)
+        
+        assign_to_F = tf.assign(F,calc_F[1]* SIGMA_INV)
+        
+        MINUS_SIGMA_INV = -1.0*tf.reciprocal(SIGMA)
         
         """
             Run variable initializers 
@@ -121,11 +172,17 @@ def LGC_iter_TF(X,W,Y,labeledIndexes, alpha = 0.1,num_iter = 1000, hook=None):
         local_var_init = tf.local_variables_initializer()
         sess.run([global_var_init,local_var_init])    
         
+        
+
+        
         c = time.time()
         sess.run(assign_to_F)
         elapsed = time.time() - c
         LOG.info('Label Prop (excluding initialization) done in {:.2} seconds'.format(elapsed),
                  LOG.ll.CLASSIFIER)
+        
+        print(sess.run(tf.reduce_min(F)))
+        raise ""
         
         result  = F.eval(sess) 
         sess.close()

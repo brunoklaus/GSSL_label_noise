@@ -14,31 +14,52 @@ class ExpChapelle(EmptySpecification):
     classdocs
     '''
     ds = "g241c"
+    
+    ALPHA = 0.1
+    
     def get_spec_name(self):
-        return "31Dez_LDST_mod_" + self.ds
+        return "LGCLVOAUTO_Digit1_fewlabels"
     
     def generalConfig(self):
         s = spec.GENERAL_DEFAULT
-        s["id"] = [0]
+        #s['id'] = [7]
         return P(s)
     
     def inputConfig(self):
         
-        s = spec.INPUT_MNIST
-        s['labeled_percent'] = [100/70000]
+        s = spec.INPUT_CHAPELLE_A
+        s['dataset'] = ['Digit1']
+        #s['dataset_sd'] = [0.3]
+        s['labeled_percent'] = [15/1500]
+        #s['labeled_percent'] = [100/70000]
         #s['dataset'] = ['Digit1']
-        #s['labeled_percent'] = [0.1]
+        #s['labeled_percent'] = [0.01]
+        s = spec.INPUT_MNIST
         
         return P(s)
 
     def filterConfig(self):
         
-        return  P(spec.FILTER_NOFILTER)
+        def alpha_to_mu(alpha):
+            return (1-alpha)/alpha
+        
+        #s = spec.FILTER_LGC_LVO_AUTO
+        #s = spec.FILTER_LGC_LVO_AUTO
+        
+        #s['LGC_iter'] = [1000]
+        #s['mu'] =[alpha_to_mu(self.ALPHA)]
+        #s["loss"] =["xent","mse",None]
+        #s['loss'] = ['xent',None]
+        #s = spec.FILTER_NOFILTER
+        #s = spec.FILTER_NOFILTER
+        s = spec.FILTER_NOFILTER
+        
+        return  P(s)
     
     
     def noiseConfig(self):
         s = spec.NOISE_UNIFORM_DET_SOME
-        s["corruption_level"] = [0.0]
+        #s["corruption_level"] = [3/15]
         return P(s)
     
     def affmatConfig(self):
@@ -46,9 +67,27 @@ class ExpChapelle(EmptySpecification):
         s['k'] = [15]
         return P(s)
     def algConfig(self):
-        s = spec.ALGORITHM_LGC_DEFAULT
-        s["alpha"] = [0.9]
-        s["num_iter"] = [7000]
+        
+        
+        
+        def alpha_to_mu(alpha):
+            return (1-alpha)/alpha
+        
+        s = spec.ALGORITHM_MANIFOLDREG_DEFAULT
+        s["p"] = [300]
+        #s = spec.ALGORITHM_LGC_DEFAULT
+        #s['alpha'] = [self.ALPHA]
+        
+        #s['mu'] = [alpha_to_mu(self.ALPHA)]
+        #s['weigh_by_degree'] = [False]
+        #s = spec.ALGORITHM_GTAM_DEFAULT
+        #s['weigh_by_degree'] = [False]
+        #s["alpha"] = [self.ALPHA]
+        #s["mu"] = [0.1111]
+        #s = spec.ALGORITHM_LGC_DEFAULT
+        #s["num_iter"] = [7000]
+        #s = spec.ALGORITHM_SIIS_DEFAULT
+        #s['alpha'] = [self.ALPHA]
         #s = spec.ALGORITHM_CLGC_DEFAULT
         #s["useEstimatedFreq"] = [None]
         #s["num_iter"] = [1500]
@@ -188,3 +227,5 @@ class ExpChapelle_5(EmptySpecification):
         s = spec.ALGORITHM_MANIFOLDREG_DEFAULT
         s["p"] = [4]
         return P(s) 
+    
+    

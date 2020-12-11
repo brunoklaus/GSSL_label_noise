@@ -10,6 +10,7 @@ from experiment.selector import select_input, select_affmat, select_classifier, 
 import gssl.graph.gssl_utils as gutils
 from experiment.selector import Hook, select_and_add_hook
 import log.logger as LOG
+from gssl.filters import LGCLVO_NEW
 
 ## The hooks being utilized
 PLOT_HOOKS = [Hook.INIT_LABELED,Hook.INIT_ALL,Hook.NOISE_AFTER,Hook.ALG_RESULT,Hook.ALG_ITER] \
@@ -176,8 +177,10 @@ class Experiment():
         LOG.info("Step 4: Filtering",LOG.ll.EXPERIMENT)
         #Create Filter
         ft = select_filter(**mplex["FILTER"])
+        self.ft = ft
 
         
+        noisyIndexes = (np.argmax(self.Y_true,axis=1) != np.argmax(self.Y_noisy,axis=1))
         
         self.Y_filtered, self.labeledIndexes_filtered = ft.fit(self.X, self.Y_noisy, self.labeledIndexes, self.W, hook=hooks["FILTER"])
 
@@ -187,6 +190,10 @@ class Experiment():
         alg = select_classifier(**mplex["ALG"])
         #Get Classification
         self.F = alg.fit(self.X,self.W,self.Y_filtered,self.labeledIndexes_filtered,hook=hooks["ALG"])
+        
+        if isinstance(ft, LGCLVO_NEW.LGC_LVO_AUTO_Filter):
+            if not ft.loss is None:
+                self.F[self.labeledIndexes,:] = ft.Fl
         
 
         
@@ -250,12 +257,21 @@ def run_debug_example_one(hook_list=[]):
     
     
 def run_debug_example_all():
-    import experiment.specification.exp_filter_LDST as exp
-    exp.FilterLDST().run_all()
+    import experiment.specification.exp_chapelle as exp
+    exp.ExpChapelle("").run_all()
     
 def main():
-    run_debug_example_one(hook_list=[])
+    run_debug_example_one()
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 if __name__ == "__main__":
     main()
