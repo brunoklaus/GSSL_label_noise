@@ -10,7 +10,7 @@ from experiment.selector import select_input, select_affmat, select_classifier, 
 import gssl.graph.gssl_utils as gutils
 from experiment.selector import Hook, select_and_add_hook
 import log.logger as LOG
-from gssl.filters import LGCLVO_NEW
+from gssl.filters import LGC_LVO_AUTO_L
 
 ## The hooks being utilized
 PLOT_HOOKS = [Hook.INIT_LABELED,Hook.INIT_ALL,Hook.NOISE_AFTER,Hook.ALG_RESULT,Hook.ALG_ITER] \
@@ -191,7 +191,7 @@ class Experiment():
         #Get Classification
         self.F = alg.fit(self.X,self.W,self.Y_filtered,self.labeledIndexes_filtered,hook=hooks["ALG"])
         
-        if isinstance(ft, LGCLVO_NEW.LGC_LVO_AUTO_Filter):
+        if isinstance(ft, LGC_LVO_AUTO_L.LGC_LVO_AUTO_Filter):
             if not ft.loss is None:
                 self.F[self.labeledIndexes,:] = ft.Fl
         

@@ -4,7 +4,7 @@ Created on 28 de mar de 2019
 @author: klaus
 '''
 from gssl.classifiers import CLGC,LGC,GFHF,GTAM,RF,classifier,  SIIS
-from gssl.filters import LDST,filter,ldstRemoval,MRremoval, LGC_LVO, LGCLVO_NEW
+from gssl.filters import LDST,filter,ldstRemoval,MRremoval, LGC_LVO, LGC_LVO_AUTO_L
 from gssl.classifiers.classifier import GSSLClassifier
 from gssl.graph.gssl_affmat import AffMatGenerator
 from input.noise.noise_process import LabelNoiseProcess
@@ -177,7 +177,7 @@ def select_filter(**kwargs):
             "MRF": lambda : MRremoval.MRRemover(**kwargs),
             "LDST":lambda : ldstRemoval.LDSTRemover(**kwargs),
             "LGC_LVO": lambda: LGC_LVO.LGC_LVO_Filter(**kwargs),
-            "LGC_LVO_AUTO": lambda: LGCLVO_NEW.LGC_LVO_AUTO_Filter(**kwargs),
+            "LGC_LVO_AUTO": lambda: LGC_LVO_AUTO_L.LGC_LVO_AUTO_Filter(**kwargs),
             
             None:lambda:filter.GSSLFilter(**kwargs),
             "None":lambda:filter.GSSLFilter(**kwargs),
