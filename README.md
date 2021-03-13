@@ -1,6 +1,7 @@
 # GSSL_label_noise
 Repository of Analysis of Label Noise in Graph-Based Semi-Supervised Learning.
-Currently being worked on.
+
+## Due to this project having many dependencies, this repo is in the process of being SUPERSEDED by https://github.com/brunoklaus/tf-labelprop-BR , where we'll offer a **Google Colab** version that installs all dependencies automatically. This will also allow anyone to run, visualize and extend experiments on the datasets easily.
 
 ACM SAC paper available at:
 https://dl.acm.org/doi/pdf/10.1145/3341105.3374013
